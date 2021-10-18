@@ -26,11 +26,11 @@ Provide for the following possibilities:
 
 * performing the operation of "increasing the number tenfold".
 
-## 2. It is recommended to start designing a class by presenting the state of the class, taking into account the specified operations, and then implementing constructors and an output method. For debugging and exhaustive testing of other methods of the developed class, implement a dialog program that allows you to enter parameters of debugged methods. To handle erroneous situations, use the mechanism of exceptional situations.
+### 2. It is recommended to start designing a class by presenting the state of the class, taking into account the specified operations, and then implementing constructors and an output method. For debugging and exhaustive testing of other methods of the developed class, implement a dialog program that allows you to enter parameters of debugged methods. To handle erroneous situations, use the mechanism of exceptional situations.
 
-##3. Repeat the development of the class by implementing separate methods (where it is justified), overloaded with operators. It is advisable to coordinate the composition of overloaded operators with the teacher.
+### 3. Repeat the development of the class by implementing separate methods (where it is justified), overloaded with operators. It is advisable to coordinate the composition of overloaded operators with the teacher.
 
-## 4. To repeat the development of the class once again, provided that memory for an array of the required length is allocated dynamically during program execution (using the new operator; memory is set by a pointer to char in the class state). Extra memory should not be used to store data in an instance of a class.
+###  4. To repeat the development of the class once again, provided that memory for an array of the required length is allocated dynamically during program execution (using the new operator; memory is set by a pointer to char in the class state). Extra memory should not be used to store data in an instance of a class.
 
 Add the following features to the class interface:
 
