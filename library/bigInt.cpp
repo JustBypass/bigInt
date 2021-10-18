@@ -1,4 +1,4 @@
-#include "c:\users\admin\source\repos\libraryl\LibraryL\bigInt.h"
+#include "bigInt.h"
 #define _CRT_SECURE_NO_WARNINGS_
 bigInt::bigInt(int _number) noexcept{
 
