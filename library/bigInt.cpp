@@ -93,10 +93,7 @@ bigInt& bigInt::operator=(bigInt&& _old) noexcept {
     }
     return *this;
 }
-inline bigInt::bigInt() noexcept{
-    _count = 0;
-    _sgn = 0;
-}
+
 bigInt::bigInt(bigInt&& _t) noexcept {
     *this = _t;
 }

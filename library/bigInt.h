@@ -21,10 +21,10 @@ private:
     char _digit[N];
 public:
     ///Constructors
-    inline bigInt() noexcept;
-    bigInt(long long) noexcept;
+   bigInt() noexcept { }
+    bigInt(long long ) noexcept;
     bigInt(int) noexcept;
-    bigInt(const char* = "0") noexcept;
+    bigInt(const char* ) noexcept;
     bigInt(myVector<char>&) noexcept;
     bigInt(const bigInt&)noexcept;
     bigInt(bigInt&& _t) noexcept;

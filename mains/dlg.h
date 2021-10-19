@@ -15,6 +15,11 @@ namespace dlg {
                         "7.Get_number:\n";
     std::string _choose = "--->Choose the variant:\n";
     std::string _error = "You are wrong,repeat!\n";
+    std::string _chooseConstr = "--->Choose your constructot\n";
+    std::string _choosingConstrMenu =
+            "1.By the string\n"
+            "2.By the long long\n"
+            "3.By the int\n";
     template<typename T>
     int getNum(T& a)
     {

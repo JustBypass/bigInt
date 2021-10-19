@@ -2,7 +2,7 @@
 // Created by Admin on 20.10.2021.
 //
 
-#include "c:\users\admin\source\repos\libraryl\LibraryL\bigInt.h"
+#include "C:\Qt\Qt5.12.10\cmake_tur\library\bigInt.h"
 //#include "vld.h"
 #include"dlg.h"
 
@@ -10,7 +10,27 @@ int main() //ХЗ как опять приделать библиотеку
 {
     try {
         int r = 1;
-        bigInt _num(9);
+        bigInt _num;
+        int ch;
+        while(true){
+            std::cout<<dlg::_choosingConstrMenu ;
+            std::cout<<dlg::_chooseConstr;
+           dlg:: getNum(ch);
+
+            if(ch == 1)
+            {
+                _num = "0";
+                break;
+            }
+            else if(ch == 2){
+                _num = (long long)0;
+                break;
+            }
+            else if(ch == 3){
+                _num = (int)0;
+                break;
+            }
+        }
         int rc = 1;
         bool flag = true;
         while(true){
