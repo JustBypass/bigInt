@@ -12,22 +12,33 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63a03784-e53b-492c-a550-5fd537860272" name="Changes" comment="version3">
+    <list default="true" id="63a03784-e53b-492c-a550-5fd537860272" name="Changes" comment="version4">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/Debug/bigInt.dll" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/Debug/bigInt.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/Debug/bigInt.lib" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/Debug/bigInt.lib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/library/Debug/bigInt.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/Debug/bigInt.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.ilk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/link.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/vc142.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/vc142.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/bigInt.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.vcxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/mains/Debug/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/Debug/main.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/mains/Debug/main.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/Debug/main.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.exe.recipe" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.exe.recipe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.ilk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/vc142.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/vc142.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/bigInt.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/library/bigInt.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/bigInt.h" beforeDir="false" afterPath="$PROJECT_DIR$/library/bigInt.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/x64/Debug/ALL_BUILD/ALL_BUILD.recipe" beforeDir="false" afterPath="$PROJECT_DIR$/build/x64/Debug/ALL_BUILD/ALL_BUILD.recipe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/library/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/googletest/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/googletest/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/googletest/googlemock/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/googletest/googlemock/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/googletest/googletest/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/googletest/googletest/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/googletest/googletest/test/gtest_xml_outfiles_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/googletest/googletest/test/gtest_xml_outfiles_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/googletest/googletest/test/gtest_xml_output_unittest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/googletest/googletest/test/gtest_xml_output_unittest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/googletest/googletest/test/gtest_xml_test_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/googletest/googletest/test/gtest_xml_test_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +49,13 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -66,6 +84,9 @@
       <recent name="C:\Qt\Qt5.12.10\cmake_tur\mains" />
       <recent name="C:\Qt\Qt5.12.10\cmake_tur\LibraryL" />
       <recent name="C:\Qt\Qt5.12.10\cmake_tur\mainf" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Qt\Qt5.12.10\cmake_tur\tests" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.main">
@@ -109,7 +130,7 @@
       <workItem from="1634538062164" duration="9751000" />
       <workItem from="1634590023947" duration="1355000" />
       <workItem from="1634594101955" duration="651000" />
-      <workItem from="1634678842994" duration="5097000" />
+      <workItem from="1634678842994" duration="8517000" />
     </task>
     <task id="LOCAL-00001" summary="new version">
       <created>1634680066832</created>
@@ -132,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634682998611</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="version4">
+      <created>1634683993789</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1634683993789</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +194,7 @@
     <MESSAGE value="new version" />
     <MESSAGE value="version2" />
     <MESSAGE value="version3" />
-    <option name="LAST_COMMIT_MESSAGE" value="version3" />
+    <MESSAGE value="version4" />
+    <option name="LAST_COMMIT_MESSAGE" value="version4" />
   </component>
 </project>
