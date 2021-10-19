@@ -16,7 +16,6 @@ int main() //ХЗ как опять приделать библиотеку
             std::cout<<dlg::_choosingConstrMenu ;
             std::cout<<dlg::_chooseConstr;
            dlg:: getNum(ch);
-
             if(ch == 1)
             {
                 _num = "0";
@@ -44,8 +43,6 @@ int main() //ХЗ как опять приделать библиотеку
                     std::cout << dlg::_error;
                     break;
                 }
-
-
                 switch (rc) {
                     case 1: {
                         bigInt a(0);
