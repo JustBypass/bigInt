@@ -5,6 +5,9 @@
       <FullPath>C:\Qt\Qt5.12.10\cmake_tur\build\x64\Debug\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
+      <FullPath>C:\Qt\Qt5.12.10\cmake_tur\build\library\Debug\bigInt.dll</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
       <FullPath>C:\Qt\Qt5.12.10\cmake_tur\build\mains\Debug\main.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>

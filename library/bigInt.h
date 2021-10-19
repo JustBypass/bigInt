@@ -1,58 +1,35 @@
-#ifndef __BIGINT_H_DEFINEDED__
-#define __BIGINT_H_INCLUDED__
+//
+// Created by Admin on 20.10.2021.
+//
+
+#ifndef CMAKE_TUR_BIGINT_H
+#define CMAKE_TUR_BIGINT_H
+
+
 #include <iostream>
 #include <string.h>
+#include "myVector.h"
+#include <stdexcept>
 typedef unsigned u_t;
 
-class myVector
-{
-private:
-    char* vector = nullptr;
-public:
-    myVector(int n = 0) {
-        _size = 0;
-        _capacity = n;
-        vector = new char[n];
-    }
-    ~myVector() {
-        _size = 0;
-        delete(vector);
-    }
-    char operator[](int i) {
-        return vector[i];
-    }
-    char* get_vector() { return vector; }
-    void push_back(char _c) { vector[_size++] = _c; }
-    char pop_back() { return vector[--_size]; }
-    int size() { return _size; }
-private:
-    int _size = 0;
-    int _capacity = 0;
-};
 class bigInt {
 public:
     static constexpr u_t N = 120;
 private:
     int _count;
     bool _sgn;
-    char _digit[N];//Remove here all functions(hardly all)
+    char _digit[N];
 public:
     ///Constructors
+    inline bigInt() noexcept;
     bigInt(long long) noexcept;
     bigInt(int) noexcept;
     bigInt(const char* = "0") noexcept;
-    bigInt(myVector&) noexcept;
+    bigInt(myVector<char>&) noexcept;
     bigInt(const bigInt&)noexcept;
-    bigInt(bigInt&& _t) noexcept{
-        *this = _t;
-        std::cout << "Move\n";
-    }
+    bigInt(bigInt&& _t) noexcept;
     ///Деструкторы
-    ~bigInt() noexcept
-    {
-        _sgn = 0;
-        _count = 0;
-    }
+    inline ~bigInt() noexcept;
     // Getters
     inline char* getDigit() noexcept { return _digit; }
     inline int get_count()const noexcept { return _count; }
@@ -63,32 +40,53 @@ public:
     const bigInt& operator ++(int);//a++
     bool operator ==(bigInt&);
     friend std::ostream& operator<<(std::ostream& out, const bigInt& a);
-    friend std::istream& operator >>(std::istream&,bigInt&) noexcept(false);
+    friend std::istream& operator >>(std::istream&, bigInt&) noexcept(false);
     const bigInt& operator =(const bigInt&);
-    bigInt& operator=(bigInt&& _old) noexcept{
-        std::cout << "Move\n";
-        _count = std::move(_old.get_count());
-        _sgn = std::move(_old.get_sgn());
-        for (int i = 0; i < _count; i++) {
-            _digit[i] = std::move(_old.getDigit()[i]);
-        }
-    }
+    bigInt& operator=(bigInt&& _old) noexcept;
     const bigInt& operator -=(const bigInt& digit);
-    const bigInt operator +(const bigInt& digit);
-    const bigInt operator -(const bigInt& digit);
-    const bigInt operator+(const char*);
+    const bigInt operator +(const bigInt& digit)const;
+    const bigInt operator -(const bigInt& digit)const;
+    const bigInt operator+(const char*)const;
     const bigInt& operator +=(const char*);
     const bigInt& operator -=(const char*);
-    const bigInt& operator =(const char*);
-    const bigInt operator -(const char*);
-    const bigInt& operator >>(int)noexcept;//Dividing numbor by 10
-    const bigInt& operator<<(int) noexcept;//Multypying by 10
+    const bigInt& operator =(const char*) ;
+    const bigInt operator -(const char*)const;
+    const bigInt& operator >>(int)const noexcept ;//Dividing numbor by 10
+    const bigInt& operator<<(int) const noexcept ;//Multypying by 10
+    const bigInt& operator >>=(int) noexcept;//Dividing numbor by 10
+    const bigInt& operator<<=(int)  noexcept;//Multypying by 10
     //Other methods
     void returnExternal();
 private:
+    template<class T>
+    friend void AuxConstructor(T _number, bigInt&_num) {
+        _number >= 0 ? _num._sgn = 0 : _num._sgn = 1;
+        if (_number < 0)
+            _number *= -1;
+        int p = 0;
+        if (_number == (T)0) {
+            _num._count = 1;
+            _num._digit[0] = '0';
+        }
+        else {
+            for (int i = 0; i < _num.N; i++)
+            {
+                if (_number == (T)0)
+                    break;
+                T _el = (_number % 10);
+                _number = (_number - _el) / 10;
+                _num._digit[i] = _el + '0';
+                p++;
+            }
+            _num._count = p;
+        }
+        // return _num;
+    }
     friend void changeSgn(bigInt& a) noexcept
     {
         a._sgn ? a._sgn = 0 : a._sgn = 1;
     }
 };
-#endif /* !__SOURCE_H_INCLUDED__*/
+
+
+#endif //CMAKE_TUR_BIGINT_H

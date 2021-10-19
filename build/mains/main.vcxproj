@@ -310,7 +310,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\Qt\Qt5.12.10\cmake_tur\mains\main.cpp" />
-    <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\mains\dlg.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\ZERO_CHECK.vcxproj">
