@@ -9,7 +9,25 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63a03784-e53b-492c-a550-5fd537860272" name="Changes" comment="" />
+    <list default="true" id="63a03784-e53b-492c-a550-5fd537860272" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/Debug/bigInt.lib" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/Debug/bigInt.lib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/Debug/bigInt.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/Debug/bigInt.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/bigInt.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/bigInt.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/Debug/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/Debug/main.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/Debug/main.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/Debug/main.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/CL.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/CL.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/vc142.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/vc142.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/main.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/main.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.vcxproj.filters" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,21 +54,22 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mains" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/any" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Qt\Qt5.12.10\cmake_tur\any" />
       <recent name="C:\Qt\Qt5.12.10\cmake_tur\mains" />
       <recent name="C:\Qt\Qt5.12.10\cmake_tur\LibraryL" />
       <recent name="C:\Qt\Qt5.12.10\cmake_tur\mainf" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -66,7 +85,10 @@
       <workItem from="1634519329255" duration="488000" />
       <workItem from="1634537620912" duration="219000" />
       <workItem from="1634537868479" duration="173000" />
-      <workItem from="1634538062164" duration="2695000" />
+      <workItem from="1634538062164" duration="9751000" />
+      <workItem from="1634590023947" duration="1355000" />
+      <workItem from="1634594101955" duration="651000" />
+      <workItem from="1634678842994" duration="1098000" />
     </task>
     <servers />
   </component>

@@ -6,9 +6,17 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\mains\dlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <CustomBuild Include="C:\Qt\Qt5.12.10\cmake_tur\mains\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{BE03736D-0E38-3823-A46B-B99742BBBB51}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{AC21F569-B5BE-3DD5-B34D-F41CF3EA7080}</UniqueIdentifier>
     </Filter>
