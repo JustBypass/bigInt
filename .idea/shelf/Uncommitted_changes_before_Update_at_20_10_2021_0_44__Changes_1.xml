@@ -1,0 +1,49 @@
+<changelist name="Uncommitted_changes_before_Update_at_20_10_2021_0_44_[Changes]1" date="1634679889478" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_2021_0_44_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 20.10.2021 0:44 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="build/mains/Debug/main.pdb" />
+    <option name="AFTER_PATH" value="build/mains/Debug/main.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_2021_0_44_[Changes]1/main.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/mains/main.dir/Debug/main.ilk" />
+    <option name="AFTER_PATH" value="build/mains/main.dir/Debug/main.ilk" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_2021_0_44_[Changes]1/main.ilk" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/library/Debug/bigInt.lib" />
+    <option name="AFTER_PATH" value="build/library/Debug/bigInt.lib" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_2021_0_44_[Changes]1/bigInt.lib" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/mains/main.dir/Debug/main.obj" />
+    <option name="AFTER_PATH" value="build/mains/main.dir/Debug/main.obj" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_2021_0_44_[Changes]1/main.obj" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/library/Debug/bigInt.pdb" />
+    <option name="AFTER_PATH" value="build/library/Debug/bigInt.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_2021_0_44_[Changes]1/bigInt.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/mains/main.dir/Debug/main.tlog/CL.command.1.tlog" />
+    <option name="AFTER_PATH" value="build/mains/main.dir/Debug/main.tlog/CL.command.1.tlog" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_2021_0_44_[Changes]1/CL.command.1.tlog" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/library/bigInt.dir/Debug/bigInt.obj" />
+    <option name="AFTER_PATH" value="build/library/bigInt.dir/Debug/bigInt.obj" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_2021_0_44_[Changes]1/bigInt.obj" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/mains/main.dir/Debug/vc142.pdb" />
+    <option name="AFTER_PATH" value="build/mains/main.dir/Debug/vc142.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_2021_0_44_[Changes]1/vc142.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/mains/Debug/main.exe" />
+    <option name="AFTER_PATH" value="build/mains/Debug/main.exe" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_2021_0_44_[Changes]1/main.exe" />
+  </binary>
+</changelist>

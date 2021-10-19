@@ -1,0 +1,1261 @@
+Index: CMakeLists.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>cmake_minimum_required(VERSION 3.8)\r\n\r\nproject(cmake_tur)\r\nadd_subdirectory(library)\r\nadd_subdirectory(mains)\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt	
++++ b/CMakeLists.txt	
+@@ -4,3 +4,4 @@
+ add_subdirectory(library)
+ add_subdirectory(mains)
+ 
++
+Index: mains/CMakeLists.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>cmake_minimum_required(VERSION 3.8)\r\n\r\nproject(library)\r\nset(maia \"main.cpp\")\r\n\r\nadd_executable(main ${maia})\r\n\r\ntarget_link_libraries(main bigInt)\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/mains/CMakeLists.txt b/mains/CMakeLists.txt
+--- a/mains/CMakeLists.txt	
++++ b/mains/CMakeLists.txt	
+@@ -1,7 +1,8 @@
+ cmake_minimum_required(VERSION 3.8)
+ 
+ project(library)
+-set(maia "main.cpp")
++set(CMAKE_CXX_STANDARD 20)
++set(maia "main.cpp" "dlg.h")
+ 
+ add_executable(main ${maia})
+ 
+Index: library/bigInt.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#ifndef __BIGINT_H_DEFINEDED__\r\n#define __BIGINT_H_INCLUDED__\r\n#include <iostream>\r\n#include <string.h>\r\ntypedef unsigned u_t;\r\n\r\nclass myVector\r\n{\r\nprivate:\r\n    char* vector = nullptr;\r\npublic:\r\n    myVector(int n = 0) {\r\n        _size = 0;\r\n        _capacity = n;\r\n        vector = new char[n];\r\n    }\r\n    ~myVector() {\r\n        _size = 0;\r\n        delete(vector);\r\n    }\r\n    char operator[](int i) {\r\n        return vector[i];\r\n    }\r\n    char* get_vector() { return vector; }\r\n    void push_back(char _c) { vector[_size++] = _c; }\r\n    char pop_back() { return vector[--_size]; }\r\n    int size() { return _size; }\r\nprivate:\r\n    int _size = 0;\r\n    int _capacity = 0;\r\n};\r\nclass bigInt {\r\npublic:\r\n    static constexpr u_t N = 120;\r\nprivate:\r\n    int _count;\r\n    bool _sgn;\r\n    char _digit[N];//Remove here all functions(hardly all)\r\npublic:\r\n    ///Constructors\r\n    bigInt(long long) noexcept;\r\n    bigInt(int) noexcept;\r\n    bigInt(const char* = \"0\") noexcept;\r\n    bigInt(myVector&) noexcept;\r\n    bigInt(const bigInt&)noexcept;\r\n    bigInt(bigInt&& _t) noexcept{\r\n        *this = _t;\r\n        std::cout << \"Move\\n\";\r\n    }\r\n    ///Деструкторы\r\n    ~bigInt() noexcept\r\n    {\r\n        _sgn = 0;\r\n        _count = 0;\r\n    }\r\n    // Getters\r\n    inline char* getDigit() noexcept { return _digit; }\r\n    inline int get_count()const noexcept { return _count; }\r\n    inline bool get_sgn()const noexcept { return _sgn; }\r\n    //Operators\r\n    const bigInt& operator +=(const bigInt& digit);\r\n    const bigInt& operator ++();///++a\r\n    const bigInt& operator ++(int);//a++\r\n    bool operator ==(bigInt&);\r\n    friend std::ostream& operator<<(std::ostream& out, const bigInt& a);\r\n    friend std::istream& operator >>(std::istream&,bigInt&) noexcept(false);\r\n    const bigInt& operator =(const bigInt&);\r\n    bigInt& operator=(bigInt&& _old) noexcept{\r\n        std::cout << \"Move\\n\";\r\n        _count = std::move(_old.get_count());\r\n        _sgn = std::move(_old.get_sgn());\r\n        for (int i = 0; i < _count; i++) {\r\n            _digit[i] = std::move(_old.getDigit()[i]);\r\n        }\r\n    }\r\n    const bigInt& operator -=(const bigInt& digit);\r\n    const bigInt operator +(const bigInt& digit);\r\n    const bigInt operator -(const bigInt& digit);\r\n    const bigInt operator+(const char*);\r\n    const bigInt& operator +=(const char*);\r\n    const bigInt& operator -=(const char*);\r\n    const bigInt& operator =(const char*);\r\n    const bigInt operator -(const char*);\r\n    const bigInt& operator >>(int)noexcept;//Dividing numbor by 10\r\n    const bigInt& operator<<(int) noexcept;//Multypying by 10\r\n    //Other methods\r\n    void returnExternal();\r\nprivate:\r\n    friend void changeSgn(bigInt& a) noexcept\r\n    {\r\n        a._sgn ? a._sgn = 0 : a._sgn = 1;\r\n    }\r\n};\r\n#endif /* !__SOURCE_H_INCLUDED__*/
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/library/bigInt.h b/library/bigInt.h
+--- a/library/bigInt.h	
++++ b/library/bigInt.h	
+@@ -2,57 +2,28 @@
+ #define __BIGINT_H_INCLUDED__
+ #include <iostream>
+ #include <string.h>
++#include "myVector.h"
++#include <stdexcept>
+ typedef unsigned u_t;
+ 
+-class myVector
+-{
+-private:
+-    char* vector = nullptr;
+-public:
+-    myVector(int n = 0) {
+-        _size = 0;
+-        _capacity = n;
+-        vector = new char[n];
+-    }
+-    ~myVector() {
+-        _size = 0;
+-        delete(vector);
+-    }
+-    char operator[](int i) {
+-        return vector[i];
+-    }
+-    char* get_vector() { return vector; }
+-    void push_back(char _c) { vector[_size++] = _c; }
+-    char pop_back() { return vector[--_size]; }
+-    int size() { return _size; }
+-private:
+-    int _size = 0;
+-    int _capacity = 0;
+-};
+ class bigInt {
+ public:
+     static constexpr u_t N = 120;
+ private:
+     int _count;
+     bool _sgn;
+-    char _digit[N];//Remove here all functions(hardly all)
++    char _digit[N];
+ public:
+     ///Constructors
++    inline bigInt() noexcept;
+     bigInt(long long) noexcept;
+     bigInt(int) noexcept;
+     bigInt(const char* = "0") noexcept;
+-    bigInt(myVector&) noexcept;
++    bigInt(myVector<char>&) noexcept;
+     bigInt(const bigInt&)noexcept;
+-    bigInt(bigInt&& _t) noexcept{
+-        *this = _t;
+-        std::cout << "Move\n";
+-    }
+-    ///Деструкторы
+-    ~bigInt() noexcept
+-    {
+-        _sgn = 0;
+-        _count = 0;
+-    }
++    bigInt(bigInt&& _t) noexcept;
++    ///�����������
++    inline ~bigInt() noexcept;
+     // Getters
+     inline char* getDigit() noexcept { return _digit; }
+     inline int get_count()const noexcept { return _count; }
+@@ -63,29 +34,48 @@
+     const bigInt& operator ++(int);//a++
+     bool operator ==(bigInt&);
+     friend std::ostream& operator<<(std::ostream& out, const bigInt& a);
+-    friend std::istream& operator >>(std::istream&,bigInt&) noexcept(false);
++    friend std::istream& operator >>(std::istream&, bigInt&) noexcept(false);
+     const bigInt& operator =(const bigInt&);
+-    bigInt& operator=(bigInt&& _old) noexcept{
+-        std::cout << "Move\n";
+-        _count = std::move(_old.get_count());
+-        _sgn = std::move(_old.get_sgn());
+-        for (int i = 0; i < _count; i++) {
+-            _digit[i] = std::move(_old.getDigit()[i]);
+-        }
+-    }
++    bigInt& operator=(bigInt&& _old) noexcept;
+     const bigInt& operator -=(const bigInt& digit);
+-    const bigInt operator +(const bigInt& digit);
+-    const bigInt operator -(const bigInt& digit);
+-    const bigInt operator+(const char*);
++    const bigInt operator +(const bigInt& digit)const;
++    const bigInt operator -(const bigInt& digit)const;
++    const bigInt operator+(const char*)const;
+     const bigInt& operator +=(const char*);
+     const bigInt& operator -=(const char*);
+-    const bigInt& operator =(const char*);
+-    const bigInt operator -(const char*);
+-    const bigInt& operator >>(int)noexcept;//Dividing numbor by 10
+-    const bigInt& operator<<(int) noexcept;//Multypying by 10
++    const bigInt& operator =(const char*) ;
++    const bigInt operator -(const char*)const;
++    const bigInt& operator >>(int)const noexcept ;//Dividing numbor by 10
++    const bigInt& operator<<(int) const noexcept ;//Multypying by 10
++    const bigInt& operator >>=(int) noexcept;//Dividing numbor by 10
++    const bigInt& operator<<=(int)  noexcept;//Multypying by 10
+     //Other methods
+     void returnExternal();
+ private:
++    template<class T>
++    friend void AuxConstructor(T _number, bigInt&_num) {
++            _number >= 0 ? _num._sgn = 0 : _num._sgn = 1;
++            if (_number < 0)
++                _number *= -1;
++            int p = 0;
++            if (_number == (T)0) {
++                _num._count = 1;
++                _num._digit[0] = '0';
++            }
++            else {
++                for (int i = 0; i < _num.N; i++)
++                {
++                    if (_number == (T)0)
++                        break;
++                    T _el = (_number % 10);
++                    _number = (_number - _el) / 10;
++                    _num._digit[i] = _el + '0';
++                    p++;
++                }
++                _num._count = p;
++            }
++           // return _num;
++        }
+     friend void changeSgn(bigInt& a) noexcept
+     {
+         a._sgn ? a._sgn = 0 : a._sgn = 1;
+Index: library/CMakeLists.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>cmake_minimum_required(VERSION 3.8)\r\n\r\nproject(library)\r\nset(lib \"bigInt.h\" \"bigInt.cpp\")\r\n\r\nadd_library(bigInt STATIC ${lib})\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/library/CMakeLists.txt b/library/CMakeLists.txt
+--- a/library/CMakeLists.txt	
++++ b/library/CMakeLists.txt	
+@@ -1,7 +1,7 @@
+ cmake_minimum_required(VERSION 3.8)
+ 
+ project(library)
+-set(lib "bigInt.h" "bigInt.cpp")
++set(lib "bigInt.h" "bigInt.cpp""myVector.h")
+ 
+ add_library(bigInt STATIC ${lib})
+ 
+Index: mains/main.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"C:\\Qt\\Qt5.12.10\\cmake_tur\\library\\bigInt.h\"\r\n///#include \"vld.h\"\r\n#include <iostream>\r\nint main() \r\n{\r\n\t/*simpleMenu a;\r\n\treturn a.mainloop();*/\r\n    bigInt a(57576768);\r\n    std::cout<<(a+=\"89\");\r\n\treturn 0;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/mains/main.cpp b/mains/main.cpp
+--- a/mains/main.cpp	
++++ b/mains/main.cpp	
+@@ -1,11 +1,73 @@
++//#include "simpleMenu.h"
+ #include "C:\Qt\Qt5.12.10\cmake_tur\library\bigInt.h"
+-///#include "vld.h"
+-#include <iostream>
+-int main() 
++//#include "vld.h"
++#include"dlg.h"
++
++int main() //�� ��� ����� ��������� ����������
+ {
+-	/*simpleMenu a;
+-	return a.mainloop();*/
+-    bigInt a(57576768);
+-    std::cout<<(a+="89");
++	try {
++		int r = 1;
++		bigInt _num(9);
++		int rc = 1;
++		bool flag = true;
++		while(true){
++			std::cout << dlg::_menu;
++			do {
++				std::cout << dlg::_choose;
++				dlg::getNum(rc);
++				if (rc == 0)
++					break;
++				if (rc > 7 || rc < 0) {
++					std::cout << dlg::_error;
++					break;
++				}
++				
++
++				switch (rc) {
++				case 1: {
++					bigInt a(0);
++					std::cout << "Enter number:";
++					std::cin >> a;
++					_num = (_num + a);
++					break; 
++				}
++				case 2:{	bigInt a("0");
++					std::cout << "Enter number to minus:\n";
++					std::cin >> a;
++					_num = (_num - a);
++					break;
++				}
++				case 3:
++				{
++					std::cout << "Your NOT shifted number:" << _num;
++					_num = _num >> 1;//>>=
++					std::cout << "Your SHIFTED number:" << _num;
++					break;
++				}
++				case 4:
++				{
++					std::cout << "Your NOT shifted number:" << _num;
++					_num = _num << 1;
++					break;
++				}
++				case 5:{
++					_num.returnExternal();
++					std::cout << std::endl;
++					break;
++				}
++				case 6:{
++					std::cin >> _num;
++					break;
++				}
++				case 7: {	std::cout << "Your number:" << _num << std::endl; break; }	}
++				break;
++			} while (true);
++
++		} 
++	}
++	catch (...) {
++		std::cerr<< "Unknown error occured!\n";
++		return -1;
++	}
+ 	return 0;
+-}
+\ No newline at end of file
++}
+Index: build/mains/main.vcxproj
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Project DefaultTargets=\"Build\" ToolsVersion=\"16.0\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">\r\n  <PropertyGroup>\r\n    <PreferredToolArchitecture>x64</PreferredToolArchitecture>\r\n  </PropertyGroup>\r\n  <ItemGroup Label=\"ProjectConfigurations\">\r\n    <ProjectConfiguration Include=\"Debug|x64\">\r\n      <Configuration>Debug</Configuration>\r\n      <Platform>x64</Platform>\r\n    </ProjectConfiguration>\r\n    <ProjectConfiguration Include=\"Release|x64\">\r\n      <Configuration>Release</Configuration>\r\n      <Platform>x64</Platform>\r\n    </ProjectConfiguration>\r\n    <ProjectConfiguration Include=\"MinSizeRel|x64\">\r\n      <Configuration>MinSizeRel</Configuration>\r\n      <Platform>x64</Platform>\r\n    </ProjectConfiguration>\r\n    <ProjectConfiguration Include=\"RelWithDebInfo|x64\">\r\n      <Configuration>RelWithDebInfo</Configuration>\r\n      <Platform>x64</Platform>\r\n    </ProjectConfiguration>\r\n  </ItemGroup>\r\n  <PropertyGroup Label=\"Globals\">\r\n    <ProjectGuid>{15D6C470-A320-3E11-AFD7-79B7F67F37F3}</ProjectGuid>\r\n    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>\r\n    <Keyword>Win32Proj</Keyword>\r\n    <Platform>x64</Platform>\r\n    <ProjectName>main</ProjectName>\r\n    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>\r\n  </PropertyGroup>\r\n  <Import Project=\"$(VCTargetsPath)\\Microsoft.Cpp.Default.props\" />\r\n  <PropertyGroup Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\" Label=\"Configuration\">\r\n    <ConfigurationType>Application</ConfigurationType>\r\n    <CharacterSet>MultiByte</CharacterSet>\r\n    <PlatformToolset>v142</PlatformToolset>\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\" Label=\"Configuration\">\r\n    <ConfigurationType>Application</ConfigurationType>\r\n    <CharacterSet>MultiByte</CharacterSet>\r\n    <PlatformToolset>v142</PlatformToolset>\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\" Label=\"Configuration\">\r\n    <ConfigurationType>Application</ConfigurationType>\r\n    <CharacterSet>MultiByte</CharacterSet>\r\n    <PlatformToolset>v142</PlatformToolset>\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\" Label=\"Configuration\">\r\n    <ConfigurationType>Application</ConfigurationType>\r\n    <CharacterSet>MultiByte</CharacterSet>\r\n    <PlatformToolset>v142</PlatformToolset>\r\n  </PropertyGroup>\r\n  <Import Project=\"$(VCTargetsPath)\\Microsoft.Cpp.props\" />\r\n  <ImportGroup Label=\"ExtensionSettings\">\r\n  </ImportGroup>\r\n  <ImportGroup Label=\"PropertySheets\">\r\n    <Import Project=\"$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props\" Condition=\"exists('$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props')\" Label=\"LocalAppDataPlatform\" />\r\n  </ImportGroup>\r\n  <PropertyGroup Label=\"UserMacros\" />\r\n  <PropertyGroup>\r\n    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>\r\n    <OutDir Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\mains\\Debug\\</OutDir>\r\n    <IntDir Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">main.dir\\Debug\\</IntDir>\r\n    <TargetName Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">main</TargetName>\r\n    <TargetExt Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">.exe</TargetExt>\r\n    <LinkIncremental Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">true</LinkIncremental>\r\n    <GenerateManifest Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">true</GenerateManifest>\r\n    <OutDir Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\mains\\Release\\</OutDir>\r\n    <IntDir Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">main.dir\\Release\\</IntDir>\r\n    <TargetName Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">main</TargetName>\r\n    <TargetExt Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">.exe</TargetExt>\r\n    <LinkIncremental Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">false</LinkIncremental>\r\n    <GenerateManifest Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">true</GenerateManifest>\r\n    <OutDir Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\mains\\MinSizeRel\\</OutDir>\r\n    <IntDir Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">main.dir\\MinSizeRel\\</IntDir>\r\n    <TargetName Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">main</TargetName>\r\n    <TargetExt Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">.exe</TargetExt>\r\n    <LinkIncremental Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">false</LinkIncremental>\r\n    <GenerateManifest Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">true</GenerateManifest>\r\n    <OutDir Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\mains\\RelWithDebInfo\\</OutDir>\r\n    <IntDir Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">main.dir\\RelWithDebInfo\\</IntDir>\r\n    <TargetName Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">main</TargetName>\r\n    <TargetExt Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">.exe</TargetExt>\r\n    <LinkIncremental Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">true</LinkIncremental>\r\n    <GenerateManifest Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">true</GenerateManifest>\r\n  </PropertyGroup>\r\n  <ItemDefinitionGroup Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">\r\n    <ClCompile>\r\n      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>\r\n      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>\r\n      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>\r\n      <ExceptionHandling>Sync</ExceptionHandling>\r\n      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>\r\n      <Optimization>Disabled</Optimization>\r\n      <PrecompiledHeader>NotUsing</PrecompiledHeader>\r\n      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>\r\n      <RuntimeTypeInfo>true</RuntimeTypeInfo>\r\n      <UseFullPaths>false</UseFullPaths>\r\n      <WarningLevel>Level3</WarningLevel>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>\r\n      <ObjectFileName>$(IntDir)</ObjectFileName>\r\n    </ClCompile>\r\n    <ResourceCompile>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\\\"Debug\\\"</PreprocessorDefinitions>\r\n    </ResourceCompile>\r\n    <Midl>\r\n      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>\r\n      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>\r\n      <HeaderFileName>%(Filename).h</HeaderFileName>\r\n      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>\r\n      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>\r\n      <ProxyFileName>%(Filename)_p.c</ProxyFileName>\r\n    </Midl>\r\n    <Link>\r\n      <AdditionalDependencies>..\\library\\Debug\\bigInt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>\r\n      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>\r\n      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>\r\n      <GenerateDebugInformation>true</GenerateDebugInformation>\r\n      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>\r\n      <ImportLibrary>C:/Qt/Qt5.12.10/cmake_tur/build/mains/Debug/main.lib</ImportLibrary>\r\n      <ProgramDataBaseFile>C:/Qt/Qt5.12.10/cmake_tur/build/mains/Debug/main.pdb</ProgramDataBaseFile>\r\n      <SubSystem>Console</SubSystem>\r\n    </Link>\r\n    <ProjectReference>\r\n      <LinkLibraryDependencies>false</LinkLibraryDependencies>\r\n    </ProjectReference>\r\n  </ItemDefinitionGroup>\r\n  <ItemDefinitionGroup Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">\r\n    <ClCompile>\r\n      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>\r\n      <ExceptionHandling>Sync</ExceptionHandling>\r\n      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>\r\n      <Optimization>MaxSpeed</Optimization>\r\n      <PrecompiledHeader>NotUsing</PrecompiledHeader>\r\n      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>\r\n      <RuntimeTypeInfo>true</RuntimeTypeInfo>\r\n      <UseFullPaths>false</UseFullPaths>\r\n      <WarningLevel>Level3</WarningLevel>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>\r\n      <ObjectFileName>$(IntDir)</ObjectFileName>\r\n      <DebugInformationFormat>\r\n      </DebugInformationFormat>\r\n    </ClCompile>\r\n    <ResourceCompile>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\\\"Release\\\"</PreprocessorDefinitions>\r\n    </ResourceCompile>\r\n    <Midl>\r\n      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>\r\n      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>\r\n      <HeaderFileName>%(Filename).h</HeaderFileName>\r\n      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>\r\n      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>\r\n      <ProxyFileName>%(Filename)_p.c</ProxyFileName>\r\n    </Midl>\r\n    <Link>\r\n      <AdditionalDependencies>..\\library\\Release\\bigInt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>\r\n      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>\r\n      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>\r\n      <GenerateDebugInformation>false</GenerateDebugInformation>\r\n      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>\r\n      <ImportLibrary>C:/Qt/Qt5.12.10/cmake_tur/build/mains/Release/main.lib</ImportLibrary>\r\n      <ProgramDataBaseFile>C:/Qt/Qt5.12.10/cmake_tur/build/mains/Release/main.pdb</ProgramDataBaseFile>\r\n      <SubSystem>Console</SubSystem>\r\n    </Link>\r\n    <ProjectReference>\r\n      <LinkLibraryDependencies>false</LinkLibraryDependencies>\r\n    </ProjectReference>\r\n  </ItemDefinitionGroup>\r\n  <ItemDefinitionGroup Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">\r\n    <ClCompile>\r\n      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>\r\n      <ExceptionHandling>Sync</ExceptionHandling>\r\n      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>\r\n      <Optimization>MinSpace</Optimization>\r\n      <PrecompiledHeader>NotUsing</PrecompiledHeader>\r\n      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>\r\n      <RuntimeTypeInfo>true</RuntimeTypeInfo>\r\n      <UseFullPaths>false</UseFullPaths>\r\n      <WarningLevel>Level3</WarningLevel>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>\r\n      <ObjectFileName>$(IntDir)</ObjectFileName>\r\n      <DebugInformationFormat>\r\n      </DebugInformationFormat>\r\n    </ClCompile>\r\n    <ResourceCompile>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\\\"MinSizeRel\\\"</PreprocessorDefinitions>\r\n    </ResourceCompile>\r\n    <Midl>\r\n      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>\r\n      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>\r\n      <HeaderFileName>%(Filename).h</HeaderFileName>\r\n      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>\r\n      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>\r\n      <ProxyFileName>%(Filename)_p.c</ProxyFileName>\r\n    </Midl>\r\n    <Link>\r\n      <AdditionalDependencies>..\\library\\MinSizeRel\\bigInt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>\r\n      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>\r\n      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>\r\n      <GenerateDebugInformation>false</GenerateDebugInformation>\r\n      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>\r\n      <ImportLibrary>C:/Qt/Qt5.12.10/cmake_tur/build/mains/MinSizeRel/main.lib</ImportLibrary>\r\n      <ProgramDataBaseFile>C:/Qt/Qt5.12.10/cmake_tur/build/mains/MinSizeRel/main.pdb</ProgramDataBaseFile>\r\n      <SubSystem>Console</SubSystem>\r\n    </Link>\r\n    <ProjectReference>\r\n      <LinkLibraryDependencies>false</LinkLibraryDependencies>\r\n    </ProjectReference>\r\n  </ItemDefinitionGroup>\r\n  <ItemDefinitionGroup Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">\r\n    <ClCompile>\r\n      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>\r\n      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>\r\n      <ExceptionHandling>Sync</ExceptionHandling>\r\n      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>\r\n      <Optimization>MaxSpeed</Optimization>\r\n      <PrecompiledHeader>NotUsing</PrecompiledHeader>\r\n      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>\r\n      <RuntimeTypeInfo>true</RuntimeTypeInfo>\r\n      <UseFullPaths>false</UseFullPaths>\r\n      <WarningLevel>Level3</WarningLevel>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>\r\n      <ObjectFileName>$(IntDir)</ObjectFileName>\r\n    </ClCompile>\r\n    <ResourceCompile>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\\\"RelWithDebInfo\\\"</PreprocessorDefinitions>\r\n    </ResourceCompile>\r\n    <Midl>\r\n      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>\r\n      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>\r\n      <HeaderFileName>%(Filename).h</HeaderFileName>\r\n      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>\r\n      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>\r\n      <ProxyFileName>%(Filename)_p.c</ProxyFileName>\r\n    </Midl>\r\n    <Link>\r\n      <AdditionalDependencies>..\\library\\RelWithDebInfo\\bigInt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>\r\n      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>\r\n      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>\r\n      <GenerateDebugInformation>true</GenerateDebugInformation>\r\n      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>\r\n      <ImportLibrary>C:/Qt/Qt5.12.10/cmake_tur/build/mains/RelWithDebInfo/main.lib</ImportLibrary>\r\n      <ProgramDataBaseFile>C:/Qt/Qt5.12.10/cmake_tur/build/mains/RelWithDebInfo/main.pdb</ProgramDataBaseFile>\r\n      <SubSystem>Console</SubSystem>\r\n    </Link>\r\n    <ProjectReference>\r\n      <LinkLibraryDependencies>false</LinkLibraryDependencies>\r\n    </ProjectReference>\r\n  </ItemDefinitionGroup>\r\n  <ItemGroup>\r\n    <CustomBuild Include=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\mains\\CMakeLists.txt\">\r\n      <UseUtf8Encoding>Always</UseUtf8Encoding>\r\n      <Message Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">Building Custom Rule C:/Qt/Qt5.12.10/cmake_tur/mains/CMakeLists.txt</Message>\r\n      <Command Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">setlocal\r\n\"C:\\Program Files\\CMake\\bin\\cmake.exe\" -SC:/Qt/Qt5.12.10/cmake_tur -BC:/Qt/Qt5.12.10/cmake_tur/build --check-stamp-file C:/Qt/Qt5.12.10/cmake_tur/build/mains/CMakeFiles/generate.stamp\r\nif %errorlevel% neq 0 goto :cmEnd\r\n:cmEnd\r\nendlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone\r\n:cmErrorLevel\r\nexit /b %1\r\n:cmDone\r\nif %errorlevel% neq 0 goto :VCEnd</Command>\r\n      <AdditionalInputs Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">%(AdditionalInputs)</AdditionalInputs>\r\n      <Outputs Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\mains\\CMakeFiles\\generate.stamp</Outputs>\r\n      <LinkObjects Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">false</LinkObjects>\r\n      <Message Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">Building Custom Rule C:/Qt/Qt5.12.10/cmake_tur/mains/CMakeLists.txt</Message>\r\n      <Command Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">setlocal\r\n\"C:\\Program Files\\CMake\\bin\\cmake.exe\" -SC:/Qt/Qt5.12.10/cmake_tur -BC:/Qt/Qt5.12.10/cmake_tur/build --check-stamp-file C:/Qt/Qt5.12.10/cmake_tur/build/mains/CMakeFiles/generate.stamp\r\nif %errorlevel% neq 0 goto :cmEnd\r\n:cmEnd\r\nendlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone\r\n:cmErrorLevel\r\nexit /b %1\r\n:cmDone\r\nif %errorlevel% neq 0 goto :VCEnd</Command>\r\n      <AdditionalInputs Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">%(AdditionalInputs)</AdditionalInputs>\r\n      <Outputs Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\mains\\CMakeFiles\\generate.stamp</Outputs>\r\n      <LinkObjects Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">false</LinkObjects>\r\n      <Message Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">Building Custom Rule C:/Qt/Qt5.12.10/cmake_tur/mains/CMakeLists.txt</Message>\r\n      <Command Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">setlocal\r\n\"C:\\Program Files\\CMake\\bin\\cmake.exe\" -SC:/Qt/Qt5.12.10/cmake_tur -BC:/Qt/Qt5.12.10/cmake_tur/build --check-stamp-file C:/Qt/Qt5.12.10/cmake_tur/build/mains/CMakeFiles/generate.stamp\r\nif %errorlevel% neq 0 goto :cmEnd\r\n:cmEnd\r\nendlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone\r\n:cmErrorLevel\r\nexit /b %1\r\n:cmDone\r\nif %errorlevel% neq 0 goto :VCEnd</Command>\r\n      <AdditionalInputs Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">%(AdditionalInputs)</AdditionalInputs>\r\n      <Outputs Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\mains\\CMakeFiles\\generate.stamp</Outputs>\r\n      <LinkObjects Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">false</LinkObjects>\r\n      <Message Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">Building Custom Rule C:/Qt/Qt5.12.10/cmake_tur/mains/CMakeLists.txt</Message>\r\n      <Command Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">setlocal\r\n\"C:\\Program Files\\CMake\\bin\\cmake.exe\" -SC:/Qt/Qt5.12.10/cmake_tur -BC:/Qt/Qt5.12.10/cmake_tur/build --check-stamp-file C:/Qt/Qt5.12.10/cmake_tur/build/mains/CMakeFiles/generate.stamp\r\nif %errorlevel% neq 0 goto :cmEnd\r\n:cmEnd\r\nendlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone\r\n:cmErrorLevel\r\nexit /b %1\r\n:cmDone\r\nif %errorlevel% neq 0 goto :VCEnd</Command>\r\n      <AdditionalInputs Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">%(AdditionalInputs)</AdditionalInputs>\r\n      <Outputs Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\mains\\CMakeFiles\\generate.stamp</Outputs>\r\n      <LinkObjects Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">false</LinkObjects>\r\n    </CustomBuild>\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <ClCompile Include=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\mains\\main.cpp\" />\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <ProjectReference Include=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\ZERO_CHECK.vcxproj\">\r\n      <Project>{3101D443-45B4-3E03-976D-2508C50F9AB6}</Project>\r\n      <Name>ZERO_CHECK</Name>\r\n      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>\r\n      <CopyToOutputDirectory>Never</CopyToOutputDirectory>\r\n    </ProjectReference>\r\n    <ProjectReference Include=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\library\\bigInt.vcxproj\">\r\n      <Project>{D3816879-557D-33FF-8258-B2B4610B02FC}</Project>\r\n      <Name>bigInt</Name>\r\n    </ProjectReference>\r\n  </ItemGroup>\r\n  <Import Project=\"$(VCTargetsPath)\\Microsoft.Cpp.targets\" />\r\n  <ImportGroup Label=\"ExtensionTargets\">\r\n  </ImportGroup>\r\n</Project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build/mains/main.vcxproj b/build/mains/main.vcxproj
+--- a/build/mains/main.vcxproj	
++++ b/build/mains/main.vcxproj	
+@@ -91,6 +91,7 @@
+       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+       <ExceptionHandling>Sync</ExceptionHandling>
+       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
++      <LanguageStandard>stdcpp20</LanguageStandard>
+       <Optimization>Disabled</Optimization>
+       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+@@ -130,6 +131,7 @@
+       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+       <ExceptionHandling>Sync</ExceptionHandling>
+       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
++      <LanguageStandard>stdcpp20</LanguageStandard>
+       <Optimization>MaxSpeed</Optimization>
+       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+@@ -171,6 +173,7 @@
+       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+       <ExceptionHandling>Sync</ExceptionHandling>
+       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
++      <LanguageStandard>stdcpp20</LanguageStandard>
+       <Optimization>MinSpace</Optimization>
+       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+@@ -213,6 +216,7 @@
+       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+       <ExceptionHandling>Sync</ExceptionHandling>
+       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
++      <LanguageStandard>stdcpp20</LanguageStandard>
+       <Optimization>MaxSpeed</Optimization>
+       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+@@ -306,6 +310,7 @@
+   </ItemGroup>
+   <ItemGroup>
+     <ClCompile Include="C:\Qt\Qt5.12.10\cmake_tur\mains\main.cpp" />
++    <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\mains\dlg.h" />
+   </ItemGroup>
+   <ItemGroup>
+     <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\ZERO_CHECK.vcxproj">
+Index: build/mains/main.dir/Debug/main.tlog/CL.read.1.tlog
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>^C:\\QT\\QT5.12.10\\CMAKE_TUR\\MAINS\\MAIN.CPP\r\nC:\\WINDOWS\\GLOBALIZATION\\SORTING\\SORTDEFAULT.NLS\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\BIN\\HOSTX64\\X64\\1049\\CLUI.DLL\r\nC:\\WINDOWS\\SYSTEM32\\TZRES.DLL\r\nC:\\QT\\QT5.12.10\\CMAKE_TUR\\LIBRARY\\BIGINT.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\IOSTREAM\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\YVALS_CORE.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VCRUNTIME.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\SAL.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CONCURRENCYSAL.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VADEFS.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XKEYCHECK.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\ISTREAM\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\OSTREAM\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\IOS\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XLOCNUM\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CLIMITS\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\LIMITS.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CMATH\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\YVALS.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CRTDBG.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VCRUNTIME_NEW_DEBUG.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VCRUNTIME_NEW.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CRTDEFS.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\USE_ANSI.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CSTDLIB\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\MATH.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_MATH.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\STDLIB.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_MALLOC.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_SEARCH.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\STDDEF.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WSTDLIB.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XTR1COMMON\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\INTRIN0.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\INTRIN0.INL.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CSTDIO\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\STDIO.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WSTDIO.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_STDIO_CONFIG.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\ITERATOR\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\IOSFWD\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CSTRING\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\STRING.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_MEMORY.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_MEMCPY_S.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\ERRNO.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VCRUNTIME_STRING.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WSTRING.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CWCHAR\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\WCHAR.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WCONIO.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WCTYPE.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WDIRECT.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WIO.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_SHARE.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WPROCESS.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WTIME.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\SYS\\STAT.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\SYS\\TYPES.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XSTDDEF\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CSTDDEF\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\INITIALIZER_LIST\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XUTILITY\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\UTILITY\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\TYPE_TRAITS\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CSTDINT\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\STDINT.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\STREAMBUF\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XIOSBASE\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\SHARE.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\SYSTEM_ERROR\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\__MSVC_SYSTEM_ERROR_ABI.HPP\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CERRNO\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\STDEXCEPT\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\EXCEPTION\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\MALLOC.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VCRUNTIME_EXCEPTION.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\EH.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_TERMINATE.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XSTRING\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XMEMORY\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\LIMITS\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CFLOAT\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\FLOAT.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\ISA_AVAILABILITY.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\NEW\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XATOMIC.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XCALL_ONCE.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XERRC.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\ATOMIC\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XTHREADS.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XTIMEC.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CTIME\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\TIME.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XLOCALE\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\MEMORY\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\TYPEINFO\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VCRUNTIME_TYPEINFO.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XFACET\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XLOCINFO\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XLOCINFO.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CCTYPE\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CTYPE.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CLOCALE\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\LOCALE.H\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-16LE
+===================================================================
+diff --git a/build/mains/main.dir/Debug/main.tlog/CL.read.1.tlog b/build/mains/main.dir/Debug/main.tlog/CL.read.1.tlog
+--- a/build/mains/main.dir/Debug/main.tlog/CL.read.1.tlog	
++++ b/build/mains/main.dir/Debug/main.tlog/CL.read.1.tlog	
+@@ -35,12 +35,7 @@
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XTR1COMMON
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\INTRIN0.H
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\INTRIN0.INL.H
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CSTDIO
+-C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\STDIO.H
+-C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\CORECRT_WSTDIO.H
+-C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\CORECRT_STDIO_CONFIG.H
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\ITERATOR
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\IOSFWD
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XUTILITY
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CSTRING
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\STRING.H
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\CORECRT_MEMORY.H
+@@ -48,7 +43,25 @@
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\ERRNO.H
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\VCRUNTIME_STRING.H
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\CORECRT_WSTRING.H
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\UTILITY
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\TYPE_TRAITS
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CSTDINT
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\STDINT.H
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XSTDDEF
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CSTDDEF
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\INITIALIZER_LIST
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CONCEPTS
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\COMPARE
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\BIT
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\ISA_AVAILABILITY.H
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\LIMITS
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CFLOAT
++C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\FLOAT.H
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CWCHAR
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CSTDIO
++C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\STDIO.H
++C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\CORECRT_WSTDIO.H
++C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\CORECRT_STDIO_CONFIG.H
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\WCHAR.H
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\CORECRT_WCONIO.H
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\CORECRT_WCTYPE.H
+@@ -59,14 +72,8 @@
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\CORECRT_WTIME.H
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\SYS\STAT.H
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\SYS\TYPES.H
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XSTDDEF
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CSTDDEF
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\INITIALIZER_LIST
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XUTILITY
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\UTILITY
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\TYPE_TRAITS
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CSTDINT
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\STDINT.H
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\ITERATOR
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\IOSFWD
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\STREAMBUF
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XIOSBASE
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\SHARE.H
+@@ -81,15 +88,14 @@
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\CORECRT_TERMINATE.H
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XSTRING
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XMEMORY
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\LIMITS
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CFLOAT
+-C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\FLOAT.H
+-C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\ISA_AVAILABILITY.H
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\NEW
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XATOMIC.H
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\TUPLE
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XPOLYMORPHIC_ALLOCATOR.H
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XCALL_ONCE.H
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XERRC.H
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\ATOMIC
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XATOMIC_WAIT.H
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XTHREADS.H
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\XTIMEC.H
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CTIME
+@@ -105,3 +111,5 @@
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\CTYPE.H
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CLOCALE
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\LOCALE.H
++C:\QT\QT5.12.10\CMAKE_TUR\LIBRARY\MYVECTOR.H
++C:\QT\QT5.12.10\CMAKE_TUR\MAINS\DLG.H
+Index: build/mains/main.vcxproj.filters
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Project ToolsVersion=\"16.0\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">\r\n  <ItemGroup>\r\n    <ClCompile Include=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\mains\\main.cpp\">\r\n      <Filter>Source Files</Filter>\r\n    </ClCompile>\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <CustomBuild Include=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\mains\\CMakeLists.txt\" />\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <Filter Include=\"Source Files\">\r\n      <UniqueIdentifier>{AC21F569-B5BE-3DD5-B34D-F41CF3EA7080}</UniqueIdentifier>\r\n    </Filter>\r\n  </ItemGroup>\r\n</Project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build/mains/main.vcxproj.filters b/build/mains/main.vcxproj.filters
+--- a/build/mains/main.vcxproj.filters	
++++ b/build/mains/main.vcxproj.filters	
+@@ -6,9 +6,17 @@
+     </ClCompile>
+   </ItemGroup>
+   <ItemGroup>
++    <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\mains\dlg.h">
++      <Filter>Header Files</Filter>
++    </ClInclude>
++  </ItemGroup>
++  <ItemGroup>
+     <CustomBuild Include="C:\Qt\Qt5.12.10\cmake_tur\mains\CMakeLists.txt" />
+   </ItemGroup>
+   <ItemGroup>
++    <Filter Include="Header Files">
++      <UniqueIdentifier>{BE03736D-0E38-3823-A46B-B99742BBBB51}</UniqueIdentifier>
++    </Filter>
+     <Filter Include="Source Files">
+       <UniqueIdentifier>{AC21F569-B5BE-3DD5-B34D-F41CF3EA7080}</UniqueIdentifier>
+     </Filter>
+Index: library/bigInt.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"bigInt.h\"\r\n#define _CRT_SECURE_NO_WARNINGS_\r\nbigInt::bigInt(int _number) noexcept{\r\n\r\n_number >= 0 ? _sgn = 0 : _sgn = 1;\r\nif (_number < 0)\r\n_number *= -1;\r\nint p = 0;\r\nif (_number == (int)0) {\r\n_count = 1;\r\n_digit[0] = '0';\r\n}\r\nelse {\r\nfor (int i = 0; i < N; i++)\r\n{\r\nif (_number == (int)0)\r\nbreak;\r\nint _el = (_number % 10);\r\n_number = (_number - _el) / 10;\r\n_digit[i] = _el + '0';\r\np++;\r\n}\r\n_count = p;\r\n}\r\n}\r\n\r\nbigInt::bigInt(myVector& _string) noexcept{\r\n_count = _string.size() - 1;\r\n_string[_string.size() - 1] == '+' ? _sgn = 0 : _sgn = 1;\r\n_string.pop_back();\r\nfor (int i = 0; i < _string.size(); i++) {\r\n_digit[i] = _string[i];\r\n}\r\n}\r\n\r\nbigInt::bigInt(const char* _string)noexcept {\r\nif (_string[0] == '-') {\r\n_count = strlen(_string) - 1;\r\n_sgn = 1;\r\n}\r\nelse\r\n{\r\n_string[0] == '+' ? _count = strlen(_string) - 1 : _count = strlen(_string);\r\n_sgn = 0;\r\n}\r\nint i = 0;\r\nint k = 0;\r\nwhile (i < _count)\r\n{\r\nif (_count == 1) {\r\nif (_string[0] == '+' || _string[0] == '-') {\r\n_digit[0] = _string[1];\r\n}\r\nelse _digit[0] = _string[0];\r\nbreak;\r\n}\r\nif (_string[k] == '-' || _string[k] == '+') {\r\nk++;\r\ncontinue;\r\n}\r\n_digit[i++] = _string[strlen(_string) - i - 1];\r\n}\r\n\r\n}\r\n\r\nvoid deleteZeros(myVector& _vec)\r\n{\r\n    while (_vec.get_vector()[_vec.size() - 1] == '0'&&_vec.size()!=1) {\r\n        _vec.pop_back();\r\n    }\r\n}\r\nvoid decimalInversion(myVector& vec)\r\n{\r\n    for (int i = 0; i < vec.size() - 1; i++)\r\n    {\r\n        vec.get_vector()[i] = (char)('9' - vec.get_vector()[i]) + '0';\r\n    }\r\n}\r\nvoid plusOne(myVector& vec, int len) {\r\n    int transmission = 1;\r\n    for (int i = 0; i < len + 1; i++) {\r\n        if (((((int)vec[i] - '0') + transmission)) / 10 == 1) {\r\n            vec.get_vector()[i] = 0 + '0';\r\n        }\r\n        else {\r\n            vec.get_vector()[i] = (((transmission)+((int)vec[i] - '0')) + '0');\r\n            break;\r\n        }\r\n    }\r\n}\r\nbigInt::bigInt(long long _number)noexcept\r\n{\r\n_number > 0 ? _sgn = 0 : _sgn = 1;\r\nif (_number < 0)\r\n_number *= (long long)-1;\r\nint p = 0;\r\nfor (int i = 0; i < N; i++) {\r\nif (_number == (long long)0)\r\nbreak;\r\nlong long _el = (_number % 10);\r\n_number = (_number - _el) / 10;\r\n_digit[i] = _el + '0';\r\np++;\r\n}\r\n_count = p;\r\n}\r\nint do_external(int len, bigInt& _num, myVector& vec)\r\n{\r\n    if (len < _num.get_count()) {\r\n        return 0;\r\n    }\r\n    if (_num.get_sgn() == 1) {\r\n        for (int i = 0; i < len; i++) {\r\n            for (i; i < _num.get_count(); i++) {\r\n                vec.push_back(_num.getDigit()[i]);\r\n            }\r\n            if (len == _num.get_count())\r\n                break;\r\n            vec.push_back('0');\r\n        }\r\n        vec.push_back('9');\r\n        decimalInversion(*&vec);\r\n        plusOne(*&vec, len);\r\n    }\r\n    else {\r\n        for (int i = 0; i < len; i++) {\r\n            for (i; i < _num.get_count(); i++) {\r\n                vec.push_back(_num.getDigit()[i]);\r\n            }\r\n            if (len == _num.get_count())\r\n                break;\r\n            vec.push_back('0');\r\n        }\r\n        vec.push_back('0');\r\n    }\r\n    return 1;\r\n}\r\nvoid sumOperation(myVector& vec, int maximum, myVector& first, myVector& second )//Складываем дополнительные коды\r\n{\r\n    int transmission = 0;\r\n    for (int i = 0; i < maximum + 1; i++)\r\n    {\r\n        int f = (((((int)first[i] - '0') + ((int)second[i] - '0') + transmission)) % 10);\r\n        vec.push_back(f + '0');\r\n        (((((int)first[i] - '0') + ((int)second[i] - '0' + transmission)) / 10) > 0) ? transmission = 1 : transmission = 0;\r\n    }\r\n}\r\nbigInt::bigInt(const bigInt& _num) noexcept{\r\nfor (int i = 0; i < _num.get_count(); i++) {\r\n_digit[i] = _num._digit[i];\r\n}\r\n_count = _num.get_count();\r\n_sgn = _num.get_sgn();\r\n}\r\nvoid sum_numbers(myVector& vec, bigInt a, bigInt b, int len)\r\n{\r\n    int maximum = std::max(a.get_count(), b.get_count());\r\n    myVector first(maximum + 2);\r\n    do_external(maximum, a, first);\r\n    myVector second(maximum + 2);\r\n    do_external(maximum, b, *&second);\r\n    sumOperation(vec, maximum, *&first, *&second);\r\n}\r\n\r\nconst bigInt bigInt::operator +(const bigInt& _num)\r\n{\r\n    int maximum = std::max(this->_count, _num.get_count());\r\n    int len = maximum;\r\n    myVector vec(maximum + 2);\r\n    if (_sgn == _num.get_sgn())\r\n    {\r\n        if (_sgn == 0) {\r\n            sum_numbers(*&vec, *this, _num, len);\r\n            deleteZeros(*&vec);\r\n            vec.push_back('+');\r\n        }\r\n        else {\r\n            sum_numbers(*&vec, *this, _num, len);\r\n            decimalInversion(vec);\r\n            plusOne(vec, len);\r\n            vec.pop_back();\r\n            deleteZeros(vec);\r\n            vec.push_back('-');\r\n        }\r\n    }\r\n    else\r\n    {\r\n        sum_numbers(*&vec, *this, _num, len);\r\n        if (vec[vec.size() - 1] == '0') {\r\n            deleteZeros(vec);\r\n            vec.push_back('+');\r\n        }\r\n        else {\r\n            decimalInversion(vec);\r\n            plusOne(vec, len);\r\n            vec.pop_back();\r\n            deleteZeros(vec);\r\n            vec.push_back('-');\r\n        }\r\n    }\r\n    bigInt a(vec);\r\n    return a;\r\n}\r\nvoid bigInt::returnExternal()\r\n{\r\n    myVector _vec(_count + 1);\r\n    if (do_external(_count, *this, _vec) == 0)\r\n    {\r\n        std::cout << \"ERROR\\n\";\r\n    };\r\n    while (_vec.size() != 0)\r\n    {\r\n        std::cout << _vec.pop_back();\r\n    }\r\n}\r\n\r\n\r\nconst bigInt& bigInt::operator +=(const bigInt& _num) {\r\n    *this = (*this + _num);\r\n    return *this;\r\n}\r\nconst bigInt bigInt::operator-(const bigInt& _num) {\r\n    bigInt c(\"0\");\r\n    c = _num;\r\n    //(_num.get_sgn() == 1) ? (changeSgn(c), *this = ) : (, *this = *this + c);\r\n    changeSgn(c);\r\n    return (*this + c);\r\n}\r\n\r\n\r\nconst bigInt& bigInt::operator -=(const bigInt& _num) {\r\n    _num.get_sgn() == 1 ? *this = (*this - _num) : *this = (*this + _num);\r\n    return *this;\r\n}\r\nstd::ostream& operator<<(std::ostream& out,const bigInt& a)  {\r\n    if (a.get_sgn() == 1)\r\n        std::cout << \"-\";\r\n    for (int i = a.get_count() - 1; i >= 0; i--)\r\n    {\r\n        out << a._digit[i];\r\n    }\r\n    return out;\r\n}\r\nconst bigInt& bigInt::operator=(const bigInt& _num)\r\n{\r\n    for (int i = _num.get_count() - 1; i >= 0; i--) {\r\n        _digit[i] = _num._digit[i];\r\n    }\r\n    //*_digit = _num.get_count();\r\n    _count = _num.get_count();\r\n    _sgn = _num.get_sgn();\r\n    return *this;\r\n}\r\n\r\nconst bigInt& bigInt::operator+=(const char* _t) {\r\n    *this = (*this + _t);\r\n    return *this;\r\n}\r\n\r\nconst bigInt& bigInt::operator-=(const char* _t) {\r\n    bigInt _new_num(_t);\r\n    *this = (*this - _new_num);\r\n    return *this;\r\n}\r\nconst bigInt& bigInt::operator =(const char* _t) {\r\n    bigInt _num(_t);\r\n    return (*this = _num);\r\n}\r\n\r\nconst bigInt& bigInt::operator ++(int) {\r\n    const char* m = \"1\";\r\n    *this += m;\r\n\r\n    return (*this - m);\r\n}\r\nconst bigInt& bigInt::operator ++() {\r\n    const char* m = \"1\";\r\n    return *this += m;\r\n}\r\nstd::istream& operator >>(std::istream& in,bigInt& _num) ///How to do it??//Подключить гетстр или другой костыль;)\r\n{\r\n    std::string str;\r\n    in >> str;\r\n    const char* s = str.c_str();\r\n    //bigInt _new(s);\r\n    _num = s;\r\n    return in;\r\n}\r\nconst  bigInt bigInt::operator+(const char* _str) {\r\n    bigInt _new(_str);\r\n    return  (*this + _new);\r\n}\r\nconst bigInt& bigInt::operator>>(int _n) noexcept{\r\nfor (int g = 0; g < _n; g++)\r\n{\r\nif (_count == 1)\r\n{\r\n_digit[0] = '0';\r\nreturn *this;\r\n}\r\nfor (int i = 0; i < _count - 1; i++) {\r\n_digit[i] = _digit[i + 1];\r\n}\r\n_count--;\r\n\r\n}\r\nreturn *this;\r\n}\r\nconst bigInt& bigInt::operator<<(int _n) noexcept\r\n{\r\nfor (int g = 0; g < _n; g++)\r\n{\r\nif (_count == 1) {\r\nif (_digit[0] == '0')\r\n{\r\nbreak;\r\n}\r\n}\r\nfor (int i = _count - 1; i >= 0; i--)\r\n{\r\n_digit[i + 1] = _digit[i];\r\n}\r\n_digit[0] = '0';\r\n_count++;\r\n}\r\nreturn *this;\r\n}\r\nconst bigInt bigInt::operator-(const char* _t)\r\n{\r\n    bigInt _new_num(_t);\r\n    return (*this - _new_num);\r\n}\r\nbool bigInt::operator==(bigInt& _num)\r\n{\r\n    if (_num.get_count() == _count && _num.get_sgn() == _sgn)\r\n    {\r\n        for (int i = 0; i < _count; i++) {\r\n            if (_num.getDigit()[i] != _digit[i]) return false;\r\n        }\r\n        return true;\r\n    }\r\n    else return false;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/library/bigInt.cpp b/library/bigInt.cpp
+--- a/library/bigInt.cpp	
++++ b/library/bigInt.cpp	
+@@ -1,343 +1,331 @@
+ #include "bigInt.h"
+-#define _CRT_SECURE_NO_WARNINGS_
+-bigInt::bigInt(int _number) noexcept{
+-
+-_number >= 0 ? _sgn = 0 : _sgn = 1;
+-if (_number < 0)
+-_number *= -1;
+-int p = 0;
+-if (_number == (int)0) {
+-_count = 1;
+-_digit[0] = '0';
+-}
+-else {
+-for (int i = 0; i < N; i++)
+-{
+-if (_number == (int)0)
+-break;
+-int _el = (_number % 10);
+-_number = (_number - _el) / 10;
+-_digit[i] = _el + '0';
+-p++;
+-}
+-_count = p;
+-}
+-}
+-
+-bigInt::bigInt(myVector& _string) noexcept{
+-_count = _string.size() - 1;
+-_string[_string.size() - 1] == '+' ? _sgn = 0 : _sgn = 1;
+-_string.pop_back();
+-for (int i = 0; i < _string.size(); i++) {
+-_digit[i] = _string[i];
+-}
+-}
+-
+-bigInt::bigInt(const char* _string)noexcept {
+-if (_string[0] == '-') {
+-_count = strlen(_string) - 1;
+-_sgn = 1;
+-}
+-else
++namespace auxillary
+ {
+-_string[0] == '+' ? _count = strlen(_string) - 1 : _count = strlen(_string);
+-_sgn = 0;
+-}
+-int i = 0;
+-int k = 0;
+-while (i < _count)
+-{
+-if (_count == 1) {
+-if (_string[0] == '+' || _string[0] == '-') {
+-_digit[0] = _string[1];
+-}
+-else _digit[0] = _string[0];
+-break;
+-}
+-if (_string[k] == '-' || _string[k] == '+') {
+-k++;
+-continue;
+-}
+-_digit[i++] = _string[strlen(_string) - i - 1];
+-}
+-
+-}
+-
+-void deleteZeros(myVector& _vec)
+-{
+-    while (_vec.get_vector()[_vec.size() - 1] == '0'&&_vec.size()!=1) {
+-        _vec.pop_back();
+-    }
+-}
+-void decimalInversion(myVector& vec)
+-{
+-    for (int i = 0; i < vec.size() - 1; i++)
+-    {
+-        vec.get_vector()[i] = (char)('9' - vec.get_vector()[i]) + '0';
+-    }
+-}
+-void plusOne(myVector& vec, int len) {
+-    int transmission = 1;
+-    for (int i = 0; i < len + 1; i++) {
+-        if (((((int)vec[i] - '0') + transmission)) / 10 == 1) {
+-            vec.get_vector()[i] = 0 + '0';
+-        }
+-        else {
+-            vec.get_vector()[i] = (((transmission)+((int)vec[i] - '0')) + '0');
+-            break;
+-        }
+-    }
+-}
+-bigInt::bigInt(long long _number)noexcept
+-{
+-_number > 0 ? _sgn = 0 : _sgn = 1;
+-if (_number < 0)
+-_number *= (long long)-1;
+-int p = 0;
+-for (int i = 0; i < N; i++) {
+-if (_number == (long long)0)
+-break;
+-long long _el = (_number % 10);
+-_number = (_number - _el) / 10;
+-_digit[i] = _el + '0';
+-p++;
+-}
+-_count = p;
+-}
+-int do_external(int len, bigInt& _num, myVector& vec)
+-{
+-    if (len < _num.get_count()) {
+-        return 0;
+-    }
+-    if (_num.get_sgn() == 1) {
+-        for (int i = 0; i < len; i++) {
+-            for (i; i < _num.get_count(); i++) {
+-                vec.push_back(_num.getDigit()[i]);
+-            }
+-            if (len == _num.get_count())
+-                break;
+-            vec.push_back('0');
+-        }
+-        vec.push_back('9');
+-        decimalInversion(*&vec);
+-        plusOne(*&vec, len);
+-    }
+-    else {
+-        for (int i = 0; i < len; i++) {
+-            for (i; i < _num.get_count(); i++) {
+-                vec.push_back(_num.getDigit()[i]);
+-            }
+-            if (len == _num.get_count())
+-                break;
+-            vec.push_back('0');
+-        }
+-        vec.push_back('0');
+-    }
+-    return 1;
+-}
+-void sumOperation(myVector& vec, int maximum, myVector& first, myVector& second )//Складываем дополнительные коды
+-{
+-    int transmission = 0;
+-    for (int i = 0; i < maximum + 1; i++)
+-    {
+-        int f = (((((int)first[i] - '0') + ((int)second[i] - '0') + transmission)) % 10);
+-        vec.push_back(f + '0');
+-        (((((int)first[i] - '0') + ((int)second[i] - '0' + transmission)) / 10) > 0) ? transmission = 1 : transmission = 0;
+-    }
+-}
+-bigInt::bigInt(const bigInt& _num) noexcept{
+-for (int i = 0; i < _num.get_count(); i++) {
+-_digit[i] = _num._digit[i];
+-}
+-_count = _num.get_count();
+-_sgn = _num.get_sgn();
++	void deleteZeros(myVector<char>& _vec)
++	{
++		while (_vec.get_vector()[_vec.size() - 1] == '0' && _vec.size() != 1) {
++			_vec.pop_back();
++		}
++	}
++	void decimalInversion(myVector<char>& vec)
++	{
++		for (int i = 0; i < vec.size() - 1; i++)
++		{
++			vec.get_vector()[i] = (char)('9' - vec.get_vector()[i]) + '0';
++		}
++	}
++	void plusOne(myVector<char>& vec, int len) {
++		int transmission = 1;
++		for (int i = 0; i < len + 1; i++) {
++			if (((((int)vec[i] - '0') + transmission)) / 10 == 1) {
++				vec.get_vector()[i] = 0 + '0';
++			}
++			else {
++				vec.get_vector()[i] = (((transmission)+((int)vec[i] - '0')) + '0');
++				break;
++			}
++		}
++	}
++
++	int do_external(int len, bigInt& _num, myVector<char>& vec)
++	{
++		if (len < _num.get_count()) {
++			return 0;
++		}
++		if (_num.get_sgn() == 1) {
++			for (int i = 0; i < len; i++) {
++				for (i; i < _num.get_count(); i++) {
++					vec.push_back(_num.getDigit()[i]);
++				}
++				if (len == _num.get_count())
++					break;
++				vec.push_back('0');
++			}
++			vec.push_back('9');
++			decimalInversion(*&vec);
++			plusOne(*&vec, len);
++		}
++		else {
++			for (int i = 0; i < len; i++) {
++				for (i; i < _num.get_count(); i++) {
++					vec.push_back(_num.getDigit()[i]);
++				}
++				if (len == _num.get_count())
++					break;
++				vec.push_back('0');
++			}
++			vec.push_back('0');
++		}
++		return 1;
++	}
++	void sumOperation(myVector<char>& vec, int maximum, myVector<char>& first, myVector<char>& second)//���������� �������������� ����
++	{
++		int transmission = 0;
++		for (int i = 0; i < maximum + 1; i++)
++		{
++			int f = (((((int)first[i] - '0') + ((int)second[i] - '0') + transmission)) % 10);
++			vec.push_back(f + '0');
++			(((((int)first[i] - '0') + ((int)second[i] - '0' + transmission)) / 10) > 0) ? transmission = 1 : transmission = 0;
++		}
++	}
++
++	void sum_numbers(myVector<char>& vec, bigInt a, bigInt b, int len)
++	{
++		int maximum = std::max(a.get_count(), b.get_count());
++		myVector<char> first(maximum + 2);
++		do_external(maximum, a, first);
++		myVector<char> second(maximum + 2);
++		do_external(maximum, b, *&second);
++		sumOperation(vec, maximum, *&first, *&second);
++	}
++}
++
++bigInt& bigInt::operator=(bigInt&& _old) noexcept {
++	std::cout << "Move\n";
++	_count = std::move(_old.get_count());
++	_sgn = std::move(_old.get_sgn());
++	for (int i = 0; i < _count; i++) {
++		_digit[i] = std::move(_old.getDigit()[i]);
++	}
++	return *this;
++}
++inline bigInt::bigInt() noexcept{
++	_count = 0;
++	_sgn = 0;
++}
++bigInt::bigInt(bigInt&& _t) noexcept {
++	*this = _t;
++}
++bigInt::bigInt(int _number) noexcept 
++{
++	 AuxConstructor(_number,*this);
++}
++bigInt::bigInt(long long _number)noexcept
++{
++	AuxConstructor(_number, *this);
++}
++inline bigInt::~bigInt() noexcept
++{
++	_sgn = 0;
++	_count = 0;
++}
++
++bigInt::bigInt(myVector<char>& _string) noexcept {
++	_count = _string.size() - 1;
++	_string[_string.size() - 1] == '+' ? _sgn = 0 : _sgn = 1;
++	_string.pop_back();
++	for (int i = 0; i < _string.size(); i++) {
++		_digit[i] = _string[i];
++	}
++}
++bigInt::bigInt(const bigInt& _num) noexcept {
++	for (int i = 0; i < _num.get_count(); i++) {
++		_digit[i] = _num._digit[i];
++	}
++	_count = _num.get_count();
++	_sgn = _num.get_sgn();
+ }
+-void sum_numbers(myVector& vec, bigInt a, bigInt b, int len)
+-{
+-    int maximum = std::max(a.get_count(), b.get_count());
+-    myVector first(maximum + 2);
+-    do_external(maximum, a, first);
+-    myVector second(maximum + 2);
+-    do_external(maximum, b, *&second);
+-    sumOperation(vec, maximum, *&first, *&second);
+-}
+-
+-const bigInt bigInt::operator +(const bigInt& _num)
++bigInt::bigInt(const char* _string)noexcept {
++	if (_string[0] == '-') {
++		_count = strlen(_string) - 1;
++		_sgn = 1;
++	}
++	else
++	{
++		_string[0] == '+' ? _count = strlen(_string) - 1 : _count = strlen(_string);
++		_sgn = 0;
++	}
++	int i = 0;
++	int k = 0;
++	while (i < _count)
++	{
++		if (_count == 1) {
++			if (_string[0] == '+' || _string[0] == '-') {
++				_digit[0] = _string[1];
++			}
++			else _digit[0] = _string[0];
++			break;
++		}
++		if (_string[k] == '-' || _string[k] == '+') {
++			k++;
++			continue;
++		}
++		_digit[i++] = _string[strlen(_string) - i - 1];
++	}
++}
++const bigInt bigInt::operator +(const bigInt& _num)const
+ {
+-    int maximum = std::max(this->_count, _num.get_count());
+-    int len = maximum;
+-    myVector vec(maximum + 2);
+-    if (_sgn == _num.get_sgn())
+-    {
+-        if (_sgn == 0) {
+-            sum_numbers(*&vec, *this, _num, len);
+-            deleteZeros(*&vec);
+-            vec.push_back('+');
+-        }
+-        else {
+-            sum_numbers(*&vec, *this, _num, len);
+-            decimalInversion(vec);
+-            plusOne(vec, len);
+-            vec.pop_back();
+-            deleteZeros(vec);
+-            vec.push_back('-');
+-        }
+-    }
+-    else
+-    {
+-        sum_numbers(*&vec, *this, _num, len);
+-        if (vec[vec.size() - 1] == '0') {
+-            deleteZeros(vec);
+-            vec.push_back('+');
+-        }
+-        else {
+-            decimalInversion(vec);
+-            plusOne(vec, len);
+-            vec.pop_back();
+-            deleteZeros(vec);
+-            vec.push_back('-');
+-        }
+-    }
+-    bigInt a(vec);
+-    return a;
++	int len = std::max(this->_count, _num.get_count());
++	myVector<char> vec(len + 2);
++	if (_sgn == _num.get_sgn())
++	{
++		if (_sgn == 0) {
++			auxillary::sum_numbers(*&vec, *this, _num, len);
++			auxillary::deleteZeros(*&vec);
++			vec.push_back('+');
++		}
++		else {
++			auxillary::sum_numbers(*&vec, *this, _num, len);
++			auxillary::decimalInversion(vec);
++			auxillary::plusOne(vec, len);
++			vec.pop_back();
++			auxillary::deleteZeros(vec);
++			vec.push_back('-');
++		}
++	}
++	else
++	{
++		auxillary::sum_numbers(*&vec, *this, _num, len);
++		if (vec[vec.size() - 1] == '0') {
++			auxillary::deleteZeros(vec);
++			vec.push_back('+');
++		}
++		else {
++			auxillary::decimalInversion(vec);
++			auxillary::plusOne(vec, len);
++			vec.pop_back();
++			auxillary::deleteZeros(vec);
++			vec.push_back('-');
++		}
++	}
++	bigInt a(vec);
++	return a;
+ }
+ void bigInt::returnExternal()
+ {
+-    myVector _vec(_count + 1);
+-    if (do_external(_count, *this, _vec) == 0)
+-    {
+-        std::cout << "ERROR\n";
+-    };
+-    while (_vec.size() != 0)
+-    {
+-        std::cout << _vec.pop_back();
+-    }
++	myVector<char> _vec(_count + 1);
++	if (auxillary::do_external(_count, *this, _vec) == 0)
++	{
++		std::cout << "ERROR\n";
++	};
++	while (_vec.size() != 0)
++	{
++		std::cout << _vec.pop_back();
++	}
+ }
+-
+-
+ const bigInt& bigInt::operator +=(const bigInt& _num) {
+-    *this = (*this + _num);
+-    return *this;
++	return (*this+=_num);
+ }
+-const bigInt bigInt::operator-(const bigInt& _num) {
+-    bigInt c("0");
+-    c = _num;
+-    //(_num.get_sgn() == 1) ? (changeSgn(c), *this = ) : (, *this = *this + c);
+-    changeSgn(c);
+-    return (*this + c);
++const bigInt bigInt::operator-(const bigInt& _num) const{
++	bigInt c("0");
++	c = _num;
++	changeSgn(c);
++	return (*this + c);
+ }
+-
+-
+ const bigInt& bigInt::operator -=(const bigInt& _num) {
+-    _num.get_sgn() == 1 ? *this = (*this - _num) : *this = (*this + _num);
+-    return *this;
++	_num.get_sgn() == 1 ? *this = (*this - _num) : *this = (*this + _num);
++	return *this;
+ }
+-std::ostream& operator<<(std::ostream& out,const bigInt& a)  {
+-    if (a.get_sgn() == 1)
+-        std::cout << "-";
+-    for (int i = a.get_count() - 1; i >= 0; i--)
+-    {
+-        out << a._digit[i];
+-    }
+-    return out;
++std::ostream& operator<<(std::ostream& out, const bigInt& a) {
++	if (a.get_sgn() == 1)
++		std::cout << "-";
++	for (int i = a.get_count() - 1; i >= 0; i--)
++	{
++		out << a._digit[i];
++	}
++	return out;
+ }
+ const bigInt& bigInt::operator=(const bigInt& _num)
+ {
+-    for (int i = _num.get_count() - 1; i >= 0; i--) {
+-        _digit[i] = _num._digit[i];
+-    }
+-    //*_digit = _num.get_count();
+-    _count = _num.get_count();
+-    _sgn = _num.get_sgn();
+-    return *this;
++	for (int i = _num.get_count() - 1; i >= 0; i--) {
++		_digit[i] = _num._digit[i];
++	}
++	_count = _num.get_count();
++	_sgn = _num.get_sgn();
++	return *this;
+ }
+-
+ const bigInt& bigInt::operator+=(const char* _t) {
+-    *this = (*this + _t);
+-    return *this;
++	*this = (*this + _t);
++	return *this;
+ }
+-
+ const bigInt& bigInt::operator-=(const char* _t) {
+-    bigInt _new_num(_t);
+-    *this = (*this - _new_num);
+-    return *this;
++	bigInt _new_num(_t);
++	*this = (*this - _new_num);
++	return *this;
+ }
+-const bigInt& bigInt::operator =(const char* _t) {
+-    bigInt _num(_t);
+-    return (*this = _num);
++const bigInt& bigInt::operator =(const char* _t){
++	bigInt _num(_t);
++	return (*this = _num);
+ }
+ 
+ const bigInt& bigInt::operator ++(int) {
+-    const char* m = "1";
+-    *this += m;
+-
+-    return (*this - m);
++	const char* m = "1";
++	*this += m;
++	return (*this - m);
+ }
+ const bigInt& bigInt::operator ++() {
+-    const char* m = "1";
+-    return *this += m;
++	const char* m = "1";
++	return *this += m;
+ }
+-std::istream& operator >>(std::istream& in,bigInt& _num) ///How to do it??//Подключить гетстр или другой костыль;)
++std::istream& operator >>(std::istream& in, bigInt& _num) ///How to do it??//���������� ������ ��� ������ �������;)
+ {
+-    std::string str;
+-    in >> str;
+-    const char* s = str.c_str();
+-    //bigInt _new(s);
+-    _num = s;
+-    return in;
++	std::string str;
++	in >> str;
++	const char* s = str.c_str();
++	_num = s;
++	return in;
+ }
+-const  bigInt bigInt::operator+(const char* _str) {
+-    bigInt _new(_str);
+-    return  (*this + _new);
++const  bigInt bigInt::operator+(const char* _str)const {
++	bigInt _new(_str);
++	return  (*this + _new);
+ }
+-const bigInt& bigInt::operator>>(int _n) noexcept{
+-for (int g = 0; g < _n; g++)
+-{
+-if (_count == 1)
+-{
+-_digit[0] = '0';
+-return *this;
+-}
+-for (int i = 0; i < _count - 1; i++) {
+-_digit[i] = _digit[i + 1];
+-}
+-_count--;
++const bigInt& bigInt::operator>>(int _n)const noexcept {
++	bigInt _a = *this;
++	for (int g = 0; g < _n; g++)
++	{
++		if (_a._count == 1)
++		{
++			_a._digit[0] = '0';
++			return _a;
++		}
++		for (int i = 0; i <_a. _count - 1; i++) {
++			_a._digit[i] = _a._digit[i + 1];
++		}
++		_a._count--;
+ 
+-}
+-return *this;
++	}
++	return _a;
+ }
+-const bigInt& bigInt::operator<<(int _n) noexcept
++const bigInt& bigInt::operator<<(int _n) const noexcept 
+ {
+-for (int g = 0; g < _n; g++)
+-{
+-if (_count == 1) {
+-if (_digit[0] == '0')
+-{
+-break;
+-}
+-}
+-for (int i = _count - 1; i >= 0; i--)
+-{
+-_digit[i + 1] = _digit[i];
++	bigInt _a = *this;
++	for (int g = 0; g < _n; g++)
++	{
++		if (_a._count == 1) {
++			if (_a._digit[0] == '0')
++			{
++				break;
++			}
++		}
++		for (int i =_a. _count - 1; i >= 0; i--)
++		{
++			_a._digit[i + 1] = _digit[i];
++		}
++		_a._digit[0] = '0';
++		_a._count++;
++	}
++	return _a;
+ }
+-_digit[0] = '0';
+-_count++;
++const bigInt& bigInt::operator<<=(int _n)  noexcept {
++	return (*this = *this<<_n);
+ }
+-return *this;
++const bigInt& bigInt::operator>>=(int _n)  noexcept {
++	return (*this = *this >> _n);
+ }
+-const bigInt bigInt::operator-(const char* _t)
++
++const bigInt bigInt::operator-(const char* _t)const
+ {
+-    bigInt _new_num(_t);
+-    return (*this - _new_num);
++	bigInt _new_num(_t);
++	return (*this - _new_num);
+ }
+ bool bigInt::operator==(bigInt& _num)
+ {
+-    if (_num.get_count() == _count && _num.get_sgn() == _sgn)
+-    {
+-        for (int i = 0; i < _count; i++) {
+-            if (_num.getDigit()[i] != _digit[i]) return false;
+-        }
+-        return true;
+-    }
+-    else return false;
+-}
++	if (_num.get_count() == _count && _num.get_sgn() == _sgn)
++	{
++		for (int i = 0; i < _count; i++) {
++			if (_num.getDigit()[i] != _digit[i]) return false;
++		}
++		return true;
++	}
++	else return false;
++}
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CMakeRunConfigurationManager\" shouldGenerate=\"true\" shouldDeleteObsolete=\"true\">\r\n    <generated />\r\n  </component>\r\n  <component name=\"CMakeSettings\">\r\n    <configurations>\r\n      <configuration PROFILE_NAME=\"Debug\" ENABLED=\"true\" CONFIG_NAME=\"Debug\" />\r\n    </configurations>\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"63a03784-e53b-492c-a550-5fd537860272\" name=\"Changes\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ClangdSettings\">\r\n    <option name=\"formatViaClangd\" value=\"false\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1zehHVuzJeoSjuMYgtCnUneDuw3\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n    <option name=\"showMembers\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.cidr.known.project.marker\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"cf.first.check.clang-format\" value=\"false\" />\r\n    <property name=\"cidr.known.project.marker\" value=\"true\" />\r\n    <property name=\"cmake.loaded.for.project\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/mains\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"project.propVCSSupport.Mappings\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\mains\" />\r\n      <recent name=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\LibraryL\" />\r\n      <recent name=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\mainf\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration default=\"true\" type=\"GradleAppRunConfiguration\" factoryName=\"Application\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" PASS_PARENT_ENVS_2=\"true\">\r\n      <method v=\"2\">\r\n        <option name=\"com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"63a03784-e53b-492c-a550-5fd537860272\" name=\"Changes\" comment=\"\" />\r\n      <created>1634514374019</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1634514374019</updated>\r\n      <workItem from=\"1634514375444\" duration=\"1596000\" />\r\n      <workItem from=\"1634519329255\" duration=\"488000\" />\r\n      <workItem from=\"1634537620912\" duration=\"219000\" />\r\n      <workItem from=\"1634537868479\" duration=\"173000\" />\r\n      <workItem from=\"1634538062164\" duration=\"2695000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -9,7 +9,23 @@
+     </configurations>
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="63a03784-e53b-492c-a550-5fd537860272" name="Changes" comment="" />
++    <list default="true" id="63a03784-e53b-492c-a550-5fd537860272" name="Changes" comment="">
++      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/library/Debug/bigInt.lib" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/Debug/bigInt.lib" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/library/Debug/bigInt.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/Debug/bigInt.pdb" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.obj" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/mains/Debug/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/Debug/main.exe" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/mains/Debug/main.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/Debug/main.pdb" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.ilk" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/library/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/library/CMakeLists.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/library/bigInt.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/library/bigInt.cpp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/library/bigInt.h" beforeDir="false" afterPath="$PROJECT_DIR$/library/bigInt.h" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/mains/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mains/CMakeLists.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/mains/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/mains/main.cpp" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -36,21 +52,22 @@
+     <property name="cf.first.check.clang-format" value="false" />
+     <property name="cidr.known.project.marker" value="true" />
+     <property name="cmake.loaded.for.project" value="true" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mains" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/any" />
+     <property name="nodejs_package_manager_path" value="npm" />
+     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+   </component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Qt\Qt5.12.10\cmake_tur\any" />
+       <recent name="C:\Qt\Qt5.12.10\cmake_tur\mains" />
+       <recent name="C:\Qt\Qt5.12.10\cmake_tur\LibraryL" />
+       <recent name="C:\Qt\Qt5.12.10\cmake_tur\mainf" />
+     </key>
+   </component>
+   <component name="RunManager">
+-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
++    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+       <method v="2">
+-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
++        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+       </method>
+     </configuration>
+   </component>
+@@ -66,7 +83,10 @@
+       <workItem from="1634519329255" duration="488000" />
+       <workItem from="1634537620912" duration="219000" />
+       <workItem from="1634537868479" duration="173000" />
+-      <workItem from="1634538062164" duration="2695000" />
++      <workItem from="1634538062164" duration="9751000" />
++      <workItem from="1634590023947" duration="1355000" />
++      <workItem from="1634594101955" duration="651000" />
++      <workItem from="1634678842994" duration="781000" />
+     </task>
+     <servers />
+   </component>
+Index: build/mains/main.dir/Debug/main.tlog/link.read.1.tlog
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>^C:\\QT\\QT5.12.10\\CMAKE_TUR\\BUILD\\MAINS\\MAIN.DIR\\DEBUG\\MAIN.OBJ\r\nC:\\QT\\QT5.12.10\\CMAKE_TUR\\BUILD\\LIBRARY\\DEBUG\\BIGINT.LIB\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\LIB\\10.0.19041.0\\UM\\X64\\KERNEL32.LIB\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\LIB\\10.0.19041.0\\UM\\X64\\USER32.LIB\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\LIB\\10.0.19041.0\\UM\\X64\\GDI32.LIB\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\LIB\\10.0.19041.0\\UM\\X64\\WINSPOOL.LIB\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\LIB\\10.0.19041.0\\UM\\X64\\SHELL32.LIB\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\LIB\\10.0.19041.0\\UM\\X64\\OLE32.LIB\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\LIB\\10.0.19041.0\\UM\\X64\\OLEAUT32.LIB\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\LIB\\10.0.19041.0\\UM\\X64\\UUID.LIB\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\LIB\\10.0.19041.0\\UM\\X64\\COMDLG32.LIB\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\LIB\\10.0.19041.0\\UM\\X64\\ADVAPI32.LIB\r\nC:\\QT\\QT5.12.10\\CMAKE_TUR\\BUILD\\MAINS\\MAIN.DIR\\DEBUG\\MAIN.OBJ\r\nC:\\QT\\QT5.12.10\\CMAKE_TUR\\BUILD\\MAINS\\MAIN.DIR\\DEBUG\\MAIN.ILK\r\nC:\\WINDOWS\\SYSTEM32\\TZRES.DLL\r\nC:\\WINDOWS\\GLOBALIZATION\\SORTING\\SORTDEFAULT.NLS\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\LIB\\X64\\MSVCPRTD.LIB\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\LIB\\X64\\MSVCRTD.LIB\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\LIB\\X64\\OLDNAMES.LIB\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\LIB\\X64\\VCRUNTIMED.LIB\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\LIB\\10.0.19041.0\\UCRT\\X64\\UCRTD.LIB\r\nC:\\QT\\QT5.12.10\\CMAKE_TUR\\BUILD\\MAINS\\MAIN.DIR\\DEBUG\\VC142.PDB\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-16LE
+===================================================================
+diff --git a/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog b/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog
+--- a/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog	
++++ b/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog	
+@@ -19,4 +19,6 @@
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\LIB\X64\OLDNAMES.LIB
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\LIB\X64\VCRUNTIMED.LIB
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\LIB\10.0.19041.0\UCRT\X64\UCRTD.LIB
++C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\BIN\HOSTX64\X64\CVTRES.EXE
+ C:\QT\QT5.12.10\CMAKE_TUR\BUILD\MAINS\MAIN.DIR\DEBUG\VC142.PDB
++C:\QT\QT5.12.10\CMAKE_TUR\BUILD\LIBRARY\DEBUG\BIGINT.PDB
+Index: build/library/bigInt.vcxproj.filters
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Project ToolsVersion=\"16.0\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">\r\n  <ItemGroup>\r\n    <ClCompile Include=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\library\\bigInt.cpp\">\r\n      <Filter>Source Files</Filter>\r\n    </ClCompile>\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <ClInclude Include=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\library\\bigInt.h\">\r\n      <Filter>Header Files</Filter>\r\n    </ClInclude>\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <CustomBuild Include=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\library\\CMakeLists.txt\" />\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <Filter Include=\"Header Files\">\r\n      <UniqueIdentifier>{BE03736D-0E38-3823-A46B-B99742BBBB51}</UniqueIdentifier>\r\n    </Filter>\r\n    <Filter Include=\"Source Files\">\r\n      <UniqueIdentifier>{AC21F569-B5BE-3DD5-B34D-F41CF3EA7080}</UniqueIdentifier>\r\n    </Filter>\r\n  </ItemGroup>\r\n</Project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build/library/bigInt.vcxproj.filters b/build/library/bigInt.vcxproj.filters
+--- a/build/library/bigInt.vcxproj.filters	
++++ b/build/library/bigInt.vcxproj.filters	
+@@ -9,6 +9,9 @@
+     <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\library\bigInt.h">
+       <Filter>Header Files</Filter>
+     </ClInclude>
++    <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\library\myVector.h">
++      <Filter>Header Files</Filter>
++    </ClInclude>
+   </ItemGroup>
+   <ItemGroup>
+     <CustomBuild Include="C:\Qt\Qt5.12.10\cmake_tur\library\CMakeLists.txt" />
+Index: build/library/bigInt.vcxproj
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Project DefaultTargets=\"Build\" ToolsVersion=\"16.0\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">\r\n  <PropertyGroup>\r\n    <PreferredToolArchitecture>x64</PreferredToolArchitecture>\r\n  </PropertyGroup>\r\n  <ItemGroup Label=\"ProjectConfigurations\">\r\n    <ProjectConfiguration Include=\"Debug|x64\">\r\n      <Configuration>Debug</Configuration>\r\n      <Platform>x64</Platform>\r\n    </ProjectConfiguration>\r\n    <ProjectConfiguration Include=\"Release|x64\">\r\n      <Configuration>Release</Configuration>\r\n      <Platform>x64</Platform>\r\n    </ProjectConfiguration>\r\n    <ProjectConfiguration Include=\"MinSizeRel|x64\">\r\n      <Configuration>MinSizeRel</Configuration>\r\n      <Platform>x64</Platform>\r\n    </ProjectConfiguration>\r\n    <ProjectConfiguration Include=\"RelWithDebInfo|x64\">\r\n      <Configuration>RelWithDebInfo</Configuration>\r\n      <Platform>x64</Platform>\r\n    </ProjectConfiguration>\r\n  </ItemGroup>\r\n  <PropertyGroup Label=\"Globals\">\r\n    <ProjectGuid>{D3816879-557D-33FF-8258-B2B4610B02FC}</ProjectGuid>\r\n    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>\r\n    <Keyword>Win32Proj</Keyword>\r\n    <Platform>x64</Platform>\r\n    <ProjectName>bigInt</ProjectName>\r\n    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>\r\n  </PropertyGroup>\r\n  <Import Project=\"$(VCTargetsPath)\\Microsoft.Cpp.Default.props\" />\r\n  <PropertyGroup Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\" Label=\"Configuration\">\r\n    <ConfigurationType>StaticLibrary</ConfigurationType>\r\n    <CharacterSet>MultiByte</CharacterSet>\r\n    <PlatformToolset>v142</PlatformToolset>\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\" Label=\"Configuration\">\r\n    <ConfigurationType>StaticLibrary</ConfigurationType>\r\n    <CharacterSet>MultiByte</CharacterSet>\r\n    <PlatformToolset>v142</PlatformToolset>\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\" Label=\"Configuration\">\r\n    <ConfigurationType>StaticLibrary</ConfigurationType>\r\n    <CharacterSet>MultiByte</CharacterSet>\r\n    <PlatformToolset>v142</PlatformToolset>\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\" Label=\"Configuration\">\r\n    <ConfigurationType>StaticLibrary</ConfigurationType>\r\n    <CharacterSet>MultiByte</CharacterSet>\r\n    <PlatformToolset>v142</PlatformToolset>\r\n  </PropertyGroup>\r\n  <Import Project=\"$(VCTargetsPath)\\Microsoft.Cpp.props\" />\r\n  <ImportGroup Label=\"ExtensionSettings\">\r\n  </ImportGroup>\r\n  <ImportGroup Label=\"PropertySheets\">\r\n    <Import Project=\"$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props\" Condition=\"exists('$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props')\" Label=\"LocalAppDataPlatform\" />\r\n  </ImportGroup>\r\n  <PropertyGroup Label=\"UserMacros\" />\r\n  <PropertyGroup>\r\n    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>\r\n    <OutDir Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\library\\Debug\\</OutDir>\r\n    <IntDir Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">bigInt.dir\\Debug\\</IntDir>\r\n    <TargetName Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">bigInt</TargetName>\r\n    <TargetExt Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">.lib</TargetExt>\r\n    <OutDir Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\library\\Release\\</OutDir>\r\n    <IntDir Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">bigInt.dir\\Release\\</IntDir>\r\n    <TargetName Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">bigInt</TargetName>\r\n    <TargetExt Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">.lib</TargetExt>\r\n    <OutDir Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\library\\MinSizeRel\\</OutDir>\r\n    <IntDir Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">bigInt.dir\\MinSizeRel\\</IntDir>\r\n    <TargetName Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">bigInt</TargetName>\r\n    <TargetExt Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">.lib</TargetExt>\r\n    <OutDir Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\library\\RelWithDebInfo\\</OutDir>\r\n    <IntDir Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">bigInt.dir\\RelWithDebInfo\\</IntDir>\r\n    <TargetName Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">bigInt</TargetName>\r\n    <TargetExt Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">.lib</TargetExt>\r\n  </PropertyGroup>\r\n  <ItemDefinitionGroup Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">\r\n    <ClCompile>\r\n      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>\r\n      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>\r\n      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>\r\n      <ExceptionHandling>Sync</ExceptionHandling>\r\n      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>\r\n      <Optimization>Disabled</Optimization>\r\n      <PrecompiledHeader>NotUsing</PrecompiledHeader>\r\n      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>\r\n      <RuntimeTypeInfo>true</RuntimeTypeInfo>\r\n      <UseFullPaths>false</UseFullPaths>\r\n      <WarningLevel>Level3</WarningLevel>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>\r\n      <ObjectFileName>$(IntDir)</ObjectFileName>\r\n    </ClCompile>\r\n    <ResourceCompile>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\\\"Debug\\\"</PreprocessorDefinitions>\r\n    </ResourceCompile>\r\n    <Midl>\r\n      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>\r\n      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>\r\n      <HeaderFileName>%(Filename).h</HeaderFileName>\r\n      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>\r\n      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>\r\n      <ProxyFileName>%(Filename)_p.c</ProxyFileName>\r\n    </Midl>\r\n    <Lib>\r\n      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>\r\n    </Lib>\r\n  </ItemDefinitionGroup>\r\n  <ItemDefinitionGroup Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">\r\n    <ClCompile>\r\n      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>\r\n      <ExceptionHandling>Sync</ExceptionHandling>\r\n      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>\r\n      <Optimization>MaxSpeed</Optimization>\r\n      <PrecompiledHeader>NotUsing</PrecompiledHeader>\r\n      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>\r\n      <RuntimeTypeInfo>true</RuntimeTypeInfo>\r\n      <UseFullPaths>false</UseFullPaths>\r\n      <WarningLevel>Level3</WarningLevel>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>\r\n      <ObjectFileName>$(IntDir)</ObjectFileName>\r\n      <DebugInformationFormat>\r\n      </DebugInformationFormat>\r\n    </ClCompile>\r\n    <ResourceCompile>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\\\"Release\\\"</PreprocessorDefinitions>\r\n    </ResourceCompile>\r\n    <Midl>\r\n      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>\r\n      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>\r\n      <HeaderFileName>%(Filename).h</HeaderFileName>\r\n      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>\r\n      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>\r\n      <ProxyFileName>%(Filename)_p.c</ProxyFileName>\r\n    </Midl>\r\n    <Lib>\r\n      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>\r\n    </Lib>\r\n  </ItemDefinitionGroup>\r\n  <ItemDefinitionGroup Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">\r\n    <ClCompile>\r\n      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>\r\n      <ExceptionHandling>Sync</ExceptionHandling>\r\n      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>\r\n      <Optimization>MinSpace</Optimization>\r\n      <PrecompiledHeader>NotUsing</PrecompiledHeader>\r\n      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>\r\n      <RuntimeTypeInfo>true</RuntimeTypeInfo>\r\n      <UseFullPaths>false</UseFullPaths>\r\n      <WarningLevel>Level3</WarningLevel>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>\r\n      <ObjectFileName>$(IntDir)</ObjectFileName>\r\n      <DebugInformationFormat>\r\n      </DebugInformationFormat>\r\n    </ClCompile>\r\n    <ResourceCompile>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\\\"MinSizeRel\\\"</PreprocessorDefinitions>\r\n    </ResourceCompile>\r\n    <Midl>\r\n      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>\r\n      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>\r\n      <HeaderFileName>%(Filename).h</HeaderFileName>\r\n      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>\r\n      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>\r\n      <ProxyFileName>%(Filename)_p.c</ProxyFileName>\r\n    </Midl>\r\n    <Lib>\r\n      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>\r\n    </Lib>\r\n  </ItemDefinitionGroup>\r\n  <ItemDefinitionGroup Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">\r\n    <ClCompile>\r\n      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>\r\n      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>\r\n      <ExceptionHandling>Sync</ExceptionHandling>\r\n      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>\r\n      <Optimization>MaxSpeed</Optimization>\r\n      <PrecompiledHeader>NotUsing</PrecompiledHeader>\r\n      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>\r\n      <RuntimeTypeInfo>true</RuntimeTypeInfo>\r\n      <UseFullPaths>false</UseFullPaths>\r\n      <WarningLevel>Level3</WarningLevel>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>\r\n      <ObjectFileName>$(IntDir)</ObjectFileName>\r\n    </ClCompile>\r\n    <ResourceCompile>\r\n      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\\\"RelWithDebInfo\\\"</PreprocessorDefinitions>\r\n    </ResourceCompile>\r\n    <Midl>\r\n      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>\r\n      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>\r\n      <HeaderFileName>%(Filename).h</HeaderFileName>\r\n      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>\r\n      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>\r\n      <ProxyFileName>%(Filename)_p.c</ProxyFileName>\r\n    </Midl>\r\n    <Lib>\r\n      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>\r\n    </Lib>\r\n  </ItemDefinitionGroup>\r\n  <ItemGroup>\r\n    <CustomBuild Include=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\library\\CMakeLists.txt\">\r\n      <UseUtf8Encoding>Always</UseUtf8Encoding>\r\n      <Message Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">Building Custom Rule C:/Qt/Qt5.12.10/cmake_tur/library/CMakeLists.txt</Message>\r\n      <Command Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">setlocal\r\n\"C:\\Program Files\\CMake\\bin\\cmake.exe\" -SC:/Qt/Qt5.12.10/cmake_tur -BC:/Qt/Qt5.12.10/cmake_tur/build --check-stamp-file C:/Qt/Qt5.12.10/cmake_tur/build/library/CMakeFiles/generate.stamp\r\nif %errorlevel% neq 0 goto :cmEnd\r\n:cmEnd\r\nendlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone\r\n:cmErrorLevel\r\nexit /b %1\r\n:cmDone\r\nif %errorlevel% neq 0 goto :VCEnd</Command>\r\n      <AdditionalInputs Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">%(AdditionalInputs)</AdditionalInputs>\r\n      <Outputs Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\library\\CMakeFiles\\generate.stamp</Outputs>\r\n      <LinkObjects Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">false</LinkObjects>\r\n      <Message Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">Building Custom Rule C:/Qt/Qt5.12.10/cmake_tur/library/CMakeLists.txt</Message>\r\n      <Command Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">setlocal\r\n\"C:\\Program Files\\CMake\\bin\\cmake.exe\" -SC:/Qt/Qt5.12.10/cmake_tur -BC:/Qt/Qt5.12.10/cmake_tur/build --check-stamp-file C:/Qt/Qt5.12.10/cmake_tur/build/library/CMakeFiles/generate.stamp\r\nif %errorlevel% neq 0 goto :cmEnd\r\n:cmEnd\r\nendlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone\r\n:cmErrorLevel\r\nexit /b %1\r\n:cmDone\r\nif %errorlevel% neq 0 goto :VCEnd</Command>\r\n      <AdditionalInputs Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">%(AdditionalInputs)</AdditionalInputs>\r\n      <Outputs Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\library\\CMakeFiles\\generate.stamp</Outputs>\r\n      <LinkObjects Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">false</LinkObjects>\r\n      <Message Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">Building Custom Rule C:/Qt/Qt5.12.10/cmake_tur/library/CMakeLists.txt</Message>\r\n      <Command Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">setlocal\r\n\"C:\\Program Files\\CMake\\bin\\cmake.exe\" -SC:/Qt/Qt5.12.10/cmake_tur -BC:/Qt/Qt5.12.10/cmake_tur/build --check-stamp-file C:/Qt/Qt5.12.10/cmake_tur/build/library/CMakeFiles/generate.stamp\r\nif %errorlevel% neq 0 goto :cmEnd\r\n:cmEnd\r\nendlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone\r\n:cmErrorLevel\r\nexit /b %1\r\n:cmDone\r\nif %errorlevel% neq 0 goto :VCEnd</Command>\r\n      <AdditionalInputs Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">%(AdditionalInputs)</AdditionalInputs>\r\n      <Outputs Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\library\\CMakeFiles\\generate.stamp</Outputs>\r\n      <LinkObjects Condition=\"'$(Configuration)|$(Platform)'=='MinSizeRel|x64'\">false</LinkObjects>\r\n      <Message Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">Building Custom Rule C:/Qt/Qt5.12.10/cmake_tur/library/CMakeLists.txt</Message>\r\n      <Command Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">setlocal\r\n\"C:\\Program Files\\CMake\\bin\\cmake.exe\" -SC:/Qt/Qt5.12.10/cmake_tur -BC:/Qt/Qt5.12.10/cmake_tur/build --check-stamp-file C:/Qt/Qt5.12.10/cmake_tur/build/library/CMakeFiles/generate.stamp\r\nif %errorlevel% neq 0 goto :cmEnd\r\n:cmEnd\r\nendlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone\r\n:cmErrorLevel\r\nexit /b %1\r\n:cmDone\r\nif %errorlevel% neq 0 goto :VCEnd</Command>\r\n      <AdditionalInputs Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">%(AdditionalInputs)</AdditionalInputs>\r\n      <Outputs Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\library\\CMakeFiles\\generate.stamp</Outputs>\r\n      <LinkObjects Condition=\"'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'\">false</LinkObjects>\r\n    </CustomBuild>\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <ClInclude Include=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\library\\bigInt.h\" />\r\n    <ClCompile Include=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\library\\bigInt.cpp\" />\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <ProjectReference Include=\"C:\\Qt\\Qt5.12.10\\cmake_tur\\build\\ZERO_CHECK.vcxproj\">\r\n      <Project>{3101D443-45B4-3E03-976D-2508C50F9AB6}</Project>\r\n      <Name>ZERO_CHECK</Name>\r\n      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>\r\n      <CopyToOutputDirectory>Never</CopyToOutputDirectory>\r\n    </ProjectReference>\r\n  </ItemGroup>\r\n  <Import Project=\"$(VCTargetsPath)\\Microsoft.Cpp.targets\" />\r\n  <ImportGroup Label=\"ExtensionTargets\">\r\n  </ImportGroup>\r\n</Project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build/library/bigInt.vcxproj b/build/library/bigInt.vcxproj
+--- a/build/library/bigInt.vcxproj	
++++ b/build/library/bigInt.vcxproj	
+@@ -259,6 +259,7 @@
+   <ItemGroup>
+     <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\library\bigInt.h" />
+     <ClCompile Include="C:\Qt\Qt5.12.10\cmake_tur\library\bigInt.cpp" />
++    <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\library\myVector.h" />
+   </ItemGroup>
+   <ItemGroup>
+     <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\ZERO_CHECK.vcxproj">
+Index: build/library/bigInt.dir/Debug/bigInt.tlog/CL.read.1.tlog
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>^C:\\QT\\QT5.12.10\\CMAKE_TUR\\LIBRARY\\BIGINT.CPP\r\nC:\\WINDOWS\\GLOBALIZATION\\SORTING\\SORTDEFAULT.NLS\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\BIN\\HOSTX64\\X64\\1049\\CLUI.DLL\r\nC:\\WINDOWS\\SYSTEM32\\TZRES.DLL\r\nC:\\QT\\QT5.12.10\\CMAKE_TUR\\LIBRARY\\BIGINT.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\IOSTREAM\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\YVALS_CORE.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VCRUNTIME.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\SAL.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CONCURRENCYSAL.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VADEFS.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XKEYCHECK.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\ISTREAM\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\OSTREAM\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\IOS\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XLOCNUM\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CLIMITS\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\LIMITS.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CMATH\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\YVALS.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CRTDBG.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VCRUNTIME_NEW_DEBUG.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VCRUNTIME_NEW.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CRTDEFS.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\USE_ANSI.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CSTDLIB\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\MATH.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_MATH.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\STDLIB.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_MALLOC.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_SEARCH.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\STDDEF.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WSTDLIB.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XTR1COMMON\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\INTRIN0.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\INTRIN0.INL.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CSTDIO\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\STDIO.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WSTDIO.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_STDIO_CONFIG.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\ITERATOR\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\IOSFWD\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CSTRING\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\STRING.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_MEMORY.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_MEMCPY_S.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\ERRNO.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VCRUNTIME_STRING.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WSTRING.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CWCHAR\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\WCHAR.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WCONIO.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WCTYPE.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WDIRECT.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WIO.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_SHARE.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WPROCESS.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_WTIME.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\SYS\\STAT.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\SYS\\TYPES.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XSTDDEF\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CSTDDEF\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\INITIALIZER_LIST\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XUTILITY\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\UTILITY\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\TYPE_TRAITS\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CSTDINT\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\STDINT.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\STREAMBUF\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XIOSBASE\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\SHARE.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\SYSTEM_ERROR\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\__MSVC_SYSTEM_ERROR_ABI.HPP\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CERRNO\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\STDEXCEPT\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\EXCEPTION\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\MALLOC.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VCRUNTIME_EXCEPTION.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\EH.H\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CORECRT_TERMINATE.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XSTRING\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XMEMORY\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\LIMITS\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CFLOAT\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\FLOAT.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\ISA_AVAILABILITY.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\NEW\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XATOMIC.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XCALL_ONCE.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XERRC.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\ATOMIC\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XTHREADS.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XTIMEC.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CTIME\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\TIME.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XLOCALE\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\MEMORY\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\TYPEINFO\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\VCRUNTIME_TYPEINFO.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XFACET\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XLOCINFO\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\XLOCINFO.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CCTYPE\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\CTYPE.H\r\nC:\\PROGRAM FILES (X86)\\MICROSOFT VISUAL STUDIO\\2019\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.29.30133\\INCLUDE\\CLOCALE\r\nC:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.19041.0\\UCRT\\LOCALE.H\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-16LE
+===================================================================
+diff --git a/build/library/bigInt.dir/Debug/bigInt.tlog/CL.read.1.tlog b/build/library/bigInt.dir/Debug/bigInt.tlog/CL.read.1.tlog
+--- a/build/library/bigInt.dir/Debug/bigInt.tlog/CL.read.1.tlog	
++++ b/build/library/bigInt.dir/Debug/bigInt.tlog/CL.read.1.tlog	
+@@ -105,3 +105,4 @@
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\CTYPE.H
+ C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO\2019\COMMUNITY\VC\TOOLS\MSVC\14.29.30133\INCLUDE\CLOCALE
+ C:\PROGRAM FILES (X86)\WINDOWS KITS\10\INCLUDE\10.0.19041.0\UCRT\LOCALE.H
++C:\QT\QT5.12.10\CMAKE_TUR\LIBRARY\MYVECTOR.H
+Index: .idea/encodings.xml
+===================================================================
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/encodings.xml	
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Encoding">
++    <file url="file://$PROJECT_DIR$/library/bigInt.cpp" charset="UTF-8" />
++  </component>
++</project>
+\ No newline at end of file

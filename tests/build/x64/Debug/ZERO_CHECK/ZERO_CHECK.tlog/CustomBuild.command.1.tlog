@@ -1,0 +1,10 @@
+^C:\QT\QT5.12.10\CMAKE_TUR\TESTS\BUILD\CMAKEFILES\52136E845E33D9D8517B9F9E451F95AF\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Qt/Qt5.12.10/cmake_tur/tests -BC:/Qt/Qt5.12.10/cmake_tur/tests/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Qt/Qt5.12.10/cmake_tur/tests/build/tests.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

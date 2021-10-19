@@ -1,0 +1,8 @@
+C:/Qt/Qt5.12.10/cmake_tur/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Qt/Qt5.12.10/cmake_tur/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Qt/Qt5.12.10/cmake_tur/cmake-build-debug/library/CMakeFiles/bigInt.dir
+C:/Qt/Qt5.12.10/cmake_tur/cmake-build-debug/library/CMakeFiles/edit_cache.dir
+C:/Qt/Qt5.12.10/cmake_tur/cmake-build-debug/library/CMakeFiles/rebuild_cache.dir
+C:/Qt/Qt5.12.10/cmake_tur/cmake-build-debug/mains/CMakeFiles/edit_cache.dir
+C:/Qt/Qt5.12.10/cmake_tur/cmake-build-debug/mains/CMakeFiles/main.dir
+C:/Qt/Qt5.12.10/cmake_tur/cmake-build-debug/mains/CMakeFiles/rebuild_cache.dir
