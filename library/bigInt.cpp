@@ -325,12 +325,12 @@ const bigInt bigInt::operator-(const char* _t)const
     bigInt _new_num(_t);
     return (*this - _new_num);
 }
-bool bigInt::operator==(bigInt& _num)
+bool bigInt::operator==(const bigInt& _num)
 {
     if (_num.get_count() == _count && _num.get_sgn() == _sgn)
     {
         for (int i = 0; i < _count; i++) {
-            if (_num.getDigit()[i] != _digit[i]) return false;
+            if (_num._digit[i] != _digit[i]) return false;
         }
         return true;
     }

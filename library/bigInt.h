@@ -38,7 +38,8 @@ public:
     const bigInt& operator +=(const bigInt& digit);
     const bigInt& operator ++();///++a
     const bigInt& operator ++(int);//a++
-    bool operator ==(bigInt&);
+
+    bool operator ==(const bigInt&);
     friend std::ostream& operator<<(std::ostream& out, const bigInt& a);
     friend std::istream& operator >>(std::istream&, bigInt&) noexcept(false);
     const bigInt& operator =(const bigInt&);
