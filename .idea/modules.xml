@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/cmake_tur.iml" filepath="$PROJECT_DIR$/.idea/cmake_tur.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/cmake_tur2.iml" filepath="$PROJECT_DIR$/.idea/cmake_tur2.iml" />
     </modules>
   </component>
 </project>

@@ -4,7 +4,7 @@
 
 #ifndef CMAKE_TUR_MYVECTOR_H
 #define CMAKE_TUR_MYVECTOR_H
-template<typename T>
+template<class T>
 class myVector
 {
 private:

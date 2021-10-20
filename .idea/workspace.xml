@@ -2,8 +2,12 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="cmake_tur" targetName="main" />
+      <config projectName="cmake_tur" targetName="gmock_main" />
+      <config projectName="cmake_tur" targetName="gtest" />
+      <config projectName="cmake_tur" targetName="testy" />
+      <config projectName="cmake_tur" targetName="gmock" />
       <config projectName="cmake_tur" targetName="bigInt" />
+      <config projectName="cmake_tur" targetName="gtest_main" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -13,7 +17,254 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63a03784-e53b-492c-a550-5fd537860272" name="Changes" comment="version5">
-      <change afterPath="$PROJECT_DIR$/gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/cmake_tur2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/ALL_BUILD.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/ALL_BUILD.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/generate.stamp.list" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/generate.stamp.list" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/ZERO_CHECK.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/ZERO_CHECK.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cmake_tur.sln" beforeDir="false" afterPath="$PROJECT_DIR$/build/cmake_tur.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/ALL_BUILD.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/ALL_BUILD.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/Debug/bigInt.lib" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/Debug/bigInt.lib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/Debug/bigInt.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/Debug/bigInt.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/bigInt.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/bigInt.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/library/library.sln" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/library.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/Debug/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/Debug/main.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/Debug/main.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/Debug/main.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/vc142.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/vc142.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_tur.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_tur.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/library/CMakeFiles/bigInt.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/library/CMakeFiles/bigInt.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/library/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/library/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/library/library.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/library/library.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/library/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/bigInt.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/library/bigInt.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/bigInt.h" beforeDir="false" afterPath="$PROJECT_DIR$/library/bigInt.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/myVector.h" beforeDir="false" afterPath="$PROJECT_DIR$/library/myVector.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mains/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mains/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/ALL_BUILD.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/ALL_BUILD.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CMakeRCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdC/CompilerIdC.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdC/CompilerIdC.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CMakeCCompilerId.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.exe.recipe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/CL.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/CL.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/CL.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/CompilerIdC.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/link.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/link.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/link.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdCXX/CompilerIdCXX.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdCXX/CompilerIdCXX.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CMakeCXXCompilerId.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.exe.recipe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CompilerIdCXX.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/VCTargetsPath.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/VCTargetsPath.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/x64/Debug/VCTargetsPath.recipe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/3.21.3/x64/Debug/VCTargetsPath.tlog/VCTargetsPath.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/52136e845e33d9d8517b9f9e451f95af/INSTALL_force.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/52136e845e33d9d8517b9f9e451f95af/RUN_TESTS_force.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/52136e845e33d9d8517b9f9e451f95af/generate.stamp.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/5e0209093aa641e81e9d8f385b0200c6/INSTALL_force.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/5e0209093aa641e81e9d8f385b0200c6/RUN_TESTS_force.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/7740e7ad52011b1f1f6d855d191fd255/INSTALL_force.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/7740e7ad52011b1f1f6d855d191fd255/RUN_TESTS_force.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/8ab7935480e97a50b2eefa289bf02e8c/INSTALL_force.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/8ab7935480e97a50b2eefa289bf02e8c/RUN_TESTS_force.rule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/CMakeError.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/CMakeOutput.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/generate.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/generate.stamp.depend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CMakeFiles/generate.stamp.list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/CTestTestfile.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/INSTALL.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/INSTALL.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/RUN_TESTS.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/RUN_TESTS.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/ZERO_CHECK.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/ZERO_CHECK.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/bin/Debug/gmock_maind.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/bin/Debug/gmockd.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/bin/Debug/gtest_maind.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/bin/Debug/gtestd.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/ALL_BUILD.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/ALL_BUILD.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/CMakeFiles/generate.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/CMakeFiles/generate.stamp.depend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/CTestTestfile.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/INSTALL.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/INSTALL.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/RUN_TESTS.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/RUN_TESTS.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/ALL_BUILD.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/ALL_BUILD.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/CMakeFiles/generate.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/CMakeFiles/generate.stamp.depend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/CTestTestfile.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/INSTALL.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/INSTALL.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/RUN_TESTS.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/RUN_TESTS.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.dir/Debug/gmock-all.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.dir/Debug/gmock.tlog/CL.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.dir/Debug/gmock.tlog/CL.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.dir/Debug/gmock.tlog/CL.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.dir/Debug/gmock.tlog/CustomBuild.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.dir/Debug/gmock.tlog/CustomBuild.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.dir/Debug/gmock.tlog/CustomBuild.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.dir/Debug/gmock.tlog/Lib-link.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.dir/Debug/gmock.tlog/Lib-link.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.dir/Debug/gmock.tlog/Lib.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.dir/Debug/gmock.tlog/gmock.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.dir/Debug/gmockd.lib.recipe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.dir/Debug/gtest-all.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.sln" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gmock-all.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gmock_main.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gmock_main.tlog/CL.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gmock_main.tlog/CL.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gmock_main.tlog/CL.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gmock_main.tlog/CustomBuild.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gmock_main.tlog/CustomBuild.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gmock_main.tlog/CustomBuild.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gmock_main.tlog/Lib-link.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gmock_main.tlog/Lib-link.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gmock_main.tlog/Lib.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gmock_main.tlog/gmock_main.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gmock_maind.lib.recipe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.dir/Debug/gtest-all.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googlemock/gmock_main.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest-distribution.sln" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/ALL_BUILD.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/ALL_BUILD.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/CMakeFiles/Export/lib/cmake/GTest/GTestTargets-debug.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/CMakeFiles/Export/lib/cmake/GTest/GTestTargets-minsizerel.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/CMakeFiles/Export/lib/cmake/GTest/GTestTargets-release.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/CMakeFiles/Export/lib/cmake/GTest/GTestTargets-relwithdebinfo.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/CMakeFiles/Export/lib/cmake/GTest/GTestTargets.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/CMakeFiles/generate.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/CMakeFiles/generate.stamp.depend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/CTestTestfile.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/INSTALL.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/INSTALL.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/RUN_TESTS.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/RUN_TESTS.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/generated/GTestConfig.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/generated/GTestConfigVersion.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/generated/gmock.pc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/generated/gmock_main.pc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/generated/gtest.pc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/generated/gtest_main.pc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.dir/Debug/gtest-all.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.dir/Debug/gtest.tlog/CL.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.dir/Debug/gtest.tlog/CL.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.dir/Debug/gtest.tlog/CL.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.dir/Debug/gtest.tlog/CustomBuild.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.dir/Debug/gtest.tlog/CustomBuild.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.dir/Debug/gtest.tlog/CustomBuild.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.dir/Debug/gtest.tlog/Lib-link.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.dir/Debug/gtest.tlog/Lib-link.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.dir/Debug/gtest.tlog/Lib.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.dir/Debug/gtest.tlog/gtest.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.dir/Debug/gtestd.lib.recipe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.sln" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.dir/Debug/gtest_main.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.dir/Debug/gtest_main.tlog/CL.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.dir/Debug/gtest_main.tlog/CL.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.dir/Debug/gtest_main.tlog/CL.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.dir/Debug/gtest_main.tlog/CustomBuild.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.dir/Debug/gtest_main.tlog/CustomBuild.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.dir/Debug/gtest_main.tlog/CustomBuild.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.dir/Debug/gtest_main.tlog/Lib-link.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.dir/Debug/gtest_main.tlog/Lib-link.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.dir/Debug/gtest_main.tlog/Lib.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.dir/Debug/gtest_main.tlog/gtest_main.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.dir/Debug/gtest_maind.lib.recipe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/googletest/googletest/gtest_main.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/lib/Debug/gmock_maind.lib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/lib/Debug/gmock_maind.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/lib/Debug/gmockd.lib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/lib/Debug/gmockd.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/lib/Debug/gtest_maind.lib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/lib/Debug/gtest_maind.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/lib/Debug/gtestd.lib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/lib/Debug/gtestd.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.dir/Debug/runTest.tlog/CL.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.dir/Debug/runTest.tlog/CL.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.dir/Debug/runTest.tlog/CL.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.dir/Debug/runTest.tlog/CustomBuild.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.dir/Debug/runTest.tlog/CustomBuild.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.dir/Debug/runTest.tlog/CustomBuild.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.dir/Debug/runTest.tlog/link.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.dir/Debug/runTest.tlog/link.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.dir/Debug/runTest.tlog/link.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.dir/Debug/runTest.tlog/runTest.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.dir/Debug/runTest.tlog/unsuccessfulbuild" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.dir/Debug/test.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.dir/Debug/vc142.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/runTest.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/tests.sln" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.recipe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/ZERO_CHECK.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +285,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1zehHVuzJeoSjuMYgtCnUneDuw3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -45,10 +304,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
+    <property name="ctest.advertisement.all.test.configuration.is.created" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/CMakeLists.txt" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
@@ -61,18 +322,21 @@
       <recent name="C:\Qt\Qt5.12.10\cmake_tur\mainf" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Qt\Qt5.12.10\cmake_tur" />
+      <recent name="C:\Qt\Qt5.12.10\cmake_tur\test_lib" />
       <recent name="C:\Qt\Qt5.12.10\cmake_tur\tests" />
     </key>
   </component>
-  <component name="RunManager" selected="CMake Application.main">
+  <component name="RunManager" selected="Google Test.testy">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="testy" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="testy" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cmake_tur" RUN_TARGET_NAME="testy" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="bigInt" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="bigInt" CONFIG_NAME="Debug">
@@ -80,14 +344,45 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="main" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cmake_tur" RUN_TARGET_NAME="main">
+    <configuration name="gmock" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="gmock" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="gmock_main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="gmock_main" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gtest" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="gtest" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gtest_main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="gtest_main" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All CTest" type="CTestRunConfiguration" factoryName="CTestRun" PROGRAM_PARAMS="--extra-verbose" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$CMakeCurrentLocalGenerationDir$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="$CTestCurrentExecutableName$" EXPLICIT_BUILD_TARGET_NAME="all" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="CMake Application.bigInt" />
-      <item itemvalue="CMake Application.main" />
+      <item itemvalue="CMake Application.gmock" />
+      <item itemvalue="CMake Application.gmock_main" />
+      <item itemvalue="CMake Application.gtest" />
+      <item itemvalue="CMake Application.gtest_main" />
+      <item itemvalue="CTest Application.All CTest" />
+      <item itemvalue="Google Test.testy" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -105,7 +400,9 @@
       <workItem from="1634538062164" duration="9751000" />
       <workItem from="1634590023947" duration="1355000" />
       <workItem from="1634594101955" duration="651000" />
-      <workItem from="1634678842994" duration="8836000" />
+      <workItem from="1634678842994" duration="21201000" />
+      <workItem from="1634762826601" duration="1527000" />
+      <workItem from="1634764503061" duration="711000" />
     </task>
     <task id="LOCAL-00001" summary="new version">
       <created>1634680066832</created>
@@ -149,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634687658234</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="version5">
+      <created>1634687854476</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1634687854476</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

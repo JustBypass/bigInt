@@ -59,7 +59,28 @@ public:
     void returnExternal();
 private:
     template<class T>
-    friend void AuxConstructor(T _number, bigInt&_num) ;
+    friend void AuxConstructor(T _number, bigInt&_num) {
+        _number >= 0 ? _num._sgn = 0 : _num._sgn = 1;
+        if (_number < 0)
+            _number *= -1;
+        int p = 0;
+        if (_number == (T)0) {
+            _num._count = 1;
+            _num._digit[0] = '0';
+        }
+        else {
+            for (int i = 0; i < _num.N; i++)
+            {
+                if (_number == (T)0)
+                    break;
+                T _el = (_number % 10);
+                _number = (_number - _el) / 10;
+                _num._digit[i] = _el + '0';
+                p++;
+            }
+            _num._count = p;
+        }
+    }
     friend void changeSgn(bigInt& a) noexcept;
 };
 
