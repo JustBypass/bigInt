@@ -33,6 +33,8 @@ int main() //ХЗ как опять приделать библиотеку
         int rc = 1;
         bool flag = true;
         while(true){
+            if(rc == 0)
+                break;
             std::cout << dlg::_menu;
             do {
                 std::cout << dlg::_choose;
