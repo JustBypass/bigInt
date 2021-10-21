@@ -4,89 +4,79 @@
 
 #include "C:\Qt\Qt5.12.10\cmake_tur\library\bigInt.h"
 #include "gtest/gtest.h"
+//#include <string.h
+
 TEST(bigInt_t, PlusOperator_1)//Do everything by the strings
 {
     bigInt a("435");
     bigInt b("435");
-    bigInt c("870");
-    EXPECT_TRUE((a+b) == c);
+    EXPECT_STREQ(to_str(bigInt(a+b)),"870");
+  //  EXPECT_TRUE((a+b) == c);
 }
 TEST(bigInt_t, PlusOperator_2)
 {
     bigInt a("435");
     bigInt b("-435");
     bigInt c("0");
-    //a = a + b;
-    EXPECT_TRUE((a + b) == c);
+    EXPECT_STREQ(to_str(bigInt(a+b)),"0");
 }
 TEST(bigInt_t, PlusOperator_3) {
     bigInt a("-435");
     bigInt b("-435");
-    bigInt c("-870");
-    a = a + b;
-    EXPECT_TRUE(a == c);
+    EXPECT_STREQ(to_str(bigInt(a+b)),"-870");
 }
 
 TEST(bigInt_t, PlusOperator_4) {
     bigInt a("-435");
     bigInt b("435");
-    bigInt c("0");
-    a = a + b;
-    EXPECT_TRUE(a == c);
+    EXPECT_STREQ(to_str(bigInt(a+b)),"0");
 }
 TEST(bigInt_t, MinusOperator_1) {
     bigInt a("435");
     bigInt b("435");
-    bigInt c("0");
-    a = a - b;
-    EXPECT_TRUE(a == c);
+    EXPECT_STREQ(to_str(bigInt(a-b)),"0");
 }
 TEST(bigInt_t, MinusOperator_2) {
     bigInt a("-435");
     bigInt b("435");
-    bigInt c("-870");
-    a = a - b;
-    EXPECT_TRUE(a == c);
+    EXPECT_STREQ(to_str(bigInt(a-b)),"-870");
 }
 TEST(bigInt_t, MinusOperator_3) {
     bigInt a("435");
     bigInt b("-435");
     bigInt c("870");
-    a = a - b;
-    EXPECT_TRUE(a == c);
+    EXPECT_STREQ(to_str(bigInt(a-b)),"870");
 }
 TEST(bigInt_t, MinusOperator_4) {
     bigInt a("-435");
     bigInt b("-435");
-    bigInt c("0");
-    EXPECT_TRUE((a-b) == c);
+    EXPECT_STREQ(to_str(bigInt(a-b)),"0");
 }
 TEST(bigInt_t, ShiftR_t) {///Ошибка в знаке скорее всего
     bigInt _v("32");
     bigInt _n("3");
-    EXPECT_TRUE((_v>>1) == _n);
+    EXPECT_STREQ(to_str(bigInt(_v>>1)) , "3");
 }
 TEST(bigInt_t, ShiftL_t)
 {
     bigInt _v("32");
     bigInt _n("320");
-    EXPECT_TRUE((_v << 1) == _n);
+    EXPECT_STREQ(to_str(bigInt(_v<<1)) , "320");
 }
 TEST(bigInt_t, ShiftZeroR_t) {///Ошибка в знаке скорее всего//Ошибка в strlen (\0 считает за число???)
     bigInt _v("0");
     bigInt _n("0");
-    _v<<=1;
-    EXPECT_TRUE((_v ) == _n);
+    EXPECT_STREQ(to_str(bigInt(_v>>1)) , "0");
 }
 TEST(bigInt_t, intPlusStr) {
     bigInt _a(345);
-    bigInt _c("346");
-    EXPECT_TRUE((_a + "1") == _c);
+    EXPECT_STREQ(to_str(bigInt(_a + "1")) , "346");
+
 }
 TEST(bigInt_t, longLongPlusStr) {
     bigInt _a((long long)345);
     bigInt _c("346");
-    EXPECT_TRUE((_a + "1") == _c);
+    EXPECT_STREQ(to_str(bigInt(_a + "1")) , "346");
 }
 TEST(bigInt_t, externalNegativeCode_t) {
     myVector<char> _v(5);

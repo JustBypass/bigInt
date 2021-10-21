@@ -84,5 +84,7 @@ private:
         }
     }
     friend void changeSgn(bigInt& a) noexcept;
+    friend char* to_str(bigInt&);
+    friend char* to_str(bigInt&&);
 };
 #endif //CMAKE_TUR_BIGINT_H
