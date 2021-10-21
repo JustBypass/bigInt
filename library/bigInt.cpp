@@ -3,12 +3,6 @@
 //
 
 #include "bigInt.h"
-
-void changeSgn(bigInt& a) noexcept
-{
-    a._sgn ? a._sgn = 0 : a._sgn = 1;
-}
-
 namespace auxillary
 {
     void deleteZeros(myVector<char>& _vec)
@@ -37,37 +31,7 @@ namespace auxillary
         }
     }
 
-    int do_external(int len, bigInt& _num, myVector<char>& vec)
-    {
-        if (len < _num.get_count()) {
-            return 0;
-        }
-        if (_num.get_sgn() == 1) {
-            for (int i = 0; i < len; i++) {
-                for (i; i < _num.get_count(); i++) {
-                    vec.push_back(_num.getDigit()[i]);
-                }
-                if (len == _num.get_count())
-                    break;
-                vec.push_back('0');
-            }
-            vec.push_back('9');
-            decimalInversion(*&vec);
-            plusOne(*&vec, len);
-        }
-        else {
-            for (int i = 0; i < len; i++) {
-                for (i; i < _num.get_count(); i++) {
-                    vec.push_back(_num.getDigit()[i]);
-                }
-                if (len == _num.get_count())
-                    break;
-                vec.push_back('0');
-            }
-            vec.push_back('0');
-        }
-        return 1;
-    }
+
     void sumOperation(myVector<char>& vec, int maximum, myVector<char>& first, myVector<char>& second)//Складываем дополнительные коды
     {
         int transmission = 0;
@@ -89,19 +53,58 @@ namespace auxillary
         sumOperation(vec, maximum, *&first, *&second);
     }
 }
-
-bigInt& bigInt::operator=(bigInt&& _old) noexcept {
+void changeSgn(bigInt& a) noexcept
+{
+    a._sgn ? a._sgn = 0 : a._sgn = 1;
+}
+int do_external(int len, bigInt& _num, myVector<char>& vec)
+{
+    if (len < _num.get_count()) {
+        return 0;
+    }
+    if (_num.get_sgn() == 1) {
+        for (int i = 0; i < len; i++) {
+            for (i; i < _num.get_count(); i++) {
+                vec.push_back(_num.getDigit()[i]);
+            }
+            if (len == _num.get_count())
+                break;
+            vec.push_back('0');
+        }
+        vec.push_back('9');
+        auxillary::decimalInversion(*&vec);
+        auxillary::plusOne(*&vec, len);
+    }
+    else {
+        for (int i = 0; i < len; i++) {
+            for (i; i < _num.get_count(); i++) {
+                vec.push_back(_num.getDigit()[i]);
+            }
+            if (len == _num.get_count())
+                break;
+            vec.push_back('0');
+        }
+        vec.push_back('0');
+    }
+    return 1;
+}
+const bigInt& bigInt::operator=(bigInt&& _old) noexcept {
     std::cout << "Move\n";
     _count = std::move(_old.get_count());
     _sgn = std::move(_old.get_sgn());
-    for (int i = 0; i < _count; i++) {
+    for (int i = 0; i < _old._count; i++) {
         _digit[i] = std::move(_old.getDigit()[i]);
     }
     return *this;
 }
 
 bigInt::bigInt(bigInt&& _t) noexcept {
-    *this = _t;
+    std::cout << "Move\n";
+    _count = std::move(_t.get_count());
+    _sgn = std::move(_t.get_sgn());
+    for (int i = 0; i <_t. _count; i++) {
+        _digit[i] = std::move(_t.getDigit()[i]);
+    }
 }
 bigInt::bigInt(int _number) noexcept
 {
@@ -160,7 +163,7 @@ bigInt::bigInt(const char* _string)noexcept {
         _digit[i++] = _string[strlen(_string) - i - 1];
     }
 }
-const bigInt bigInt::operator +(const bigInt& _num)const
+const bigInt bigInt::operator +(const bigInt& _num)const noexcept
 {
     int len = std::max(this->_count, _num.get_count());
     myVector<char> vec(len + 2);
@@ -201,7 +204,7 @@ const bigInt bigInt::operator +(const bigInt& _num)const
 void bigInt::returnExternal()
 {
     myVector<char> _vec(_count + 1);
-    if (auxillary::do_external(_count, *this, _vec) == 0)
+    if (do_external(_count, *this, _vec) == 0)
     {
         std::cout << "ERROR\n";
     };
@@ -210,20 +213,20 @@ void bigInt::returnExternal()
         std::cout << _vec.pop_back();
     }
 }
-const bigInt& bigInt::operator +=(const bigInt& _num) {
+const bigInt& bigInt::operator +=(const bigInt& _num) noexcept{
     return (*this+=_num);
 }
-const bigInt bigInt::operator-(const bigInt& _num) const{
+const bigInt bigInt::operator-(const bigInt& _num) const noexcept{
     bigInt c("0");
     c = _num;
     changeSgn(c);
     return (*this + c);
 }
-const bigInt& bigInt::operator -=(const bigInt& _num) {
+const bigInt& bigInt::operator -=(const bigInt& _num) noexcept{
     _num.get_sgn() == 1 ? *this = (*this - _num) : *this = (*this + _num);
     return *this;
 }
-std::ostream& operator<<(std::ostream& out, const bigInt& a) {
+std::ostream& operator<<(std::ostream& out, const bigInt& a) noexcept{
     if (a.get_sgn() == 1)
         std::cout << "-";
     for (int i = a.get_count() - 1; i >= 0; i--)
@@ -232,7 +235,7 @@ std::ostream& operator<<(std::ostream& out, const bigInt& a) {
     }
     return out;
 }
-const bigInt& bigInt::operator=(const bigInt& _num)
+const bigInt& bigInt::operator=(const bigInt& _num)noexcept
 {
     for (int i = _num.get_count() - 1; i >= 0; i--) {
         _digit[i] = _num._digit[i];
@@ -241,30 +244,30 @@ const bigInt& bigInt::operator=(const bigInt& _num)
     _sgn = _num.get_sgn();
     return *this;
 }
-const bigInt& bigInt::operator+=(const char* _t) {
+const bigInt& bigInt::operator+=(const char* _t) noexcept{
     *this = (*this + _t);
     return *this;
 }
-const bigInt& bigInt::operator-=(const char* _t) {
+const bigInt& bigInt::operator-=(const char* _t) noexcept{
     bigInt _new_num(_t);
     *this = (*this - _new_num);
     return *this;
 }
-const bigInt& bigInt::operator =(const char* _t){
+const bigInt& bigInt::operator =(const char* _t)noexcept{
     bigInt _num(_t);
     return (*this = _num);
 }
 
-const bigInt& bigInt::operator ++(int) {
+const bigInt& bigInt::operator ++(int) noexcept{
     const char* m = "1";
     *this += m;
     return (*this - m);
 }
-const bigInt& bigInt::operator ++() {
+const bigInt& bigInt::operator ++() noexcept{
     const char* m = "1";
     return *this += m;
 }
-std::istream& operator >>(std::istream& in, bigInt& _num) ///How to do it??//Подключить гетстр или другой костыль;)
+std::istream& operator >>(std::istream& in, bigInt& _num)noexcept(false)///How to do it??//Подключить гетстр или другой костыль;)
 {
     std::string str;
     in >> str;
@@ -272,12 +275,14 @@ std::istream& operator >>(std::istream& in, bigInt& _num) ///How to do it??//П�
     _num = s;
     return in;
 }
-const  bigInt bigInt::operator+(const char* _str)const {
+const  bigInt bigInt::operator+(const char* _str)const noexcept{
     bigInt _new(_str);
     return  (*this + _new);
 }
-const bigInt& bigInt::operator>>(int _n)const noexcept {
+const bigInt bigInt::operator>>(int _n)const noexcept {
     bigInt _a = *this;
+    if (_a._digit[0] == '0' && _a._count == 1)
+        return _a;
     for (int g = 0; g < _n; g++)
     {
         if (_a._count == 1)
@@ -293,9 +298,11 @@ const bigInt& bigInt::operator>>(int _n)const noexcept {
     }
     return _a;
 }
-const bigInt& bigInt::operator<<(int _n) const noexcept
+const bigInt bigInt::operator<<(int _n) const noexcept
 {
     bigInt _a = *this;
+    if (_a._digit[0] == '0' && _a._count == 1)
+        return _a;
     for (int g = 0; g < _n; g++)
     {
         if (_a._count == 1) {
@@ -320,12 +327,12 @@ const bigInt& bigInt::operator>>=(int _n)  noexcept {
     return (*this = *this >> _n);
 }
 
-const bigInt bigInt::operator-(const char* _t)const
+const bigInt bigInt::operator-(const char* _t)const noexcept
 {
     bigInt _new_num(_t);
     return (*this - _new_num);
 }
-bool bigInt::operator==(const bigInt& _num)
+bool bigInt::operator==(const bigInt& _num) noexcept
 {
     if (_num.get_count() == _count && _num.get_sgn() == _sgn)
     {

@@ -21,13 +21,13 @@ private:
     char _digit[N];
 public:
     ///Constructors
-   bigInt() noexcept { }
-    bigInt(long long ) noexcept;
+    bigInt() noexcept { }
+    bigInt(long long) noexcept;
     bigInt(int) noexcept;
-    bigInt(const char* ) noexcept;
+    bigInt(const char*) noexcept;
     bigInt(myVector<char>&) noexcept;//лучше сделать как дружественный оператор
     bigInt(const bigInt&)noexcept;
-    bigInt(bigInt&& _t) noexcept;
+    bigInt(bigInt&&) noexcept;
     ///Деструкторы
     inline ~bigInt() noexcept;
     // Getters
@@ -35,32 +35,33 @@ public:
     inline int get_count()const noexcept { return _count; }
     inline bool get_sgn()const noexcept { return _sgn; }
     //Operators
-    const bigInt& operator +=(const bigInt& digit);
-    const bigInt& operator ++();///++a
-    const bigInt& operator ++(int);//a++
+    const bigInt& operator +=(const bigInt& digit)noexcept;
+    const bigInt& operator ++()noexcept;///++a
+    const bigInt& operator ++(int)noexcept;//a++
 
-    bool operator ==(const bigInt&);
-    friend std::ostream& operator<<(std::ostream& out, const bigInt& a);
+    bool operator ==(const bigInt&)noexcept;
+    friend std::ostream& operator<<(std::ostream& out, const bigInt& a)noexcept;
     friend std::istream& operator >>(std::istream&, bigInt&) noexcept(false);
-    const bigInt& operator =(const bigInt&);
-    bigInt& operator=(bigInt&& _old) noexcept;
-    const bigInt& operator -=(const bigInt& digit);
-    const bigInt operator +(const bigInt& digit)const;
-    const bigInt operator -(const bigInt& digit)const;
-    const bigInt operator+(const char*)const;
-    const bigInt& operator +=(const char*);
-    const bigInt& operator -=(const char*);
-    const bigInt& operator =(const char*) ;
-    const bigInt operator -(const char*)const;
-    const bigInt& operator >>(int)const noexcept ;//Dividing numbor by 10
-    const bigInt& operator<<(int) const noexcept ;//Multypying by 10
+    const bigInt& operator =(const bigInt&)noexcept;
+    const bigInt& operator=(bigInt&&)noexcept;
+    const bigInt& operator -=(const bigInt& digit)noexcept;
+    const bigInt operator +(const bigInt& digit)const noexcept;
+    const bigInt operator -(const bigInt& digit)const noexcept;
+    const bigInt operator+(const char*)const noexcept;
+    const bigInt& operator +=(const char*)noexcept;
+    const bigInt& operator -=(const char*)noexcept;
+    const bigInt& operator =(const char*)noexcept;
+    const bigInt operator -(const char*)const noexcept;
+    const bigInt operator >>(int)const noexcept;//Dividing numbor by 10
+    const bigInt operator<<(int)const  noexcept;//Multypying by 10
     const bigInt& operator >>=(int) noexcept;//Dividing numbor by 10
     const bigInt& operator<<=(int)  noexcept;//Multypying by 10
     //Other methods
     void returnExternal();
 private:
+    friend  int do_external(int, bigInt&, myVector<char>&);
     template<class T>
-    friend void AuxConstructor(T _number, bigInt&_num) {
+    friend void AuxConstructor(T _number, bigInt& _num) {
         _number >= 0 ? _num._sgn = 0 : _num._sgn = 1;
         if (_number < 0)
             _number *= -1;
@@ -84,6 +85,4 @@ private:
     }
     friend void changeSgn(bigInt& a) noexcept;
 };
-
-
 #endif //CMAKE_TUR_BIGINT_H

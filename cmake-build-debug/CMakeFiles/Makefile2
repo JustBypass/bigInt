@@ -284,8 +284,8 @@ library\CMakeFiles\bigInt.dir\clean:
 # Target rules for target tests/CMakeFiles/testy.dir
 
 # All Build rule for target.
-tests\CMakeFiles\testy.dir\all: googletest\googletest\CMakeFiles\gtest_main.dir\all
 tests\CMakeFiles\testy.dir\all: googletest\googletest\CMakeFiles\gtest.dir\all
+tests\CMakeFiles\testy.dir\all: googletest\googletest\CMakeFiles\gtest_main.dir\all
 tests\CMakeFiles\testy.dir\all: library\CMakeFiles\bigInt.dir\all
 	$(MAKE) $(MAKESILENT) -f tests\CMakeFiles\testy.dir\build.make /nologo -$(MAKEFLAGS) tests\CMakeFiles\testy.dir\depend
 	$(MAKE) $(MAKESILENT) -f tests\CMakeFiles\testy.dir\build.make /nologo -$(MAKEFLAGS) tests\CMakeFiles\testy.dir\build

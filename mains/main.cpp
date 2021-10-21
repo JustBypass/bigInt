@@ -59,15 +59,14 @@ int main() //ХЗ как опять приделать библиотеку
                     }
                     case 3:
                     {
-                        std::cout << "Your NOT shifted number:" << _num;
-                        _num = _num >> 1;//>>=
-                        std::cout << "Your SHIFTED number:" << _num;
+                        _num >>= 1;//>>=
+                        std::cout << _num;
                         break;
                     }
                     case 4:
                     {
-                        std::cout << "Your NOT shifted number:" << _num;
-                        _num = _num << 1;
+                        std::cout << _num;
+                        _num <<= 1;
                         break;
                     }
                     case 5:{
