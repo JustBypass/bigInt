@@ -4,7 +4,7 @@
 
 #ifndef CMAKE_TUR_DLG_H
 #define CMAKE_TUR_DLG_H
-#include <iostream>
+//#include <iostream>
 namespace dlg {
     std::string _menu = "1.Get_Sum\n"
                         "2.Minus_function:\n"

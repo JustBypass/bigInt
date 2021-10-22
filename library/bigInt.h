@@ -62,29 +62,32 @@ private:
     friend  int do_external(int, bigInt&, myVector<char>&);
     template<class T>
     friend void AuxConstructor(T _number, bigInt& _num) {
-        _number >= 0 ? _num._sgn = 0 : _num._sgn = 1;
+        _number > 0 ? _num._sgn = 0 : _num._sgn = 1;
         if (_number < 0)
             _number *= -1;
-        int p = 0;
         if (_number == (T)0) {
             _num._count = 1;
-            _num._digit[0] = '0';
+            _num. _digit[0] = '0';
         }
         else {
-            for (int i = 0; i < _num.N; i++)
-            {
+            T newn = _number;
+            T g = 0;
+            while (newn != (T)0) {
+                T _el = (newn % 10);
+                newn = (newn - _el) / 10;
+                g++;
+            }
+            for (int i = 0; i < g; i++) {
                 if (_number == (T)0)
                     break;
                 T _el = (_number % 10);
                 _number = (_number - _el) / 10;
                 _num._digit[i] = _el + '0';
-                p++;
             }
-            _num._count = p;
+            _num._count = g;
         }
     }
     friend void changeSgn(bigInt& a) noexcept;
-    friend char* to_str(bigInt&);
     friend char* to_str(bigInt&&);
 };
 #endif //CMAKE_TUR_BIGINT_H

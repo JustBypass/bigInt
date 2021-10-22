@@ -4,7 +4,7 @@ project(library)
 set(maia main.cpp)
 
 add_executable(main ${maia})
-
-target_link_libraries(main bigInt)
+set_target_properties(main PROPERTIES LINKER_LANGUAGE CXX)
+target_link_libraries(main PUBLIC bigInt menus)
 
 

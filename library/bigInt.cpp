@@ -4,30 +4,7 @@
 
 #include "bigInt.h"
 
-char* to_str(bigInt& a){
-    int p = 0;
-    if(a._sgn){
-        p = a._count+2;
-    }
-    else{
-        p = a._count+1;
-    }
 
-    char* str = new char[p];
-    if(a._sgn == 1){
-        str[0] = '-';
-        for(int i = a._count-1;i>0;i--){
-            str[i] = a._digit[a._count-i-1];
-        }
-    }
-    else {
-        for (int i = a._count - 1; i >= 0; i--) {
-            str[i] = a._digit[a._count - i - 1];
-        }
-    }
-    str[a._count] = '\0';
-    return str;
-}
 char* to_str(bigInt&& a){
 
     int p = 0;
@@ -309,14 +286,12 @@ const bigInt& bigInt::operator =(const char* _t)noexcept{
     return (*this = _num);
 }
 
-const bigInt& bigInt::operator ++(int) noexcept{
-    const char* m = "1";
-    *this += m;
-    return (*this - m);
+const bigInt& bigInt::operator ++(int ) noexcept{
+    *this += "1";
+    return (*this - "1");
 }
 const bigInt& bigInt::operator ++() noexcept{
-    const char* m = "1";
-    return *this += m;
+    return *this += "1";
 }
 std::istream& operator >>(std::istream& in, bigInt& _num)noexcept(false)///How to do it??//Подключить гетстр или другой костыль;)
 {
