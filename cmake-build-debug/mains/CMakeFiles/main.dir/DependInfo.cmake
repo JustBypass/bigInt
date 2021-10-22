@@ -23,6 +23,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "C:/Qt/Qt5.12.10/cmake_tur/cmake-build-debug/library/CMakeFiles/bigInt.dir/DependInfo.cmake"
+  "C:/Qt/Qt5.12.10/cmake_tur/cmake-build-debug/menu/CMakeFiles/menus.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -52,73 +52,22 @@ CMAKE_BINARY_DIR = C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: googletest\all
 all: library\all
-all: tests\all
+all: menu\all
+all: mains\all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall: googletest\preinstall
 preinstall: library\preinstall
-preinstall: tests\preinstall
+preinstall: menu\preinstall
+preinstall: mains\preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: googletest\clean
 clean: library\clean
-clean: tests\clean
+clean: menu\clean
+clean: mains\clean
 .PHONY : clean
-
-#=============================================================================
-# Directory level rules for directory googletest
-
-# Recursive "all" directory target.
-googletest\all: googletest\googlemock\all
-.PHONY : googletest\all
-
-# Recursive "preinstall" directory target.
-googletest\preinstall: googletest\googlemock\preinstall
-.PHONY : googletest\preinstall
-
-# Recursive "clean" directory target.
-googletest\clean: googletest\googlemock\clean
-.PHONY : googletest\clean
-
-#=============================================================================
-# Directory level rules for directory googletest\googlemock
-
-# Recursive "all" directory target.
-googletest\googlemock\all: googletest\googlemock\CMakeFiles\gmock_main.dir\all
-googletest\googlemock\all: googletest\googlemock\CMakeFiles\gmock.dir\all
-googletest\googlemock\all: googletest\googletest\all
-.PHONY : googletest\googlemock\all
-
-# Recursive "preinstall" directory target.
-googletest\googlemock\preinstall: googletest\googletest\preinstall
-.PHONY : googletest\googlemock\preinstall
-
-# Recursive "clean" directory target.
-googletest\googlemock\clean: googletest\googlemock\CMakeFiles\gmock_main.dir\clean
-googletest\googlemock\clean: googletest\googlemock\CMakeFiles\gmock.dir\clean
-googletest\googlemock\clean: googletest\googletest\clean
-.PHONY : googletest\googlemock\clean
-
-#=============================================================================
-# Directory level rules for directory googletest\googletest
-
-# Recursive "all" directory target.
-googletest\googletest\all: googletest\googletest\CMakeFiles\gtest.dir\all
-googletest\googletest\all: googletest\googletest\CMakeFiles\gtest_main.dir\all
-.PHONY : googletest\googletest\all
-
-# Recursive "preinstall" directory target.
-googletest\googletest\preinstall:
-.PHONY : googletest\googletest\preinstall
-
-# Recursive "clean" directory target.
-googletest\googletest\clean: googletest\googletest\CMakeFiles\gtest.dir\clean
-googletest\googletest\clean: googletest\googletest\CMakeFiles\gtest_main.dir\clean
-.PHONY : googletest\googletest\clean
 
 #=============================================================================
 # Directory level rules for directory library
@@ -136,123 +85,34 @@ library\clean: library\CMakeFiles\bigInt.dir\clean
 .PHONY : library\clean
 
 #=============================================================================
-# Directory level rules for directory tests
+# Directory level rules for directory mains
 
 # Recursive "all" directory target.
-tests\all: tests\CMakeFiles\testy.dir\all
-.PHONY : tests\all
+mains\all: mains\CMakeFiles\main.dir\all
+.PHONY : mains\all
 
 # Recursive "preinstall" directory target.
-tests\preinstall:
-.PHONY : tests\preinstall
+mains\preinstall:
+.PHONY : mains\preinstall
 
 # Recursive "clean" directory target.
-tests\clean: tests\CMakeFiles\testy.dir\clean
-.PHONY : tests\clean
+mains\clean: mains\CMakeFiles\main.dir\clean
+.PHONY : mains\clean
 
 #=============================================================================
-# Target rules for target googletest/googlemock/CMakeFiles/gmock_main.dir
+# Directory level rules for directory menu
 
-# All Build rule for target.
-googletest\googlemock\CMakeFiles\gmock_main.dir\all:
-	$(MAKE) $(MAKESILENT) -f googletest\googlemock\CMakeFiles\gmock_main.dir\build.make /nologo -$(MAKEFLAGS) googletest\googlemock\CMakeFiles\gmock_main.dir\depend
-	$(MAKE) $(MAKESILENT) -f googletest\googlemock\CMakeFiles\gmock_main.dir\build.make /nologo -$(MAKEFLAGS) googletest\googlemock\CMakeFiles\gmock_main.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles --progress-num=6,7,8,9 "Built target gmock_main"
-.PHONY : googletest\googlemock\CMakeFiles\gmock_main.dir\all
+# Recursive "all" directory target.
+menu\all: menu\CMakeFiles\menus.dir\all
+.PHONY : menu\all
 
-# Build rule for subdir invocation for target.
-googletest\googlemock\CMakeFiles\gmock_main.dir\rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 4
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) googletest\googlemock\CMakeFiles\gmock_main.dir\all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 0
-.PHONY : googletest\googlemock\CMakeFiles\gmock_main.dir\rule
+# Recursive "preinstall" directory target.
+menu\preinstall:
+.PHONY : menu\preinstall
 
-# Convenience name for target.
-gmock_main: googletest\googlemock\CMakeFiles\gmock_main.dir\rule
-.PHONY : gmock_main
-
-# clean rule for target.
-googletest\googlemock\CMakeFiles\gmock_main.dir\clean:
-	$(MAKE) $(MAKESILENT) -f googletest\googlemock\CMakeFiles\gmock_main.dir\build.make /nologo -$(MAKEFLAGS) googletest\googlemock\CMakeFiles\gmock_main.dir\clean
-.PHONY : googletest\googlemock\CMakeFiles\gmock_main.dir\clean
-
-#=============================================================================
-# Target rules for target googletest/googlemock/CMakeFiles/gmock.dir
-
-# All Build rule for target.
-googletest\googlemock\CMakeFiles\gmock.dir\all:
-	$(MAKE) $(MAKESILENT) -f googletest\googlemock\CMakeFiles\gmock.dir\build.make /nologo -$(MAKEFLAGS) googletest\googlemock\CMakeFiles\gmock.dir\depend
-	$(MAKE) $(MAKESILENT) -f googletest\googlemock\CMakeFiles\gmock.dir\build.make /nologo -$(MAKEFLAGS) googletest\googlemock\CMakeFiles\gmock.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles --progress-num=3,4,5 "Built target gmock"
-.PHONY : googletest\googlemock\CMakeFiles\gmock.dir\all
-
-# Build rule for subdir invocation for target.
-googletest\googlemock\CMakeFiles\gmock.dir\rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 3
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) googletest\googlemock\CMakeFiles\gmock.dir\all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 0
-.PHONY : googletest\googlemock\CMakeFiles\gmock.dir\rule
-
-# Convenience name for target.
-gmock: googletest\googlemock\CMakeFiles\gmock.dir\rule
-.PHONY : gmock
-
-# clean rule for target.
-googletest\googlemock\CMakeFiles\gmock.dir\clean:
-	$(MAKE) $(MAKESILENT) -f googletest\googlemock\CMakeFiles\gmock.dir\build.make /nologo -$(MAKEFLAGS) googletest\googlemock\CMakeFiles\gmock.dir\clean
-.PHONY : googletest\googlemock\CMakeFiles\gmock.dir\clean
-
-#=============================================================================
-# Target rules for target googletest/googletest/CMakeFiles/gtest.dir
-
-# All Build rule for target.
-googletest\googletest\CMakeFiles\gtest.dir\all:
-	$(MAKE) $(MAKESILENT) -f googletest\googletest\CMakeFiles\gtest.dir\build.make /nologo -$(MAKEFLAGS) googletest\googletest\CMakeFiles\gtest.dir\depend
-	$(MAKE) $(MAKESILENT) -f googletest\googletest\CMakeFiles\gtest.dir\build.make /nologo -$(MAKEFLAGS) googletest\googletest\CMakeFiles\gtest.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles --progress-num=10,11 "Built target gtest"
-.PHONY : googletest\googletest\CMakeFiles\gtest.dir\all
-
-# Build rule for subdir invocation for target.
-googletest\googletest\CMakeFiles\gtest.dir\rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) googletest\googletest\CMakeFiles\gtest.dir\all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 0
-.PHONY : googletest\googletest\CMakeFiles\gtest.dir\rule
-
-# Convenience name for target.
-gtest: googletest\googletest\CMakeFiles\gtest.dir\rule
-.PHONY : gtest
-
-# clean rule for target.
-googletest\googletest\CMakeFiles\gtest.dir\clean:
-	$(MAKE) $(MAKESILENT) -f googletest\googletest\CMakeFiles\gtest.dir\build.make /nologo -$(MAKEFLAGS) googletest\googletest\CMakeFiles\gtest.dir\clean
-.PHONY : googletest\googletest\CMakeFiles\gtest.dir\clean
-
-#=============================================================================
-# Target rules for target googletest/googletest/CMakeFiles/gtest_main.dir
-
-# All Build rule for target.
-googletest\googletest\CMakeFiles\gtest_main.dir\all: googletest\googletest\CMakeFiles\gtest.dir\all
-	$(MAKE) $(MAKESILENT) -f googletest\googletest\CMakeFiles\gtest_main.dir\build.make /nologo -$(MAKEFLAGS) googletest\googletest\CMakeFiles\gtest_main.dir\depend
-	$(MAKE) $(MAKESILENT) -f googletest\googletest\CMakeFiles\gtest_main.dir\build.make /nologo -$(MAKEFLAGS) googletest\googletest\CMakeFiles\gtest_main.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles --progress-num=12,13 "Built target gtest_main"
-.PHONY : googletest\googletest\CMakeFiles\gtest_main.dir\all
-
-# Build rule for subdir invocation for target.
-googletest\googletest\CMakeFiles\gtest_main.dir\rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 4
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) googletest\googletest\CMakeFiles\gtest_main.dir\all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 0
-.PHONY : googletest\googletest\CMakeFiles\gtest_main.dir\rule
-
-# Convenience name for target.
-gtest_main: googletest\googletest\CMakeFiles\gtest_main.dir\rule
-.PHONY : gtest_main
-
-# clean rule for target.
-googletest\googletest\CMakeFiles\gtest_main.dir\clean:
-	$(MAKE) $(MAKESILENT) -f googletest\googletest\CMakeFiles\gtest_main.dir\build.make /nologo -$(MAKEFLAGS) googletest\googletest\CMakeFiles\gtest_main.dir\clean
-.PHONY : googletest\googletest\CMakeFiles\gtest_main.dir\clean
+# Recursive "clean" directory target.
+menu\clean: menu\CMakeFiles\menus.dir\clean
+.PHONY : menu\clean
 
 #=============================================================================
 # Target rules for target library/CMakeFiles/bigInt.dir
@@ -281,32 +141,57 @@ library\CMakeFiles\bigInt.dir\clean:
 .PHONY : library\CMakeFiles\bigInt.dir\clean
 
 #=============================================================================
-# Target rules for target tests/CMakeFiles/testy.dir
+# Target rules for target menu/CMakeFiles/menus.dir
 
 # All Build rule for target.
-tests\CMakeFiles\testy.dir\all: googletest\googletest\CMakeFiles\gtest.dir\all
-tests\CMakeFiles\testy.dir\all: googletest\googletest\CMakeFiles\gtest_main.dir\all
-tests\CMakeFiles\testy.dir\all: library\CMakeFiles\bigInt.dir\all
-	$(MAKE) $(MAKESILENT) -f tests\CMakeFiles\testy.dir\build.make /nologo -$(MAKEFLAGS) tests\CMakeFiles\testy.dir\depend
-	$(MAKE) $(MAKESILENT) -f tests\CMakeFiles\testy.dir\build.make /nologo -$(MAKEFLAGS) tests\CMakeFiles\testy.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles --progress-num=14,15 "Built target testy"
-.PHONY : tests\CMakeFiles\testy.dir\all
+menu\CMakeFiles\menus.dir\all:
+	$(MAKE) $(MAKESILENT) -f menu\CMakeFiles\menus.dir\build.make /nologo -$(MAKEFLAGS) menu\CMakeFiles\menus.dir\depend
+	$(MAKE) $(MAKESILENT) -f menu\CMakeFiles\menus.dir\build.make /nologo -$(MAKEFLAGS) menu\CMakeFiles\menus.dir\build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles --progress-num=5,6 "Built target menus"
+.PHONY : menu\CMakeFiles\menus.dir\all
 
 # Build rule for subdir invocation for target.
-tests\CMakeFiles\testy.dir\rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 8
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) tests\CMakeFiles\testy.dir\all
+menu\CMakeFiles\menus.dir\rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) menu\CMakeFiles\menus.dir\all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 0
-.PHONY : tests\CMakeFiles\testy.dir\rule
+.PHONY : menu\CMakeFiles\menus.dir\rule
 
 # Convenience name for target.
-testy: tests\CMakeFiles\testy.dir\rule
-.PHONY : testy
+menus: menu\CMakeFiles\menus.dir\rule
+.PHONY : menus
 
 # clean rule for target.
-tests\CMakeFiles\testy.dir\clean:
-	$(MAKE) $(MAKESILENT) -f tests\CMakeFiles\testy.dir\build.make /nologo -$(MAKEFLAGS) tests\CMakeFiles\testy.dir\clean
-.PHONY : tests\CMakeFiles\testy.dir\clean
+menu\CMakeFiles\menus.dir\clean:
+	$(MAKE) $(MAKESILENT) -f menu\CMakeFiles\menus.dir\build.make /nologo -$(MAKEFLAGS) menu\CMakeFiles\menus.dir\clean
+.PHONY : menu\CMakeFiles\menus.dir\clean
+
+#=============================================================================
+# Target rules for target mains/CMakeFiles/main.dir
+
+# All Build rule for target.
+mains\CMakeFiles\main.dir\all: library\CMakeFiles\bigInt.dir\all
+mains\CMakeFiles\main.dir\all: menu\CMakeFiles\menus.dir\all
+	$(MAKE) $(MAKESILENT) -f mains\CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) mains\CMakeFiles\main.dir\depend
+	$(MAKE) $(MAKESILENT) -f mains\CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) mains\CMakeFiles\main.dir\build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles --progress-num=3,4 "Built target main"
+.PHONY : mains\CMakeFiles\main.dir\all
+
+# Build rule for subdir invocation for target.
+mains\CMakeFiles\main.dir\rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) mains\CMakeFiles\main.dir\all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 0
+.PHONY : mains\CMakeFiles\main.dir\rule
+
+# Convenience name for target.
+main: mains\CMakeFiles\main.dir\rule
+.PHONY : main
+
+# clean rule for target.
+mains\CMakeFiles\main.dir\clean:
+	$(MAKE) $(MAKESILENT) -f mains\CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) mains\CMakeFiles\main.dir\clean
+.PHONY : mains\CMakeFiles\main.dir\clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

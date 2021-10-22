@@ -90,11 +90,12 @@ main_EXTERNAL_OBJECTS =
 mains\main.exe: mains\CMakeFiles\main.dir\main.cpp.obj
 mains\main.exe: mains\CMakeFiles\main.dir\build.make
 mains\main.exe: library\bigInt.lib
+mains\main.exe: menu\menus.lib
 mains\main.exe: mains\CMakeFiles\main.dir\objects1.rsp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable main.exe"
 	cd C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\mains
 	"C:\Program Files\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\main.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x86\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x86\mt.exe --manifests -- C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\main.dir\objects1.rsp @<<
- /out:main.exe /implib:main.lib /pdb:C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\mains\main.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console  ..\library\bigInt.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
+ /out:main.exe /implib:main.lib /pdb:C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\mains\main.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console  ..\library\bigInt.lib ..\menu\menus.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<
 	cd C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug
 

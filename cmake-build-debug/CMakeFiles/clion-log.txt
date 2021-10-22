@@ -1,4 +1,16 @@
 "C:\Program Files\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - NMake Makefiles" C:\Qt\Qt5.12.10\cmake_tur
 -- Configuring done
--- Generating done
--- Build files have been written to: C:/Qt/Qt5.12.10/cmake_tur/cmake-build-debug
+CMake Error at menu/CMakeLists.txt:5 (add_library):
+  Cannot find source file:
+
+    menu.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .h .hh .h++
+  .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .ispc
+
+
+CMake Error at menu/CMakeLists.txt:5 (add_library):
+  No SOURCES given to target: menus
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

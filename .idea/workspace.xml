@@ -2,12 +2,9 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="cmake_tur" targetName="gmock_main" />
-      <config projectName="cmake_tur" targetName="gtest" />
-      <config projectName="cmake_tur" targetName="testy" />
-      <config projectName="cmake_tur" targetName="gmock" />
+      <config projectName="cmake_tur" targetName="menus" />
+      <config projectName="cmake_tur" targetName="main" />
       <config projectName="cmake_tur" targetName="bigInt" />
-      <config projectName="cmake_tur" targetName="gtest_main" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -16,42 +13,35 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63a03784-e53b-492c-a550-5fd537860272" name="Changes" comment="version10">
-      <change afterPath="$PROJECT_DIR$/3B/bigInt2.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/menu/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/menu/fun.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/menu/menu.h" afterDir="false" />
+    <list default="true" id="63a03784-e53b-492c-a550-5fd537860272" name="Changes" comment="version11">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ALL_BUILD.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/ALL_BUILD.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/generate.stamp.list" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/generate.stamp.list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ZERO_CHECK.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/ZERO_CHECK.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/cmake_tur.sln" beforeDir="false" afterPath="$PROJECT_DIR$/build/cmake_tur.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/ALL_BUILD.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/ALL_BUILD.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/Debug/bigInt.lib" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/Debug/bigInt.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/Debug/bigInt.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/Debug/bigInt.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/library.sln" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/library.sln" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/mains/Debug/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/Debug/main.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/mains/Debug/main.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/Debug/main.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.ilk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/CL.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.command.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/vc142.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/vc142.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/mains/main.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/x64/Debug/ALL_BUILD/ALL_BUILD.recipe" beforeDir="false" afterPath="$PROJECT_DIR$/build/x64/Debug/ALL_BUILD/ALL_BUILD.recipe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.write.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/bigInt.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/library/bigInt.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/bigInt.h" beforeDir="false" afterPath="$PROJECT_DIR$/library/bigInt.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mains/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mains/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mains/dlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/menu/dlg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mains/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/mains/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_tur.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_tur.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/library/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/library/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/library/library.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/library/library.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/mains/CMakeFiles/main.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/mains/CMakeFiles/main.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/mains/CMakeFiles/main.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/mains/CMakeFiles/main.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/mains/CMakeFiles/main.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/mains/CMakeFiles/main.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/mains/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/mains/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/menu/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu/dlg.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu/fun.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu/menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/menu/menu.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,11 +106,10 @@
       <recent name="C:\Qt\Qt5.12.10\cmake_tur\tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Google Test.testy">
-    <configuration name="testy" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="testy" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cmake_tur" RUN_TARGET_NAME="testy" TEST_MODE="SUITE_TEST">
+  <component name="RunManager" selected="CMake Application.main">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-        <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="bigInt" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="bigInt" CONFIG_NAME="Debug">
@@ -128,22 +117,12 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="gmock" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="gmock" CONFIG_NAME="Debug">
+    <configuration name="main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="main" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cmake_tur" RUN_TARGET_NAME="main">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="gmock_main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="gmock_main" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="gtest" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="gtest" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="gtest_main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="gtest_main" CONFIG_NAME="Debug">
+    <configuration name="menus" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="menus" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -161,12 +140,9 @@
     </configuration>
     <list>
       <item itemvalue="CMake Application.bigInt" />
-      <item itemvalue="CMake Application.gmock" />
-      <item itemvalue="CMake Application.gmock_main" />
-      <item itemvalue="CMake Application.gtest" />
-      <item itemvalue="CMake Application.gtest_main" />
+      <item itemvalue="CMake Application.main" />
+      <item itemvalue="CMake Application.menus" />
       <item itemvalue="CTest Application.All CTest" />
-      <item itemvalue="Google Test.testy" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -188,7 +164,9 @@
       <workItem from="1634762826601" duration="1527000" />
       <workItem from="1634764503061" duration="2219000" />
       <workItem from="1634814477397" duration="13908000" />
-      <workItem from="1634834407086" duration="11131000" />
+      <workItem from="1634834407086" duration="11206000" />
+      <workItem from="1634863334853" duration="1104000" />
+      <workItem from="1634864469465" duration="1369000" />
     </task>
     <task id="LOCAL-00001" summary="new version">
       <created>1634680066832</created>
@@ -274,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634837668959</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="version11">
+      <created>1634861418627</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1634861418627</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,6 +300,7 @@
     <MESSAGE value="version8" />
     <MESSAGE value="version9" />
     <MESSAGE value="version10" />
-    <option name="LAST_COMMIT_MESSAGE" value="version10" />
+    <MESSAGE value="version11" />
+    <option name="LAST_COMMIT_MESSAGE" value="version11" />
   </component>
 </project>
