@@ -1,0 +1,4 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-3.21/Modules/CMakeDependentOption.cmake
+C:/Program Files/CMake/share/cmake-3.21/Modules/GNUInstallDirs.cmake
+C:/Qt/Qt5.12.10/cmake_tur/googletest/CMakeLists.txt

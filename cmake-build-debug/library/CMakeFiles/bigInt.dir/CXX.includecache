@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Qt/Qt5.12.10/cmake_tur/library/bigInt.cpp
+bigInt.h
+C:/Qt/Qt5.12.10/cmake_tur/library/bigInt.h
+
+C:/Qt/Qt5.12.10/cmake_tur/library/bigInt.h
+iostream
+-
+string.h
+-
+myVector.h
+C:/Qt/Qt5.12.10/cmake_tur/library/myVector.h
+stdexcept
+-
+
+C:/Qt/Qt5.12.10/cmake_tur/library/myVector.h
+

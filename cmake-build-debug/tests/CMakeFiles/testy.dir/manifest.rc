@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/Qt/Qt5.12.10/cmake_tur/cmake-build-debug/tests/CMakeFiles/testy.dir/embed.manifest"
