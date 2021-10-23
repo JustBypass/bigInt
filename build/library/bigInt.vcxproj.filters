@@ -12,6 +12,12 @@
     <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\library\myVector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\library\functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\library\Constructors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Qt\Qt5.12.10\cmake_tur\library\CMakeLists.txt" />

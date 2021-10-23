@@ -110,10 +110,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Qt/Qt5.12.10/cmake_tur/library/Constructors.h">
+			<Option target="bigInt"/>
+		</Unit>
 		<Unit filename="C:/Qt/Qt5.12.10/cmake_tur/library/bigInt.cpp">
 			<Option target="bigInt"/>
 		</Unit>
 		<Unit filename="C:/Qt/Qt5.12.10/cmake_tur/library/bigInt.h">
+			<Option target="bigInt"/>
+		</Unit>
+		<Unit filename="C:/Qt/Qt5.12.10/cmake_tur/library/functions.h">
 			<Option target="bigInt"/>
 		</Unit>
 		<Unit filename="C:/Qt/Qt5.12.10/cmake_tur/library/myVector.h">

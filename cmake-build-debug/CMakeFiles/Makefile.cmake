@@ -32,9 +32,9 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.20.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.20.2/CMakeRCCompiler.cmake"
   "CMakeFiles/3.20.2/CMakeSystem.cmake"
-  "../library/CMakeLists.txt"
-  "../mains/CMakeLists.txt"
-  "../menu/CMakeLists.txt"
+  "../include/menu/CMakeLists.txt"
+  "../src/Static/CMakeLists.txt"
+  "../src/main/CMakeLists.txt"
   )
 
 # The corresponding makefile is:
@@ -46,14 +46,14 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "library/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "menu/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "mains/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/Static/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "include/menu/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/main/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "library/CMakeFiles/bigInt.dir/DependInfo.cmake"
-  "menu/CMakeFiles/menus.dir/DependInfo.cmake"
-  "mains/CMakeFiles/main.dir/DependInfo.cmake"
+  "src/Static/CMakeFiles/bigInt.dir/DependInfo.cmake"
+  "include/menu/CMakeFiles/menus.dir/DependInfo.cmake"
+  "src/main/CMakeFiles/static.dir/DependInfo.cmake"
   )

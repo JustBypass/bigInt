@@ -329,13 +329,13 @@ gtest_hide_internal_symbols:BOOL=OFF
 gtest_main_LIB_DEPENDS:STATIC=general;gtest;
 
 //Value Computed by CMake
-library_BINARY_DIR:STATIC=C:/Qt/Qt5.12.10/cmake_tur/build/mains
+library_BINARY_DIR:STATIC=C:/Qt/Qt5.12.10/cmake_tur/build/src/Static
 
 //Value Computed by CMake
 library_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-library_SOURCE_DIR:STATIC=C:/Qt/Qt5.12.10/cmake_tur/mains
+library_SOURCE_DIR:STATIC=C:/Qt/Qt5.12.10/cmake_tur/src/Static
 
 //Value Computed by CMake
 mains_BINARY_DIR:STATIC=C:/Qt/Qt5.12.10/cmake_tur/build/mains

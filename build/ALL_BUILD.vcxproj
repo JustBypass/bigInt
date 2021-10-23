@@ -170,17 +170,17 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\library\bigInt.vcxproj">
+    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\src\Static\bigInt.vcxproj">
       <Project>{D3816879-557D-33FF-8258-B2B4610B02FC}</Project>
       <Name>bigInt</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\mains\main.vcxproj">
-      <Project>{15D6C470-A320-3E11-AFD7-79B7F67F37F3}</Project>
-      <Name>main</Name>
-    </ProjectReference>
-    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\menu\menus.vcxproj">
+    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\include\menu\menus.vcxproj">
       <Project>{45334926-0382-315E-B135-0FBB3804593E}</Project>
       <Name>menus</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\src\main\static.vcxproj">
+      <Project>{4C2E3E1B-5BF4-3A34-BF76-5D66DE7EA562}</Project>
+      <Name>static</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

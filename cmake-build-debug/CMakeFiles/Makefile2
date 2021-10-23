@@ -52,146 +52,145 @@ CMAKE_BINARY_DIR = C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: library\all
-all: menu\all
-all: mains\all
+all: src\Static\all
+all: include\menu\all
+all: src\main\all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall: library\preinstall
-preinstall: menu\preinstall
-preinstall: mains\preinstall
+preinstall: src\Static\preinstall
+preinstall: include\menu\preinstall
+preinstall: src\main\preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: library\clean
-clean: menu\clean
-clean: mains\clean
+clean: src\Static\clean
+clean: include\menu\clean
+clean: src\main\clean
 .PHONY : clean
 
 #=============================================================================
-# Directory level rules for directory library
+# Directory level rules for directory include\menu
 
 # Recursive "all" directory target.
-library\all: library\CMakeFiles\bigInt.dir\all
-.PHONY : library\all
+include\menu\all: include\menu\CMakeFiles\menus.dir\all
+.PHONY : include\menu\all
 
 # Recursive "preinstall" directory target.
-library\preinstall:
-.PHONY : library\preinstall
+include\menu\preinstall:
+.PHONY : include\menu\preinstall
 
 # Recursive "clean" directory target.
-library\clean: library\CMakeFiles\bigInt.dir\clean
-.PHONY : library\clean
+include\menu\clean: include\menu\CMakeFiles\menus.dir\clean
+.PHONY : include\menu\clean
 
 #=============================================================================
-# Directory level rules for directory mains
+# Directory level rules for directory src\Static
 
 # Recursive "all" directory target.
-mains\all: mains\CMakeFiles\main.dir\all
-.PHONY : mains\all
+src\Static\all: src\Static\CMakeFiles\bigInt.dir\all
+.PHONY : src\Static\all
 
 # Recursive "preinstall" directory target.
-mains\preinstall:
-.PHONY : mains\preinstall
+src\Static\preinstall:
+.PHONY : src\Static\preinstall
 
 # Recursive "clean" directory target.
-mains\clean: mains\CMakeFiles\main.dir\clean
-.PHONY : mains\clean
+src\Static\clean: src\Static\CMakeFiles\bigInt.dir\clean
+.PHONY : src\Static\clean
 
 #=============================================================================
-# Directory level rules for directory menu
+# Directory level rules for directory src\main
 
 # Recursive "all" directory target.
-menu\all: menu\CMakeFiles\menus.dir\all
-.PHONY : menu\all
+src\main\all: src\main\CMakeFiles\static.dir\all
+.PHONY : src\main\all
 
 # Recursive "preinstall" directory target.
-menu\preinstall:
-.PHONY : menu\preinstall
+src\main\preinstall:
+.PHONY : src\main\preinstall
 
 # Recursive "clean" directory target.
-menu\clean: menu\CMakeFiles\menus.dir\clean
-.PHONY : menu\clean
+src\main\clean: src\main\CMakeFiles\static.dir\clean
+.PHONY : src\main\clean
 
 #=============================================================================
-# Target rules for target library/CMakeFiles/bigInt.dir
+# Target rules for target src/Static/CMakeFiles/bigInt.dir
 
 # All Build rule for target.
-library\CMakeFiles\bigInt.dir\all:
-	$(MAKE) $(MAKESILENT) -f library\CMakeFiles\bigInt.dir\build.make /nologo -$(MAKEFLAGS) library\CMakeFiles\bigInt.dir\depend
-	$(MAKE) $(MAKESILENT) -f library\CMakeFiles\bigInt.dir\build.make /nologo -$(MAKEFLAGS) library\CMakeFiles\bigInt.dir\build
+src\Static\CMakeFiles\bigInt.dir\all:
+	$(MAKE) $(MAKESILENT) -f src\Static\CMakeFiles\bigInt.dir\build.make /nologo -$(MAKEFLAGS) src\Static\CMakeFiles\bigInt.dir\depend
+	$(MAKE) $(MAKESILENT) -f src\Static\CMakeFiles\bigInt.dir\build.make /nologo -$(MAKEFLAGS) src\Static\CMakeFiles\bigInt.dir\build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target bigInt"
-.PHONY : library\CMakeFiles\bigInt.dir\all
+.PHONY : src\Static\CMakeFiles\bigInt.dir\all
 
 # Build rule for subdir invocation for target.
-library\CMakeFiles\bigInt.dir\rule: cmake_check_build_system
+src\Static\CMakeFiles\bigInt.dir\rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) library\CMakeFiles\bigInt.dir\all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) src\Static\CMakeFiles\bigInt.dir\all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 0
-.PHONY : library\CMakeFiles\bigInt.dir\rule
+.PHONY : src\Static\CMakeFiles\bigInt.dir\rule
 
 # Convenience name for target.
-bigInt: library\CMakeFiles\bigInt.dir\rule
+bigInt: src\Static\CMakeFiles\bigInt.dir\rule
 .PHONY : bigInt
 
 # clean rule for target.
-library\CMakeFiles\bigInt.dir\clean:
-	$(MAKE) $(MAKESILENT) -f library\CMakeFiles\bigInt.dir\build.make /nologo -$(MAKEFLAGS) library\CMakeFiles\bigInt.dir\clean
-.PHONY : library\CMakeFiles\bigInt.dir\clean
+src\Static\CMakeFiles\bigInt.dir\clean:
+	$(MAKE) $(MAKESILENT) -f src\Static\CMakeFiles\bigInt.dir\build.make /nologo -$(MAKEFLAGS) src\Static\CMakeFiles\bigInt.dir\clean
+.PHONY : src\Static\CMakeFiles\bigInt.dir\clean
 
 #=============================================================================
-# Target rules for target menu/CMakeFiles/menus.dir
+# Target rules for target include/menu/CMakeFiles/menus.dir
 
 # All Build rule for target.
-menu\CMakeFiles\menus.dir\all:
-	$(MAKE) $(MAKESILENT) -f menu\CMakeFiles\menus.dir\build.make /nologo -$(MAKEFLAGS) menu\CMakeFiles\menus.dir\depend
-	$(MAKE) $(MAKESILENT) -f menu\CMakeFiles\menus.dir\build.make /nologo -$(MAKEFLAGS) menu\CMakeFiles\menus.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles --progress-num=5,6 "Built target menus"
-.PHONY : menu\CMakeFiles\menus.dir\all
+include\menu\CMakeFiles\menus.dir\all:
+	$(MAKE) $(MAKESILENT) -f include\menu\CMakeFiles\menus.dir\build.make /nologo -$(MAKEFLAGS) include\menu\CMakeFiles\menus.dir\depend
+	$(MAKE) $(MAKESILENT) -f include\menu\CMakeFiles\menus.dir\build.make /nologo -$(MAKEFLAGS) include\menu\CMakeFiles\menus.dir\build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles --progress-num=3 "Built target menus"
+.PHONY : include\menu\CMakeFiles\menus.dir\all
 
 # Build rule for subdir invocation for target.
-menu\CMakeFiles\menus.dir\rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) menu\CMakeFiles\menus.dir\all
+include\menu\CMakeFiles\menus.dir\rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 1
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) include\menu\CMakeFiles\menus.dir\all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 0
-.PHONY : menu\CMakeFiles\menus.dir\rule
+.PHONY : include\menu\CMakeFiles\menus.dir\rule
 
 # Convenience name for target.
-menus: menu\CMakeFiles\menus.dir\rule
+menus: include\menu\CMakeFiles\menus.dir\rule
 .PHONY : menus
 
 # clean rule for target.
-menu\CMakeFiles\menus.dir\clean:
-	$(MAKE) $(MAKESILENT) -f menu\CMakeFiles\menus.dir\build.make /nologo -$(MAKEFLAGS) menu\CMakeFiles\menus.dir\clean
-.PHONY : menu\CMakeFiles\menus.dir\clean
+include\menu\CMakeFiles\menus.dir\clean:
+	$(MAKE) $(MAKESILENT) -f include\menu\CMakeFiles\menus.dir\build.make /nologo -$(MAKEFLAGS) include\menu\CMakeFiles\menus.dir\clean
+.PHONY : include\menu\CMakeFiles\menus.dir\clean
 
 #=============================================================================
-# Target rules for target mains/CMakeFiles/main.dir
+# Target rules for target src/main/CMakeFiles/static.dir
 
 # All Build rule for target.
-mains\CMakeFiles\main.dir\all: library\CMakeFiles\bigInt.dir\all
-mains\CMakeFiles\main.dir\all: menu\CMakeFiles\menus.dir\all
-	$(MAKE) $(MAKESILENT) -f mains\CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) mains\CMakeFiles\main.dir\depend
-	$(MAKE) $(MAKESILENT) -f mains\CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) mains\CMakeFiles\main.dir\build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles --progress-num=3,4 "Built target main"
-.PHONY : mains\CMakeFiles\main.dir\all
+src\main\CMakeFiles\static.dir\all: src\Static\CMakeFiles\bigInt.dir\all
+	$(MAKE) $(MAKESILENT) -f src\main\CMakeFiles\static.dir\build.make /nologo -$(MAKEFLAGS) src\main\CMakeFiles\static.dir\depend
+	$(MAKE) $(MAKESILENT) -f src\main\CMakeFiles\static.dir\build.make /nologo -$(MAKEFLAGS) src\main\CMakeFiles\static.dir\build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles --progress-num=4,5 "Built target static"
+.PHONY : src\main\CMakeFiles\static.dir\all
 
 # Build rule for subdir invocation for target.
-mains\CMakeFiles\main.dir\rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 6
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) mains\CMakeFiles\main.dir\all
+src\main\CMakeFiles\static.dir\rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) src\main\CMakeFiles\static.dir\all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Qt\Qt5.12.10\cmake_tur\cmake-build-debug\CMakeFiles 0
-.PHONY : mains\CMakeFiles\main.dir\rule
+.PHONY : src\main\CMakeFiles\static.dir\rule
 
 # Convenience name for target.
-main: mains\CMakeFiles\main.dir\rule
-.PHONY : main
+static: src\main\CMakeFiles\static.dir\rule
+.PHONY : static
 
 # clean rule for target.
-mains\CMakeFiles\main.dir\clean:
-	$(MAKE) $(MAKESILENT) -f mains\CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) mains\CMakeFiles\main.dir\clean
-.PHONY : mains\CMakeFiles\main.dir\clean
+src\main\CMakeFiles\static.dir\clean:
+	$(MAKE) $(MAKESILENT) -f src\main\CMakeFiles\static.dir\build.make /nologo -$(MAKEFLAGS) src\main\CMakeFiles\static.dir\clean
+.PHONY : src\main\CMakeFiles\static.dir\clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

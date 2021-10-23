@@ -264,6 +264,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\library\bigInt.h" />
     <ClCompile Include="C:\Qt\Qt5.12.10\cmake_tur\library\bigInt.cpp" />
     <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\library\myVector.h" />
+    <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\library\functions.h" />
+    <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\library\Constructors.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\ZERO_CHECK.vcxproj">

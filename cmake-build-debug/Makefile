@@ -115,7 +115,7 @@ bigInt: cmake_check_build_system
 
 # fast build rule for target.
 bigInt\fast:
-	$(MAKE) $(MAKESILENT) -f library\CMakeFiles\bigInt.dir\build.make /nologo -$(MAKEFLAGS) library\CMakeFiles\bigInt.dir\build
+	$(MAKE) $(MAKESILENT) -f src\Static\CMakeFiles\bigInt.dir\build.make /nologo -$(MAKEFLAGS) src\Static\CMakeFiles\bigInt.dir\build
 .PHONY : bigInt\fast
 
 #=============================================================================
@@ -128,21 +128,21 @@ menus: cmake_check_build_system
 
 # fast build rule for target.
 menus\fast:
-	$(MAKE) $(MAKESILENT) -f menu\CMakeFiles\menus.dir\build.make /nologo -$(MAKEFLAGS) menu\CMakeFiles\menus.dir\build
+	$(MAKE) $(MAKESILENT) -f include\menu\CMakeFiles\menus.dir\build.make /nologo -$(MAKEFLAGS) include\menu\CMakeFiles\menus.dir\build
 .PHONY : menus\fast
 
 #=============================================================================
-# Target rules for targets named main
+# Target rules for targets named static
 
 # Build rule for target.
-main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) main
-.PHONY : main
+static: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) static
+.PHONY : static
 
 # fast build rule for target.
-main\fast:
-	$(MAKE) $(MAKESILENT) -f mains\CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) mains\CMakeFiles\main.dir\build
-.PHONY : main\fast
+static\fast:
+	$(MAKE) $(MAKESILENT) -f src\main\CMakeFiles\static.dir\build.make /nologo -$(MAKEFLAGS) src\main\CMakeFiles\static.dir\build
+.PHONY : static\fast
 
 # Help Target
 help:
@@ -153,8 +153,8 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... bigInt
-	@echo ... main
 	@echo ... menus
+	@echo ... static
 .PHONY : help
 
 
