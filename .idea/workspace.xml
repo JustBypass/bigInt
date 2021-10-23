@@ -83,6 +83,11 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.static">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="bigInt" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmake_tur" TARGET_NAME="bigInt" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -145,7 +150,7 @@
       <workItem from="1634944661638" duration="3762000" />
       <workItem from="1634976055891" duration="969000" />
       <workItem from="1634977270051" duration="2891000" />
-      <workItem from="1634987554546" duration="2000" />
+      <workItem from="1634987554546" duration="797000" />
     </task>
     <task id="LOCAL-00001" summary="new version">
       <created>1634680066832</created>
@@ -273,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634987515542</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="version15">
+      <created>1634987568283</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1634987568283</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
