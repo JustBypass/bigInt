@@ -3,7 +3,7 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="cmake_tur" targetName="menus" />
-      <config projectName="cmake_tur" targetName="main" />
+      <config projectName="cmake_tur" targetName="static" />
       <config projectName="cmake_tur" targetName="bigInt" />
     </generated>
   </component>
@@ -13,137 +13,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63a03784-e53b-492c-a550-5fd537860272" name="Changes" comment="version12">
-      <change afterPath="$PROJECT_DIR$/src/Dynamic/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Dynamic/bigInt2.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Dynamic/bigInt2.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Dynamic/myVector.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UnitTests/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UnitTests/test.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/3B/bigInt2.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ALL_BUILD.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/ALL_BUILD.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/generate.stamp.list" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/generate.stamp.list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/ZERO_CHECK.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/ZERO_CHECK.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/cmake_tur.sln" beforeDir="false" afterPath="$PROJECT_DIR$/build/cmake_tur.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/Debug/bigInt.lib" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/Debug/bigInt.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/Debug/bigInt.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/Debug/bigInt.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.dir/Debug/bigInt.tlog/CL.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/bigInt.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/library/bigInt.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/build/library/bigInt.vcxproj.filters" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/mains/Debug/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/Debug/main.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/mains/Debug/main.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/Debug/main.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.ilk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/main.tlog/link.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/mains/main.dir/Debug/vc142.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/build/mains/main.dir/Debug/vc142.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/x64/Debug/ALL_BUILD/ALL_BUILD.recipe" beforeDir="false" afterPath="$PROJECT_DIR$/build/x64/Debug/ALL_BUILD/ALL_BUILD.recipe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.write.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_tur.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_tur.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/library/library.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/library/library.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/mains/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/mains/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/bigInt.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/bigInt.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/ALL_BUILD.vcxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/ALL_BUILD.vcxproj.filters" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CMakeRCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdC/CompilerIdC.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdC/CompilerIdC.vcxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CMakeCCompilerId.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.exe.recipe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/CL.command.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/CL.read.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/CL.write.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/CompilerIdC.lastbuildstate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/link.command.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/link.read.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdC/Debug/CompilerIdC.tlog/link.write.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdCXX/CompilerIdCXX.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdCXX/CompilerIdCXX.vcxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CMakeCXXCompilerId.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.exe.recipe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.command.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.read.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.write.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CompilerIdCXX.lastbuildstate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.command.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.read.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.write.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/VCTargetsPath.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/VCTargetsPath.vcxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/x64/Debug/VCTargetsPath.recipe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/3.21.3/x64/Debug/VCTargetsPath.tlog/VCTargetsPath.lastbuildstate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/6027e8c41daf24486e0c30fb043c4931/generate.stamp.rule" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/CMakeOutput.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/generate.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/generate.stamp.depend" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/CMakeFiles/generate.stamp.list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/Debug/bigInt.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/Debug/bigInt.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/ZERO_CHECK.vcxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/ZERO_CHECK.vcxproj.filters" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/bigInt.dll.recipe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/bigInt.ilk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/bigInt.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/bigInt.tlog/CL.command.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/bigInt.tlog/CL.read.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/bigInt.tlog/CL.write.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/bigInt.tlog/CustomBuild.command.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/bigInt.tlog/CustomBuild.read.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/bigInt.tlog/CustomBuild.write.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/bigInt.tlog/bigInt.lastbuildstate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/bigInt.tlog/link.command.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/bigInt.tlog/link.read.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/bigInt.tlog/link.write.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.dir/Debug/vc142.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.vcxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/bigInt.vcxproj.filters" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/library.sln" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/x64/Debug/ALL_BUILD/ALL_BUILD.recipe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/x64/Debug/ALL_BUILD/ALL_BUILD.tlog/ALL_BUILD.lastbuildstate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/x64/Debug/ALL_BUILD/ALL_BUILD.tlog/CustomBuild.command.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/x64/Debug/ALL_BUILD/ALL_BUILD.tlog/CustomBuild.read.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/x64/Debug/ALL_BUILD/ALL_BUILD.tlog/CustomBuild.write.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.recipe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.command.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.read.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.write.1.tlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/ZERO_CHECK.lastbuildstate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library/myVector.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mains/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mains/main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/menu/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/include/menu/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/menu/menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/menu/menu.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/UnitTests/test_dynamic.cpp" afterDir="false" />
+    <list default="true" id="63a03784-e53b-492c-a550-5fd537860272" name="Changes" comment="version13">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,7 +149,7 @@
       <workItem from="1634923899086" duration="10917000" />
       <workItem from="1634944661638" duration="3762000" />
       <workItem from="1634976055891" duration="969000" />
-      <workItem from="1634977270051" duration="2090000" />
+      <workItem from="1634977270051" duration="2398000" />
     </task>
     <task id="LOCAL-00001" summary="new version">
       <created>1634680066832</created>
@@ -378,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634865900412</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="version13">
+      <created>1634982283949</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1634982283949</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,6 +299,7 @@
     <MESSAGE value="version10" />
     <MESSAGE value="version11" />
     <MESSAGE value="version12" />
-    <option name="LAST_COMMIT_MESSAGE" value="version12" />
+    <MESSAGE value="version13" />
+    <option name="LAST_COMMIT_MESSAGE" value="version13" />
   </component>
 </project>
