@@ -3,3 +3,6 @@ googletest/
 .vcxproj
 .vcxproj.filters
 .sln
+.tlog
+.log
+

@@ -5,7 +5,6 @@
 #include "myVector.h"
 #include <stdexcept>
 
-//Разбить все на мини-классы
 //Комментарии ко всем методам
 class bigInt {
 public:
@@ -47,7 +46,6 @@ public:
 
     const bigInt& operator =(const char*)                     noexcept;
     bigInt& operator=(const bigInt& _num)noexcept = default;
-
 
     bigInt& operator=(bigInt&&)      noexcept = default;
 

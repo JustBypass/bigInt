@@ -8,9 +8,8 @@
 //linux
 int main()
 {
-  /*  menu a;
-    a.mainloop();*/
-  std::cout<<bigInt(435345);
+    menu a;
+    a.mainloop();
    return 0;
 
 
