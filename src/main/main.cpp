@@ -5,16 +5,12 @@
 #include "../Static/bigInt.h"
 //#include "vld.h"
 #include "../../include/menu/menu.h"
-
-int main() //ХЗ как опять приделать библиотеку
+//linux
+int main()
 {
-    bigInt g(234234);
-   /* bigInt c(12);
-    bigInt n(1213);
-    n = ((((("3"+c)+453)-67)+"23")-c+1000);
-    std::cout<<n;*/
-
-
+  /*  menu a;
+    a.mainloop();*/
+  std::cout<<bigInt(435345);
    return 0;
 
 

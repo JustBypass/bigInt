@@ -7,21 +7,44 @@
 
 class bigInt;
 
+namespace check {
+    void str_check(std::string& _str) {
+        for (char c : _str) {
+            if (c < 48 || c > 57) {
+                throw "String is uncorrect";
+                break;
+            }
+        }
+    }
+    int length_overflow(long long _num, bigInt& a) {
+        int g = 0;
+        while (_num != (long long)0) {
+            _num /= (long long)10;
+            g++;
+        }
+        if (g >= bigInt().N) {
+            std::cout << "grther";
+            throw "Overflow";
+        }
+        return g;
+    }
+}
+
 char* to_str(bigInt&& a)
 {
     int p = 0;
-    if(a._sgn){
-        p = a._count+2;
+    if (a._sgn) {
+        p = a._count + 2;
     }
     else
     {
-        p = a._count+1;
+        p = a._count + 1;
     }
     char* str = new char[p];
-    if(a._sgn == 1){
+    if (a._sgn == 1) {
         str[0] = '-';
-        for(int i = a._count;i>0;i--){
-            str[i] = a._digit[a._count-i];
+        for (int i = a._count; i > 0; i--) {
+            str[i] = a._digit[a._count - i];
         }
     }
     else {
@@ -29,30 +52,11 @@ char* to_str(bigInt&& a)
             str[i] = a._digit[a._count - i - 1];
         }
     }
-    str[p-1] = '\0';
+    str[p - 1] = '\0';
     return str;
 }
 
 
-void str_check(std::string& _str){
-    for(char c:_str){
-        if(c<48||c>57){
-            throw "String is uncorrect";
-            break;
-        }
-    }
-}
-int length_overflow(long long _num,bigInt& a){
-    int g = 0;
-    while(_num!=(long long)0){
-        _num/=(long long)10;
-        g++;
-    }
-    if(g>=a.N){
-        throw "Overflow";
-    }
-    return g;
-}
 namespace auxillary
 {
     void deleteZeros(myVector& _vec)
@@ -72,7 +76,7 @@ namespace auxillary
         int transmission = 1;
         for (int i = 0; i < len + 1; i++) {
             if (((((int)vec.vector[i] - '0') + transmission)) / 10 == 1) {
-                vec.vector[i] =  '0';//
+                vec.vector[i] = '0';//
             }
             else {
                 vec.vector[i] = (((transmission)+((int)vec.vector[i] - '0')) + '0');
@@ -105,7 +109,7 @@ void do_external(int len, bigInt& _num, myVector& vec)
 {
     for (int i = 0; i < len; i++) {
         for (i; i < _num.get_count(); i++) {
-            vec.push_back(_num.getDigit()[i]);
+            vec.push_back(_num._digit[i]);
         }
         if (len == _num.get_count())
             break;
@@ -122,8 +126,8 @@ void do_external(int len, bigInt& _num, myVector& vec)
         vec.push_back('0');
     }
 }
-void change_sgn(bigInt& c){
-    if(c._sgn){
+void change_sgn(bigInt& c) {
+    if (c._sgn) {
         c._sgn = 0;
     }
     else c._sgn = 1;

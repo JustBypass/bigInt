@@ -4,5 +4,5 @@ project(library)
 
 set(lib bigInt.h bigInt.cpp myVector.h functions.h Constructors.h)
 
-add_library(bigInt STATIC ${lib})
+add_library(bigInt SHARED ${lib})
 

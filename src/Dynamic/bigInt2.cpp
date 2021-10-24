@@ -5,11 +5,10 @@
 #include"bigInt2.h"
 
 bigInt::~bigInt() noexcept {
-    delete(_digit);
+    delete (_digit);
     _count = 0;
     _sgn = 0;
 }
-
 bigInt::bigInt(int _number) noexcept
 {
     _number > 0 ? _sgn = 0 : _sgn = 1;
@@ -58,19 +57,19 @@ bigInt::bigInt(myVector<char>& _string) noexcept {
 
 
 const bigInt& bigInt::operator=(bigInt&& _t)noexcept {
-    if(_digit!=nullptr)
+    if (_digit != nullptr)
         delete(_digit);
     _count = std::move(_t._count);
     _sgn = std::move(_t._sgn);
     _digit = new char[_count + 1];
     for (int i = 0; i < _count; i++) {
-        _digit[i] = _t._digit[i];
+        _digit[i] = std::move(_t._digit[i]);
     }
     _digit[_count] = '\0';
     return *this;
 }
 
-bigInt::bigInt(bigInt&& _t) noexcept{
+bigInt::bigInt(bigInt&& _t) noexcept {
     _count = std::move(_t._count);
     _sgn = std::move(_t._sgn);
     _digit = new char[_count + 1];
@@ -81,11 +80,14 @@ bigInt::bigInt(bigInt&& _t) noexcept{
 }
 const bigInt& bigInt::operator=(const bigInt& _num)noexcept
 {
+    delete(_digit);
+    _digit = new char[_num._count+1];
     for (int i = _num.get_count() - 1; i >= 0; i--) {
         _digit[i] = _num._digit[i];
     }
-    _count = _num.get_count();
-    _sgn = _num.get_sgn();
+    _digit[_num._count] = '\0';
+    _count = _num._count;
+    _sgn = _num._sgn;
     return *this;
 }
 
@@ -100,7 +102,7 @@ bigInt::bigInt(const char* _string)noexcept {
     }
     else
     {
-        _string[0] == '+' ? _count = strlen(_string) - 1,p = _count+2 : _count = strlen(_string), p = _count + 1;
+        _string[0] == '+' ? _count = strlen(_string) - 1, p = _count + 2 : _count = strlen(_string), p = _count + 1;
         _sgn = 0;
     }
     _digit = new char[p];
@@ -183,13 +185,6 @@ bigInt::bigInt(long long _number)noexcept
         _count = g;
     }
 }
-const bigInt bigInt::operator-(const char* _t)const noexcept
-{
-    bigInt _new_num(_t);
-    return (*this - _new_num);
-}
-
-
 
 void sumOperation(myVector<char>& vec, int maximum, myVector<char>& first, myVector<char>& second) {
     int transmission = 0;
@@ -225,7 +220,7 @@ int do_external(int len, bigInt& _num, myVector<char>& vec)
     if (_num.get_sgn() == 1) {
         for (int i = 0; i < len; i++) {
             for (i; i < _num.get_count(); i++) {
-                vec.push_back(_num.getDigit()[i]);
+                vec.push_back(_num._digit[i]);
             }
             if (len == _num.get_count())
                 break;
@@ -238,7 +233,7 @@ int do_external(int len, bigInt& _num, myVector<char>& vec)
     else {
         for (int i = 0; i < len; i++) {
             for (i; i < _num.get_count(); i++) {
-                vec.push_back(_num.getDigit()[i]);
+                vec.push_back(_num._digit[i]);
             }
             if (len == _num.get_count())
                 break;
@@ -287,6 +282,47 @@ const bigInt bigInt::operator +(const bigInt& _num)const noexcept
     bigInt newBig(vec);
     return newBig;
 }
+const bigInt& bigInt::operator<<=(int _n)  noexcept
+{
+    return (*this = *this << _n);
+}
+const bigInt& bigInt::operator>>=(int _n)  noexcept
+{
+    return (*this = *this >> _n);
+}
+bigInt operator -(const bigInt& _n, int _t)noexcept
+{
+    return(_n - bigInt(_t));
+}
+bigInt operator -(int _t, const bigInt& _n)noexcept
+{
+    return(bigInt(_t) - _n);
+}
+bigInt operator+(const bigInt& _n, int _t)noexcept
+{
+    return(_n + bigInt(_t));
+}
+bigInt operator+(int _t, const bigInt& _n)noexcept
+{
+    return(_n + _t);
+}
+bigInt operator+(const bigInt& _n, const char* _t)noexcept
+{
+    return(_n + bigInt(_t));
+}
+bigInt operator+(const char* _t, const bigInt& _n)noexcept
+{
+    return(_n + _t);
+}
+bigInt operator -(const bigInt& _n, const char* _t)noexcept
+{
+    return(_n - bigInt(_t));
+}
+bigInt operator -(const char* _t, const bigInt& _n)noexcept
+{
+    return(_n - _t);
+}
+
 
 void bigInt::returnExternal() {
 
@@ -324,21 +360,19 @@ const bigInt& bigInt::operator -=(const bigInt& _num)noexcept {
     _num.get_sgn() == 1 ? *this = *this - _num : *this = *this + _num;
     return *this;
 }
-std::ostream& operator<<(std::ostream& out, bigInt& a)noexcept {
+std::ostream& operator<<(std::ostream& out,const bigInt& a)noexcept {
     if (a.get_sgn() == 1)
         std::cout << "-";
     for (int i = a.get_count() - 1; i >= 0; i--)
     {
-        out << a.getDigit()[i];
+        out << a._digit[i];
     }
     return out;
 }
-
-const bigInt& bigInt::operator+=(const char* _t) noexcept {
-    *this = *this + _t;
-    return (*this);
+const bigInt& bigInt::operator+=(const char* _t) noexcept{
+    *this = (*this + _t);
+    return *this;
 }
-
 const bigInt& bigInt::operator-=(const char* _t)noexcept {
     bigInt _new_num(_t);
     *this = (*this - _new_num);
@@ -348,18 +382,17 @@ const bigInt& bigInt::operator =(const char* _t) noexcept {
     bigInt _num(_t);
     return (*this = _num);
 }
-
-const bigInt& bigInt::operator ++(int)noexcept {
+const bigInt bigInt::operator ++(int) noexcept {
     *this += "1";
-    return *this - "1";
+    return (*this - "1");
 }
-const bigInt& bigInt::operator ++() noexcept
-{
+const bigInt bigInt::operator ++() noexcept {
     return *this += "1";
 }
 
 
-std::istream& operator >>(std::istream& in,bigInt& _num) noexcept(false) ///How to do it??//Подключить гетстр или другой костыль;)
+
+std::istream& operator >>(std::istream& in, bigInt& _num) noexcept(false) ///How to do it??//Подключить гетстр или другой костыль;)
 {
     std::string str;
     in >> str;
@@ -368,48 +401,63 @@ std::istream& operator >>(std::istream& in,bigInt& _num) noexcept(false) ///How 
     return in;
 }
 
-const bigInt bigInt::operator+(const char* _str) const noexcept
-{
-    bigInt _new(_str);
-    return (*this + _new);
-}
-//const bigInt bigInt::operator>>(int _n) const noexcept {
-//	bigInt _new = *this;
-//	if (_new == bigInt(0))
-//		return *this;
-//	delete(_new._digit);
-//	if (_new._count == 1)
-//		_new._digit = new char[1];
-//	else {
-//		_new._digit = new char[_new._count - 1];
-//	}
-//	for (int g = 0; g < _n; g++) {
-//		if (_new._count == 1) {
-//			_new._digit[0] = '0';
-//			return *this;
-//		}
-//		for (int i = 0; i <_new. _count - 1; i++) {
-//			_new._digit[i] =_new. _digit[i + 1];
-//		}
-//		_new._count--;
-//	}
-//	return _new;
-//}
-//
-//const bigInt bigInt::operator<<(int _n)const noexcept {
-//	bigInt newn = *this;
-//	if (newn == bigInt(0))
-//		return *this;
-//	delete(newn._digit);
-//	newn._digit = new char[_count + 1];
-//	for (int g = 0; g < _n; g++) {
-//		for (int i = _count - 1; i >= 0; i--) {
-//			newn._digit[i + 1] = newn._digit[i];
-//		}
-//		newn._digit[0] = '0';
-//		newn._count++;
-//	}
-//	return newn;
+//const bigInt bigInt::operator+(const char* _str) const noexcept
+//{
+//    bigInt _new(_str);
+//    return (*this + _new);
 //}
 
+bool bigInt::operator==(const bigInt& _num)noexcept
+{
+    if (_num.get_count() == _count && _num.get_sgn() == _sgn)
+    {
+        for (int i = 0; i < _count; i++) {
+            if (_num._digit[i] != _digit[i]) return false;
+        }
+        return true;
+    }
+    else return false;
+}
+
+
+const bigInt bigInt::operator>>(int _n) const noexcept {
+    bigInt _new = *this;
+    bigInt a(0);
+    if (_new == a)
+        return *this;
+    delete(_new._digit);
+    if (_new._count == 1)
+        _new._digit = new char[1];
+    else {
+        _new._digit = new char[_new._count - 1];
+    }
+    for (int g = 0; g < _n; g++) {
+        if (_new._count == 1) {
+            _new._digit[0] = '0';
+            return *this;
+        }
+        for (int i = 0; i < _new._count - 1; i++) {
+            _new._digit[i] = _new._digit[i + 1];
+        }
+        _new._count--;
+    }
+    return _new;
+}
+
+const bigInt bigInt::operator<<(int _n)const noexcept {
+    bigInt newn = *this;
+    bigInt a(0);
+    if (newn == a)
+        return *this;
+    delete(newn._digit);
+    newn._digit = new char[_count + 1];
+    for (int g = 0; g < _n; g++) {
+        for (int i = _count - 1; i >= 0; i--) {
+            newn._digit[i + 1] = newn._digit[i];
+        }
+        newn._digit[0] = '0';
+        newn._count++;
+    }
+    return newn;
+}
 

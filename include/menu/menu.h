@@ -5,7 +5,6 @@
 #ifndef CMAKE_TUR_MENU_H
 #define CMAKE_TUR_MENU_H
 
-
 template<typename T>
 int getNum(T& a)
 {
@@ -17,12 +16,11 @@ int getNum(T& a)
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     return rc;
 };
+class bigInt;
 
-template<class T>
 class menu {
 
 private:
-    T cl;
     std::string _menu = "1.Get_Sum\n"
                         "2.Minus_function:\n"
                         "3.Divide_on_10\n"
@@ -41,7 +39,7 @@ public:
     int mainloop() {
         try {
             int r = 1;
-            T _num;
+            bigInt _num;
             int ch;
             while(true){
                 std::cout<<_choosingConstrMenu ;
@@ -78,13 +76,13 @@ public:
                     }
                     switch (rc) {
                         case 1: {
-                            T a(0);
+                            bigInt a(0);
                             std::cout << "Enter number:";
                             std::cin >> a;
                             _num = (_num + a);
                             break;
                         }
-                        case 2:{	T a("0");
+                        case 2:{	bigInt a("0");
                             std::cout << "Enter number to minus:\n";
                             std::cin >> a;
                             _num = (_num - a);

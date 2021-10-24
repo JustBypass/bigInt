@@ -4,20 +4,21 @@
 #include <string.h>
 #include "myVector.h"
 #include <stdexcept>
+
 //Разбить все на мини-классы
 //Комментарии ко всем методам
 class bigInt {
 public:
-    static constexpr unsigned N = 3;
+    static constexpr unsigned N = 120;
 private:
     int _count;
     bool _sgn;
-   mutable char _digit[N];
+    mutable char _digit[N];
 public:
     ///Constructors
     bigInt()              noexcept;
     bigInt(long long)     noexcept(false);
-    bigInt(int)           noexcept;
+    bigInt(int)           noexcept(false);
     bigInt(const char*)   noexcept(false);
     bigInt(myVector&)     noexcept;
     bigInt(const bigInt&) noexcept = default;
@@ -25,7 +26,6 @@ public:
     ///Деструкторы
     inline ~bigInt()      noexcept = default;
     /// Getters
-    inline char* getDigit() const  noexcept { return _digit; }
     inline int get_count()  const  noexcept { return _count; }
     inline bool get_sgn()   const  noexcept { return _sgn; }
     ///Operators
@@ -36,17 +36,19 @@ public:
 
     friend std::ostream& operator<<(std::ostream& out, const bigInt& a)  noexcept;
     friend std::istream& operator >>(std::istream&, bigInt&)  noexcept(false);
-    friend bigInt operator -(const bigInt&_n,int _t)          noexcept;
-    friend bigInt operator -(int _t,const bigInt&_n)          noexcept;
-    friend bigInt operator+(const bigInt& _n,int _t)          noexcept;
-    friend bigInt operator+(int _t,const bigInt& _n)          noexcept;
-    friend bigInt operator+(const bigInt& _n,const char* _t)  noexcept;
-    friend bigInt operator+(const char*_t,const bigInt& _n)   noexcept;
-    friend bigInt operator -(const bigInt&_n,const char*_t)   noexcept;
-    friend bigInt operator -(const char*_t,const bigInt&_n)   noexcept;
+    friend bigInt operator -(const bigInt& _n, int _t)          noexcept;
+    friend bigInt operator -(int _t, const bigInt& _n)          noexcept;
+    friend bigInt operator+(const bigInt& _n, int _t)          noexcept;
+    friend bigInt operator+(int _t, const bigInt& _n)          noexcept;
+    friend bigInt operator+(const bigInt& _n, const char* _t)  noexcept;
+    friend bigInt operator+(const char* _t, const bigInt& _n)   noexcept;
+    friend bigInt operator -(const bigInt& _n, const char* _t)   noexcept;
+    friend bigInt operator -(const char* _t, const bigInt& _n)   noexcept;
 
     const bigInt& operator =(const char*)                     noexcept;
-    bigInt& operator=(const bigInt&) noexcept = default;
+    bigInt& operator=(const bigInt& _num)noexcept = default;
+
+
     bigInt& operator=(bigInt&&)      noexcept = default;
 
     const bigInt operator +(const bigInt& digit) const        noexcept;
@@ -64,6 +66,7 @@ public:
     ///Other methods
     void returnExternal();
 private:
+    friend const bigInt mainPlusFunction(const bigInt& num1, const bigInt& num2);
     friend void change_sgn(bigInt& c);
     friend  void do_external(int, bigInt&, myVector&);
     friend char* to_str(bigInt&&);

@@ -1,2 +1,5 @@
 .idea/
 googletest/
+.vcxproj
+.vcxproj.filters
+.sln
