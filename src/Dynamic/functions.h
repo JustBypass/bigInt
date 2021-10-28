@@ -106,43 +106,6 @@ namespace auxillary//Пространство имен для работы с д
         sumOperation(vec, maximum, first, second);
     }
 }
-const bigInt& mainPlusFunction(const bigInt& num1, const bigInt& num2)
-{
-    int len = std::max(num1._count, num2._count);
-    myVector vec(len + 2);
-    if (num1._sgn == num2._sgn)//Если числа одинакового знака
-    {
-        if (num1._sgn == 0) {//Если числа положительны
-            auxillary::sum_numbers(vec, num1, num2, len);
-            auxillary::deleteZeros(vec);
-            vec.push_back('+');
-        }
-        else {//Если числа отрицательны
-            auxillary::sum_numbers(vec, num1, num2, len);
-            auxillary::decimalInversion(vec);
-            auxillary::plusOne(vec, len);
-            vec.pop_back();
-            auxillary::deleteZeros(vec);
-            vec.push_back('-');
-        }
-    }
-    else//Если числа разных знаков
-    {
-        auxillary::sum_numbers(vec, num1, num2, len);
-        if (vec.vector[vec._size - 1] == '0') {//если получилось положительное число
-            auxillary::deleteZeros(vec);
-            vec.push_back('+');
-        }
-        else {// если отрицательное
-            auxillary::decimalInversion(vec);
-            auxillary::plusOne(vec, len);
-            vec.pop_back();
-            auxillary::deleteZeros(vec);
-            vec.push_back('-');
-        }
-    }
-    return bigInt(vec);//Если не писать const, то Non-const lvalue reference to type 'bigInt' cannot bind to a temporary of type 'bigInt'
-}
 void do_external(int len, bigInt& _num, myVector& vec)//Перревод числа в вектор с доп кодом
 {
     for (int i = 0; i < len; i++) {

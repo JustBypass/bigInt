@@ -8,7 +8,8 @@
 class bigInt;
 
 
-namespace check {
+namespace check
+{
     void str_check(std::string& _str) //Проверка корректности вводимого числа
     {
         int i = 0;
@@ -63,7 +64,6 @@ char* to_str(const bigInt& a)//Перевод большого числа в с�
     str[p - 1] = '\0';
     return str;
 }
-
  char* to_str(bigInt&& a){
     int p = 0;
     if (a._sgn) {
@@ -88,38 +88,6 @@ char* to_str(const bigInt& a)//Перевод большого числа в с�
     str[p - 1] = '\0';
     return str;
 }
-
-
-/*
-
-char* to_str( bigInt& a)//Перевод большого числа в строку(используется а тестах)
-{
-    int p = 0;
-    if (a._sgn) {
-        p = a._count + 2;
-    }
-    else
-    {
-        p = a._count + 1;
-    }
-    char* str = new char[p];
-    if (a._sgn == 1) {
-        str[0] = '-';
-        for (int i = a._count; i > 0; i--) {
-            str[i] = a._digit[a._count - i];
-        }
-    }
-    else {
-        for (int i = a._count - 1; i >= 0; i--) {
-            str[i] = a._digit[a._count - i - 1];
-        }
-    }
-    str[p - 1] = '\0';
-    return str;
-}
-*/
-
-
 namespace auxillary//Пространство имен для работы с дополнительным кодом десятичного числа
 {
     void deleteZeros(myVector& _vec)// удаляем все нули из итогового вектора числа(если все нули, то последний сохраняем)
@@ -241,6 +209,4 @@ void bigInt::returnExternal()// Печатаем число в доп. коде
         std::cout << _vec.pop_back();
     }
 }
-
-
 #endif //CMAKE_TUR_FUNCTIONS_H

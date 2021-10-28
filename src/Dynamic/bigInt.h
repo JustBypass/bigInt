@@ -71,6 +71,5 @@ private:
     friend void changeSgn(bigInt& a) ;
     friend char* to_str(const bigInt& a);
     friend char* to_str(bigInt&&);
-    friend const bigInt& mainPlusFunction(const bigInt&, const bigInt&);
 };
 #endif //CMAKE_TUR_BIGINT2_H
