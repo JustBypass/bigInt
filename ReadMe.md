@@ -1,0 +1,1 @@
+Чтобы собрать решение, нужно скачать googletest(https://github.com/google/googletest) и поместить его в корень решения
