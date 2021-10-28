@@ -64,9 +64,10 @@ public:
     ///Other methods
     void returnExternal();
 private:
-    friend const bigInt mainPlusFunction(const bigInt& num1, const bigInt& num2);
+    friend const bigInt& mainPlusFunction(const bigInt& num1, const bigInt& num2);
     friend void change_sgn(bigInt& c);
     friend  void do_external(int, bigInt&, myVector&);
     friend char* to_str(bigInt&&);
+    friend char* to_str(const bigInt& a);
 };
 #endif //CMAKE_TUR_BIGINT_H

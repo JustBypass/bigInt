@@ -9,7 +9,8 @@ struct myVector
 {
     char* vector = nullptr;
     int _size = 0;
-    myVector(int n = 0):_size(0) {
+    myVector(int n = 0):_size(0)
+    {
         vector = new char[n];
     }
     ~myVector() {

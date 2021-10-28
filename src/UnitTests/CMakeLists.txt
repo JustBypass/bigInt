@@ -7,29 +7,28 @@ set(VAR 1)
 
 if(${VAR} EQUAL 1)
     set(SOURCES test.cpp)
-    add_executable(testy ${SOURCES})
-
+    add_executable(DynT ${SOURCES})
     target_link_libraries(
-        testy
+        DynT
         PUBLIC
         gtest_main
-        bigInt
+        bigInt2
     )
     add_test(
-        NAME testy
-        COMMAND testy
+        NAME DynT
+        COMMAND DynT
     )
 else()
-    set(SOURCES test_dynamic.cpp)
-    add_executable(testy ${SOURCES})
+    set(SOURCES test.cpp)
+    add_executable(StatT ${SOURCES})
     target_link_libraries(
-            testy
+            StatT
             PUBLIC
             gtest_main
-            bigInt2
+            bigInt
     )
     add_test(
-            NAME testy
-            COMMAND testy
+            NAME StatT
+            COMMAND StatT
     )
 endif()

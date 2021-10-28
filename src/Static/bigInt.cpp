@@ -5,90 +5,17 @@
 #include "bigInt.h"
 #include "functions.h"
 #include"Constructors.h"
+#include"Constructors.h"
 //ператор -+-=+= от long long
 
-const bigInt mainPlusFunction(const bigInt& num1, const bigInt& num2)
-{
-    int len = std::max(num1._count, num2._count);
-    myVector vec(len + 2);
-    if (num1._sgn == num2._sgn)
-    {
-        if (num1._sgn == 0) {
-            auxillary::sum_numbers(vec, num1, num2, len);
-            auxillary::deleteZeros(vec);
-            vec.push_back('+');
-        }
-        else {
-            auxillary::sum_numbers(vec, num1, num2, len);
-            auxillary::decimalInversion(vec);
-            auxillary::plusOne(vec, len);
-            vec.pop_back();
-            auxillary::deleteZeros(vec);
-            vec.push_back('-');
-        }
-    }
-    else
-    {
-        auxillary::sum_numbers(vec, num1, num2, len);
-        if (vec.vector[vec._size - 1] == '0') {
-            auxillary::deleteZeros(vec);
-            vec.push_back('+');
-        }
-        else {
-            auxillary::decimalInversion(vec);
-            auxillary::plusOne(vec, len);
-            vec.pop_back();
-            auxillary::deleteZeros(vec);
-            vec.push_back('-');
-        }
-    }
-    return bigInt(vec);//Если не писать const, то Non-const lvalue reference to type 'bigInt' cannot bind to a temporary of type 'bigInt'
-}
-
 const bigInt bigInt::operator +(const bigInt& _num)const noexcept
-{//Отдельная функция
-
-    //return mainPlusFunction(*this,_num);
-    int len = std::max(_count, _num._count);
-    myVector vec(len + 2);
-    if (_sgn == _num._sgn)
-    {
-        if (_sgn == 0) {
-            auxillary::sum_numbers(vec, *this, _num, len);
-
-            auxillary::deleteZeros(vec);
-            vec.push_back('+');
-        }
-        else {
-            auxillary::sum_numbers(vec, *this, _num, len);
-            auxillary::decimalInversion(vec);
-            auxillary::plusOne(vec, len);
-            vec.pop_back();
-            auxillary::deleteZeros(vec);
-            vec.push_back('-');
-        }
-    }
-    else
-    {
-        auxillary::sum_numbers(vec, *this, _num, len);
-        if (vec.vector[vec._size - 1] == '0') {
-            auxillary::deleteZeros(vec);
-            vec.push_back('+');
-        }
-        else {
-            auxillary::decimalInversion(vec);
-            auxillary::plusOne(vec, len);
-            vec.pop_back();
-            auxillary::deleteZeros(vec);
-            vec.push_back('-');
-        }
-    }
-    return bigInt(vec);
+{
+    return mainPlusFunction(*this,_num);
 }
 const bigInt bigInt::operator-(const bigInt& _num) const noexcept {
-    bigInt c(_num);
+    bigInt c = _num;
     change_sgn(c);
-    return *this + c;
+    return *this + (c);
 }
 const bigInt& bigInt::operator +=(const bigInt& _num) noexcept {
     return (*this = *this + _num);

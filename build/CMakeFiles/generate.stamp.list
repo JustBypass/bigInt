@@ -1,4 +1,6 @@
 C:/Qt/Qt5.12.10/cmake_tur/build/CMakeFiles/generate.stamp
-C:/Qt/Qt5.12.10/cmake_tur/build/src/Static/CMakeFiles/generate.stamp
-C:/Qt/Qt5.12.10/cmake_tur/build/include/menu/CMakeFiles/generate.stamp
-C:/Qt/Qt5.12.10/cmake_tur/build/src/main/CMakeFiles/generate.stamp
+C:/Qt/Qt5.12.10/cmake_tur/build/googletest/CMakeFiles/generate.stamp
+C:/Qt/Qt5.12.10/cmake_tur/build/googletest/googlemock/CMakeFiles/generate.stamp
+C:/Qt/Qt5.12.10/cmake_tur/build/googletest/googletest/CMakeFiles/generate.stamp
+C:/Qt/Qt5.12.10/cmake_tur/build/src/Dynamic/CMakeFiles/generate.stamp
+C:/Qt/Qt5.12.10/cmake_tur/build/src/UnitTests/CMakeFiles/generate.stamp
