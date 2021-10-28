@@ -78,39 +78,39 @@ const bigInt& bigInt::operator>>=(int _n)  noexcept
 {
     return (*this = *this >> _n);
 }
-bigInt operator -(const bigInt& _n, int _t)noexcept
+const bigInt bigInt:: operator -( int _t)noexcept
 {
-    return(_n - bigInt(_t));
+    return(*this- bigInt(_t));
 }
 bigInt operator -(int _t, const bigInt& _n)noexcept
 {
     return(bigInt(_t) - _n);
 }
-bigInt operator+(const bigInt& _n, int _t)noexcept
+const bigInt bigInt:: operator+(int _t)noexcept
 {
-    return(_n + bigInt(_t));
+    return(*this + bigInt(_t));
 }
 bigInt operator+(int _t, const bigInt& _n)noexcept
 {
     return(_n + _t);
 }
-bigInt operator+(const bigInt& _n, const char* _t)noexcept
+const bigInt bigInt:: operator+(const char* _t)noexcept
 {
-    return(_n + bigInt(_t));
+    return(*this + bigInt(_t));
 }
 bigInt operator+(const char* _t, const bigInt& _n)noexcept
 {
     return(_n + _t);
 }
-bigInt operator -(const bigInt& _n, const char* _t)noexcept
+const bigInt bigInt:: operator -( const char* _t)noexcept
 {
-    return(_n - bigInt(_t));
+    return(*this - bigInt(_t));
 }
 bigInt operator -(const char* _t, const bigInt& _n)noexcept
 {
     bigInt c = _n;
     changeSgn(c);
-    return(c - _t);
+    return(c + _t);
 }
 const bigInt& bigInt::operator +=(const bigInt& _num) noexcept {
     *this = *this + _num;

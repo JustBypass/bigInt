@@ -5,18 +5,19 @@
 #ifndef CMAKE_TUR_BUT_H
 #define CMAKE_TUR_BUT_H
 
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLabel>
-#include <QPushButton>
+#include <QWidget>
+#include <QLabel>
+#include <QApplication>
+class ComboBoxEx : public QWidget {
 
-class MyButton : public QWidget {
     Q_OBJECT
-public slots:
-public:
-    MyButton(QWidget *parent = 0);
-};
 
+public:
+    void func();
+public slots:
+
+private:
+    QLabel *label;
+};
 
 #endif //CMAKE_TUR_BUT_H

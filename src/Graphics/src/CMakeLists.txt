@@ -25,6 +25,8 @@ add_executable(main ${SOURCES})
 target_link_libraries(main Qt5::Core)
 target_link_libraries(main Qt5::Gui)
 target_link_libraries(main Qt5::Widgets)
+#target_link_libraries(main Qt5::QComboBox)
+
 
 target_link_libraries(main lib)
 #target_link_libraries(main bigInt)

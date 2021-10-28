@@ -53,17 +53,17 @@ public:
     const bigInt& operator =(long long)noexcept;
 
 
-    friend bigInt operator -(const bigInt& _n, int _t)          noexcept;
-    friend bigInt operator -(int _t, const bigInt& _n)          noexcept;
+    const bigInt operator -( int )          noexcept;
+    friend bigInt operator -(int , const bigInt& )          noexcept;
 
-    friend bigInt operator+(const bigInt& _n, int _t)          noexcept;
-    friend bigInt operator+(int _t, const bigInt& _n)          noexcept;
+    const bigInt operator+( int )          noexcept;
+    friend bigInt operator+(int , const bigInt&)          noexcept;
 
-    friend bigInt operator+(const bigInt& _n, const char* _t)  noexcept;
-    friend bigInt operator+(const char* _t, const bigInt& _n)   noexcept;
+    const bigInt operator+( const char* )  noexcept;
+    friend bigInt operator+(const char* , const bigInt& )   noexcept;
 
-    friend bigInt operator -(const bigInt& _n, const char* _t)   noexcept;
-    friend bigInt operator -(const char* _t, const bigInt& _n)   noexcept;
+    const bigInt operator -(const char* )   noexcept;
+    friend bigInt operator -(const char* , const bigInt& )   noexcept;
 
 
     const bigInt operator >>(int)const noexcept;//Dividing numbor by 10
@@ -74,7 +74,7 @@ public:
     const bigInt& operator<<=(int)  noexcept;//Multypying by 10
     //Other methods
     void returnExternal();
-public:
+private:
     friend  void do_external(int, bigInt&, myVector&);
     friend void changeSgn(bigInt& a) ;
     friend char* to_str(const bigInt& a);
