@@ -106,7 +106,7 @@ bigInt::bigInt(const char* _string)noexcept {
         std::string _s = static_cast<std::string>(_string);
         check::str_check((_s));
         int p = 0;
-        if (_string[0] == '-')
+        if (_string[0] == 45)
         {
             _count = strlen(_string) - 1;
             _sgn = 1;
@@ -114,7 +114,7 @@ bigInt::bigInt(const char* _string)noexcept {
         }
         else
         {
-            _string[0] == '+' ? _count = strlen(_string) - 1, p = _count + 2 : _count = strlen(_string), p = _count + 1;
+            _string[0] == 43 ? _count = strlen(_string) - 1, p = _count + 2 : _count = strlen(_string), p = _count + 1;
             _sgn = 0;
         }
         _digit = new char[p];

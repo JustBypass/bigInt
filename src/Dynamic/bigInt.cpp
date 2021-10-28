@@ -120,8 +120,9 @@ const bigInt bigInt::operator-(const bigInt& _num) const noexcept {
     return *this + c;
 }
 const bigInt& bigInt::operator -=(const bigInt& _num)noexcept {
-    _num.get_sgn() == 1 ? *this = *this - _num : *this = *this + _num;
-    return *this;
+    bigInt c(_num);
+    changeSgn(c);
+    return *this=*this+c;
 }
 std::ostream& operator<<(std::ostream& out,const bigInt& a)noexcept {
     if (a.get_sgn() == 1)
@@ -169,8 +170,6 @@ bool bigInt::operator==(const bigInt& _num)noexcept
     }
     else return false;
 }
-
-
 const bigInt bigInt::operator>>(int _n) const noexcept {
     bigInt _new;
     _new._sgn = _sgn;
@@ -192,6 +191,35 @@ const bigInt bigInt::operator>>(int _n) const noexcept {
         _new._count--;
     }
     return _new;
+}
+const bigInt& bigInt:: operator -=(int a) noexcept {
+    bigInt v(a);
+    return (*this = *this - v);
+}
+const bigInt& bigInt:: operator +=(int a) noexcept
+{
+    bigInt v(a);
+    return (*this = *this+v);
+}
+const bigInt& bigInt:: operator -=(long long a) noexcept
+{
+    bigInt v(a);
+    return (*this = *this - v);
+}
+const bigInt& bigInt:: operator +=(long long a) noexcept
+{
+    bigInt v(a);
+    return *this = *this+v;
+}
+const bigInt& bigInt::operator=(long long a)noexcept
+{
+    bigInt v(a);
+    return *this = *this+v;
+}
+const bigInt& bigInt::operator =(int a)noexcept
+{
+    bigInt v(a);
+    return *this = v;
 }
 const bigInt bigInt::operator<<(int _n)const noexcept {
     bigInt newn;

@@ -42,7 +42,16 @@ public:
     const bigInt operator -(const bigInt& digit)const noexcept;
     const bigInt& operator +=(const char*)noexcept;
     const bigInt& operator -=(const char*)noexcept;
+    const bigInt&  operator -=(int) noexcept;
+    const bigInt&  operator +=(int) noexcept;
+    const bigInt&  operator +=(long long) noexcept;
+    const bigInt&  operator -=(long long) noexcept;
+
+
     const bigInt& operator =(const char*)noexcept;
+    const bigInt& operator =(int)noexcept;
+    const bigInt& operator =(long long)noexcept;
+
 
     friend bigInt operator -(const bigInt& _n, int _t)          noexcept;
     friend bigInt operator -(int _t, const bigInt& _n)          noexcept;
