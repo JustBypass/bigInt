@@ -57,12 +57,11 @@ public:
     friend bigInt operator -(int _t, const bigInt& _n)          noexcept;
 
     friend bigInt operator+(const bigInt& _n, int _t)          noexcept;
-
     friend bigInt operator+(int _t, const bigInt& _n)          noexcept;
 
     friend bigInt operator+(const bigInt& _n, const char* _t)  noexcept;
-
     friend bigInt operator+(const char* _t, const bigInt& _n)   noexcept;
+
     friend bigInt operator -(const bigInt& _n, const char* _t)   noexcept;
     friend bigInt operator -(const char* _t, const bigInt& _n)   noexcept;
 
@@ -75,7 +74,7 @@ public:
     const bigInt& operator<<=(int)  noexcept;//Multypying by 10
     //Other methods
     void returnExternal();
-private:
+public:
     friend  void do_external(int, bigInt&, myVector&);
     friend void changeSgn(bigInt& a) ;
     friend char* to_str(const bigInt& a);

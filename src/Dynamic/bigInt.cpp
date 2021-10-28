@@ -5,8 +5,10 @@
 #include "C:\Qt\Qt5.12.10\cmake_tur\src\Dynamic\bigInt.h"
 #include "Constructors.h"
 #include "functions.h"
+#include "translator.h"
 
-const bigInt& bigInt::operator=(bigInt&& _t)noexcept {
+const bigInt& bigInt::operator=(bigInt&& _t)noexcept
+{
     if (_digit != nullptr)
         delete(_digit);
     _count = std::move(_t._count);
