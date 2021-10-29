@@ -90,7 +90,24 @@ const bigInt bigInt:: operator+(int _t)noexcept
 {
     return(*this + bigInt(_t));
 }
+
 bigInt operator+(int _t, const bigInt& _n)noexcept
+{
+    return(_n + _t);
+}
+const bigInt bigInt:: operator -( long long _t)noexcept
+{
+    return(*this- bigInt(_t));
+}
+bigInt operator -(long long _t, const bigInt& _n)noexcept
+{
+    return(bigInt(_t) - _n);
+}
+const bigInt bigInt:: operator+(long long _t)noexcept
+{
+    return(*this + bigInt(_t));
+}
+bigInt operator+(long long _t, const bigInt& _n)noexcept
 {
     return(_n + _t);
 }

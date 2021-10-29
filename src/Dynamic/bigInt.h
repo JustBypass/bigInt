@@ -52,6 +52,11 @@ public:
     const bigInt& operator =(int)noexcept;
     const bigInt& operator =(long long)noexcept;
 
+    const bigInt operator -( long long )          noexcept;
+    friend bigInt operator -(long long , const bigInt& )          noexcept;
+
+    const bigInt operator+( long long )          noexcept;
+    friend bigInt operator+(long long , const bigInt&)          noexcept;
 
     const bigInt operator -( int )          noexcept;
     friend bigInt operator -(int , const bigInt& )          noexcept;
@@ -70,8 +75,8 @@ public:
     const bigInt operator<<(int)const  noexcept;//Multypying by 10
 
     const bigInt& operator >>=(int) noexcept;//Dividing numbor by 10
-
     const bigInt& operator<<=(int)  noexcept;//Multypying by 10
+
     //Other methods
     void returnExternal();
 private:
