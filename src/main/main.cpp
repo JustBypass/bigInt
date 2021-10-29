@@ -6,13 +6,8 @@
 #include "../../include/menu/menu.h"
 int main()
 {
-/*    menu a;
-    return a.mainloop();*/
-    bigInt a(0);
-    std::cout << (a -= bigInt(54));
-    int b;
-    std::cin>>a;
-    return 0;
+    menu a;
+    return a.mainloop();
 }
 
 

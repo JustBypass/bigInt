@@ -137,6 +137,12 @@ TEST(bigInt_t,PlusDecr)
     EXPECT_STREQ(to_str(bigInt(c)),"1");
     EXPECT_STREQ(to_str(bigInt(a)),"1");
 }
+TEST(bigInt_t, OtherOperations)
+{
+    EXPECT_STREQ(to_str(bigInt("0")-7-76578877687687+"1"),"-76578877687693");
+    EXPECT_STREQ(to_str(bigInt("0")-7-76578877687687+bigInt("1")),"-76578877687693");
+    EXPECT_STREQ(to_str(bigInt("0")-=76578877687687),"-76578877687687");
+}
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);

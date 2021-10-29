@@ -170,17 +170,29 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
+    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\src\UnitTests\DynT.vcxproj">
+      <Project>{82E92CB9-6CE3-3424-BFE6-96DBB28413FA}</Project>
+      <Name>DynT</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\src\Dynamic\bigInt2.vcxproj">
       <Project>{319CA123-697A-35D7-8EFE-770034908FE7}</Project>
       <Name>bigInt2</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\include\menu\menus.vcxproj">
-      <Project>{45334926-0382-315E-B135-0FBB3804593E}</Project>
-      <Name>menus</Name>
+    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\googletest\googlemock\gmock.vcxproj">
+      <Project>{3102DF0D-F6EB-3175-8C00-6F9FF59C13DC}</Project>
+      <Name>gmock</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\src\main\static.vcxproj">
-      <Project>{4C2E3E1B-5BF4-3A34-BF76-5D66DE7EA562}</Project>
-      <Name>static</Name>
+    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\googletest\googlemock\gmock_main.vcxproj">
+      <Project>{C0AE90BF-6CC0-3A5F-9A01-8D6F9F836EF5}</Project>
+      <Name>gmock_main</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\googletest\googletest\gtest.vcxproj">
+      <Project>{7F30DBB6-B7C5-33C7-87F5-A998C42036AB}</Project>
+      <Name>gtest</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\googletest\googletest\gtest_main.vcxproj">
+      <Project>{57AEF5AD-06B6-32CB-B15D-205584416446}</Project>
+      <Name>gtest_main</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
