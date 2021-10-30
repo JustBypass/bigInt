@@ -9,10 +9,11 @@
 
 const bigInt& bigInt::operator=(bigInt&& _t)noexcept
 {
+    std::cout<<"Move oper\n";
     if (_digit != nullptr)
         delete(_digit);
-    _count = std::move(_t._count);
-    _sgn = std::move(_t._sgn);
+    _count = (_t._count);
+    _sgn = (_t._sgn);
     _digit = new char[_count + 1];
     for (int i = 0; i < _count; i++) {
         _digit[i] = std::move(_t._digit[i]);
@@ -23,6 +24,7 @@ const bigInt& bigInt::operator=(bigInt&& _t)noexcept
 
 const bigInt& bigInt::operator=(const bigInt& _num)noexcept
 {
+    std::cout<<"Cope oper\n";
     delete(_digit);
     _digit = new char[_num._count+1];
     for (int i = _num.get_count() - 1; i >= 0; i--) {

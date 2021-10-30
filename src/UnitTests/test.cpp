@@ -43,7 +43,6 @@ TEST(bigInt_t, MinusOperator_2) {
 TEST(bigInt_t, MinusOperator_3) {
     bigInt a("435");
     bigInt b("-435");
-    bigInt c("870");
     EXPECT_STREQ(to_str(bigInt(a-b)),"870");
 }
 TEST(bigInt_t, MinusOperator_4) {
@@ -142,6 +141,8 @@ TEST(bigInt_t, OtherOperations)
     EXPECT_STREQ(to_str(bigInt("0")-7-76578877687687+"1"),"-76578877687693");
     EXPECT_STREQ(to_str(bigInt("0")-7-76578877687687+bigInt("1")),"-76578877687693");
     EXPECT_STREQ(to_str(bigInt("0")-=76578877687687),"-76578877687687");
+    EXPECT_STREQ(to_str(3+bigInt("0")-=76578877687687),"-76578877687684");
+    EXPECT_STREQ(to_str("3"+bigInt("0")-=76578877687687),"-76578877687684");
 }
 int main(int argc, char* argv[])
 {

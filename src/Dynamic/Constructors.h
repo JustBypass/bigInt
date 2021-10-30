@@ -84,8 +84,6 @@ bigInt::bigInt(myVector& _string) noexcept {
     _count = _string._size - 1;
     _string.vector[_string._size - 1] == '+' ? _sgn = 0 : _sgn = 1;
     _string.pop_back();
-    if (_digit != nullptr)
-        delete(_digit);
     _digit = new char[_string._size + 1];
     for (int i = 0; i < _string._size; i++) {
         _digit[i] = _string.vector[i];
@@ -93,6 +91,7 @@ bigInt::bigInt(myVector& _string) noexcept {
     _digit[_string._size] = '\0';
 }
 bigInt::bigInt(bigInt&& _t) noexcept {
+    std::cout<<"Move constr\n";
     _count = std::move(_t._count);
     _sgn = std::move(_t._sgn);
     _digit = new char[_count + 1];
@@ -146,8 +145,7 @@ bigInt::bigInt(const char* _string)noexcept {
     }
 }
 bigInt::bigInt(const bigInt& _num)noexcept {
-    if (_digit != nullptr)
-        delete(_digit);
+    std::cout<<"Copy constr\n";
     _digit = new char[_num._count + 1];
     for (int i = 0; i < _num.get_count(); i++) {
         _digit[i] = _num._digit[i];
