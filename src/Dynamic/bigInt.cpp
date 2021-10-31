@@ -10,16 +10,13 @@
 const bigInt& bigInt::operator=(bigInt&& _t)noexcept
 {
     std::cout<<"Move oper\n";
-    if (_digit != nullptr)
-        delete(_digit);
-    _count = (_t._count);
-    _sgn = (_t._sgn);
-    _digit = new char[_count + 1];
-    for (int i = 0; i < _count; i++) {
-        _digit[i] = std::move(_t._digit[i]);
-    }
-    _digit[_count] = '\0';
-    return *this;
+   _count = _t._count;
+   _sgn = _t._sgn;
+   _digit = _t._digit;
+   _t._digit = nullptr;
+   _t._sgn = 0;
+   _t._count = 0;
+   return *this ;
 }
 
 const bigInt& bigInt::operator=(const bigInt& _num)noexcept

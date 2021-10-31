@@ -90,15 +90,11 @@ bigInt::bigInt(myVector& _string) noexcept {
     }
     _digit[_string._size] = '\0';
 }
-bigInt::bigInt(bigInt&& _t) noexcept {
-    std::cout<<"Move constr\n";
-    _count = std::move(_t._count);
-    _sgn = std::move(_t._sgn);
-    _digit = new char[_count + 1];
-    for (int i = 0; i < _count; i++) {
-        _digit[i] = _t._digit[i];
-    }
-    _digit[_count] = '\0';
+bigInt::bigInt(bigInt&& _t) noexcept :_count(_t._count),_sgn(_t._sgn),_digit(_t._digit)
+{
+    _t._digit = nullptr;
+    _t._sgn = 0;
+    _t._count = 0;
 }
 bigInt::bigInt(const char* _string)noexcept {
     try {
