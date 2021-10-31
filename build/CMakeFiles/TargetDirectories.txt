@@ -2,5 +2,5 @@ C:/Qt/Qt5.12.10/cmake_tur/build/CMakeFiles/ALL_BUILD.dir
 C:/Qt/Qt5.12.10/cmake_tur/build/CMakeFiles/ZERO_CHECK.dir
 C:/Qt/Qt5.12.10/cmake_tur/build/src/Dynamic/CMakeFiles/bigInt2.dir
 C:/Qt/Qt5.12.10/cmake_tur/build/src/Dynamic/CMakeFiles/ALL_BUILD.dir
-C:/Qt/Qt5.12.10/cmake_tur/build/include/menu/CMakeFiles/menus.dir
-C:/Qt/Qt5.12.10/cmake_tur/build/src/main/CMakeFiles/static.dir
+C:/Qt/Qt5.12.10/cmake_tur/build/src/Graphics/src/CMakeFiles/proj.dir
+C:/Qt/Qt5.12.10/cmake_tur/build/src/Graphics/src/CMakeFiles/ALL_BUILD.dir

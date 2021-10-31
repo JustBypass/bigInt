@@ -328,6 +328,15 @@ library_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 library_SOURCE_DIR:STATIC=C:/Qt/Qt5.12.10/cmake_tur/src/Dynamic
 
+//Value Computed by CMake
+proj_BINARY_DIR:STATIC=C:/Qt/Qt5.12.10/cmake_tur/build/src/Graphics/src
+
+//Value Computed by CMake
+proj_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+proj_SOURCE_DIR:STATIC=C:/Qt/Qt5.12.10/cmake_tur/src/Graphics/src
+
 
 ########################
 # INTERNAL cache entries
@@ -447,7 +456,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib

@@ -10,6 +10,8 @@
 const bigInt& bigInt::operator=(bigInt&& _t)noexcept
 {
     std::cout<<"Move oper\n";
+    if(_digit)
+        delete(_digit);
    _count = _t._count;
    _sgn = _t._sgn;
    _digit = _t._digit;
