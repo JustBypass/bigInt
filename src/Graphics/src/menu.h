@@ -39,6 +39,7 @@ private:
     int n = 0;
     bigInt h = 0;
     QSound* qs = 0;
+    QSound* news = 0;
     errors* err = 0;
 public:
     menu(QWidget * p = nullptr){
@@ -47,6 +48,8 @@ public:
         a = new QPushButton("Plus",parent);
         QListWidget *lw = new QListWidget(this);
         qs = new QSound("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\zvuk41.wav");
+        news = new QSound("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\sungha.wav");
+        news->play();
         lw->addItem("ferf");
         lw->addItem("The Exorcist");
         lw->addItem("Notes on a scandal");
@@ -92,6 +95,7 @@ public:
         //  vbox2->setSpacing(15);
       //
          vbox->setSpacing(3);
+        vbox->addStretch(10);
         vbox->addWidget(lbl);
         vbox->addWidget(e);
         vbox->addWidget(a);
@@ -99,6 +103,7 @@ public:
         vbox->addWidget(qp);
         vbox->addWidget(qp1);
         vbox->addWidget(qp2);
+
         vbox->addStretch(10);
         vbox->addWidget(exit);
         vbox->addStretch(3);
