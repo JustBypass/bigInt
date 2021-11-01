@@ -160,5 +160,6 @@ public slots:
     void qui(){
         this->close();
     }
+    void doing(){}
 };
 #endif //CMAKE_TUR_MENU_H
