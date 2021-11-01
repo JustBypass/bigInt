@@ -16,14 +16,9 @@
 #include <QTextStream>
 #include <QMainWindow>
 #include <QSound>
-//#include <QMenu>
-//#include <QMenuBar>
-//#include <QStatusBar>
-//#include <QAction>
-//#include <QToolBar>
-//#include <QIcon>
+#include <QUrl>
+#include<QDesktopServices>
 #include <QString>
-//#include"bigInt.h"
 #include <QMenu>
 #include <QMenuBar>
 #include "errors.h"
@@ -42,10 +37,22 @@ private:
     QSound* news = 0;
     errors* err = 0;
 public:
-    menu(QWidget * p = nullptr){
+    menu(QWidget * p = nullptr)
+    {
         parent = new QWidget();
-        e = new QLineEdit("Enter text",parent);
+        e = new QLineEdit(parent);
+        e->setPlaceholderText("Вводите число...");
         a = new QPushButton("Plus",parent);
+        a->setStyleSheet(
+                " QPushButton {\n"
+                "     border: 2px solid #8f8f91;\n"
+                "     border-radius: 6px;\n"
+                "     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+                "                                       stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+                "     min-width: 80px;\n"
+                " }"
+
+        );
         QListWidget *lw = new QListWidget(this);
         qs = new QSound("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\zvuk41.wav");
       //  news = new QSound("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\sungha.wav");
@@ -56,18 +63,59 @@ public:
         lw->addItem("Fargo");
         lw->addItem("Capote");
         QPushButton* qp = new QPushButton("Minus",this);
+        qp->setStyleSheet(
+                " QPushButton {\n"
+                "     border: 2px solid #8f8f91;\n"
+                "     border-radius: 6px;\n"
+                "     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+                "                                       stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+                "     min-width: 80px;\n"
+                " }"
 
+        );
         QPushButton* qp1 = new QPushButton("DelTen",this);
+        qp1->setStyleSheet(
+                " QPushButton {\n"
+                "     border: 2px solid #8f8f91;\n"
+                "     border-radius: 6px;\n"
+                "     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+                "                                       stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+                "     min-width: 80px;\n"
+                " }"
+
+        );
         QPushButton* qp2 = new QPushButton("MulTen",this);
+        qp2->setStyleSheet(
+                " QPushButton {\n"
+                "     border: 2px solid #8f8f91;\n"
+                "     border-radius: 6px;\n"
+                "     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+                "                                       stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+                "     min-width: 80px;\n"
+                " }"
+
+        );
         QPushButton* exit= new QPushButton("Exit",this);
         exit->setStyleSheet(
-                "QPushButton{"
-                "background-color: rgb(6, 0, 60);"
-                "border-radius: 20px 20px 20px 20px;"
-                "QPushButton:hover{"
-                "background-color: rgb(25,13,00);} "
-                "QPushButton:pressed  {"
-                "background-color: rgb(232,95,76); } "
+              " QPushButton {\n"
+              "     border: 2px solid #8f8f91;\n"
+              "     border-radius: 6px;\n"
+              "     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+              "                                       stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+              "     min-width: 80px;\n"
+              " }"
+
+        );
+        QPushButton* myGit= new QPushButton("Github",this);
+        myGit->setStyleSheet(
+                " QPushButton {\n"
+                "     border: 2px solid #8f8f91;\n"
+                "     border-radius: 6px;\n"
+                "     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+                "                                       stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+                "     min-width: 80px;\n"
+                " }"
+
         );
         QVBoxLayout *vbox = new QVBoxLayout();
         QHBoxLayout *vbox2 = new QHBoxLayout(this);
@@ -83,7 +131,8 @@ public:
         vbox->addWidget(qp);
         vbox->addWidget(qp1);
         vbox->addWidget(qp2);
-
+        vbox->setSpacing(3);
+        vbox->addWidget(myGit);
         vbox->addStretch(10);
         vbox->addWidget(exit);
         vbox->addStretch(3);
@@ -98,6 +147,8 @@ public:
         connect(qp1,&QPushButton::clicked,this,&menu::delten);
         connect(qp2,&QPushButton::clicked,this,&menu::multen);
         connect(exit,&QPushButton::clicked,this,&menu::qui);
+        connect(myGit,&QPushButton::clicked,this,&menu::link);
+
         err = new errors();
     }
     ~menu()
@@ -136,6 +187,9 @@ public slots:
     }
     void qui(){
         this->close();
+    }
+    void link(){
+        QDesktopServices::openUrl(QUrl("https://dumponce.github.io"));
     }
 };
 #endif //CMAKE_TUR_MENU_H

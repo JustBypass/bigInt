@@ -17,9 +17,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5Core)
 find_package(Qt5Widgets)
 find_package(Qt5Multimedia)
+
 add_executable(proj
         main.cpp
         menu.h
         errors.h
         )
-target_link_libraries(proj Qt5::Core Qt5::Widgets bigInt2 Qt5::Multimedia)
+target_link_libraries(proj Qt5::Core Qt5::Widgets bigInt2 Qt5::Multimedia  )

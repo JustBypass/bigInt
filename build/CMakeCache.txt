@@ -255,6 +255,9 @@ INSTALL_GTEST:BOOL=ON
 //The directory containing a CMake configuration file for Qt5Core.
 Qt5Core_DIR:PATH=C:/Qt/Qt5.12.10/5.12.10/msvc2017_64/lib/cmake/Qt5Core
 
+//The directory containing a CMake configuration file for Qt5DesktopServices.
+Qt5DesktopServices_DIR:PATH=Qt5DesktopServices_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for Qt5Gui.
 Qt5Gui_DIR:PATH=C:/Qt/Qt5.12.10/5.12.10/msvc2017_64/lib/cmake/Qt5Gui
 
@@ -264,8 +267,17 @@ Qt5Multimedia_DIR:PATH=C:/Qt/Qt5.12.10/5.12.10/msvc2017_64/lib/cmake/Qt5Multimed
 //The directory containing a CMake configuration file for Qt5Network.
 Qt5Network_DIR:PATH=C:/Qt/Qt5.12.10/5.12.10/msvc2017_64/lib/cmake/Qt5Network
 
+//The directory containing a CMake configuration file for Qt5Services.
+Qt5Services_DIR:PATH=Qt5Services_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for Qt5Sound.
 Qt5Sound_DIR:PATH=Qt5Sound_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for Qt5URL.
+Qt5URL_DIR:PATH=Qt5URL_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for Qt5Url.
+Qt5Url_DIR:PATH=Qt5Url_DIR-NOTFOUND
 
 //The directory containing a CMake configuration file for Qt5Widgets.
 Qt5Widgets_DIR:PATH=C:/Qt/Qt5.12.10/5.12.10/msvc2017_64/lib/cmake/Qt5Widgets
@@ -465,7 +477,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib

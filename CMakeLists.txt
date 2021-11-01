@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 
 project(cmake_tur)
 set(CMAKE_CXX_STANDARD 20)
-set(VAR 3)
+set(VAR 5)
 if(${VAR} EQUAL 1) #1 - 3A | 2 - 3A(TEST) | 3 - 3B | 4 - 3B(TEST)
     enable_testing()
     add_subdirectory(googletest)

@@ -35,8 +35,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("C:/Qt/Qt5.12.10/cmake_tur/build/src/Dynamic/cmake_install.cmake")
-  include("C:/Qt/Qt5.12.10/cmake_tur/build/include/menu/cmake_install.cmake")
-  include("C:/Qt/Qt5.12.10/cmake_tur/build/src/main/cmake_install.cmake")
+  include("C:/Qt/Qt5.12.10/cmake_tur/build/src/Graphics/src/cmake_install.cmake")
 
 endif()
 
