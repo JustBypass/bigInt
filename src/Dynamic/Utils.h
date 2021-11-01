@@ -13,7 +13,7 @@ namespace check {
             if (c < 48 || c > 57) {
                 if(i == 0&&((c == 45)||c == 43)){}
                 else{
-                    throw "String is uncorrect";
+                    throw std::runtime_error("Bad things happened");
                     break;
                 }
             }

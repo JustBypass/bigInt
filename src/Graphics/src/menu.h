@@ -48,15 +48,14 @@ public:
         a = new QPushButton("Plus",parent);
         QListWidget *lw = new QListWidget(this);
         qs = new QSound("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\zvuk41.wav");
-        news = new QSound("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\sungha.wav");
-        news->play();
+      //  news = new QSound("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\sungha.wav");
+      //  news->play();
         lw->addItem("ferf");
         lw->addItem("The Exorcist");
         lw->addItem("Notes on a scandal");
         lw->addItem("Fargo");
         lw->addItem("Capote");
         QPushButton* qp = new QPushButton("Minus",this);
-
 
         QPushButton* qp1 = new QPushButton("DelTen",this);
         QPushButton* qp2 = new QPushButton("MulTen",this);
@@ -65,9 +64,6 @@ public:
                 "QPushButton{"
                 "background-color: rgb(6, 0, 60);"
                 "border-radius: 20px 20px 20px 20px;"
-//                "border-bottom: 3px transparent;"
-//                "border-right: 2px transparent;"
-//                "border-left: 2px transparent;}"
                 "QPushButton:hover{"
                 "background-color: rgb(25,13,00);} "
                 "QPushButton:pressed  {"
@@ -75,25 +71,9 @@ public:
         );
         QVBoxLayout *vbox = new QVBoxLayout();
         QHBoxLayout *vbox2 = new QHBoxLayout(this);
-    //    QPixmap pixma("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\imagee.jpg");
-       // QAction *quit = new QAction(pixma, "&Quit", this);
-       // quit->setShortcut(tr("CTRL+Q"));
-//    QMenuBar menuBar;
-//    QMenu *menu= new QMenu("Menu");
-//    menu->addAction("Display");
-//    menu->addAction("Exit");
-//    menuBar.addMenu(menu);
-//    menuBar.show();
         lbl = new QLabel("0",this);
         lbl->setStyleSheet("color:red");
-      //  vbox->setSpacing(1);
-      //  vbox2->setSpacing(1);
-
         vbox2->addWidget(lw);
-
-
-        //  vbox2->setSpacing(15);
-      //
          vbox->setSpacing(3);
         vbox->addStretch(10);
         vbox->addWidget(lbl);
@@ -108,9 +88,6 @@ public:
         vbox->addWidget(exit);
         vbox->addStretch(3);
         QLabel *label = new QLabel(this);
-    //    label->setPixmap(pixma);
-
-   //     vbox2->addWidget(label, 0, Qt::AlignCenter);
         setLayout(vbox);
         setLayout(vbox2);
 
@@ -160,6 +137,5 @@ public slots:
     void qui(){
         this->close();
     }
-
 };
 #endif //CMAKE_TUR_MENU_H

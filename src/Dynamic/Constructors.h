@@ -135,8 +135,9 @@ bigInt::bigInt(const char* _string)noexcept {
         }
         _digit[p - 1] = '\0';
     }
-    catch (...) {
-        std::cerr << "Uncorrect_string\n";
+    catch (std::exception& ex) {
+       // std::cerr << "Uncorrect_string\n";
+        std::cerr<<ex.what()<<std::endl;
         *this = bigInt(0);
     }
 }

@@ -174,9 +174,13 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{319CA123-697A-35D7-8EFE-770034908FE7}</Project>
       <Name>bigInt2</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\src\Graphics\src\proj.vcxproj">
-      <Project>{5F16D67A-F4D3-3945-9FFA-0FF28F987361}</Project>
-      <Name>proj</Name>
+    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\include\menu\menus.vcxproj">
+      <Project>{45334926-0382-315E-B135-0FBB3804593E}</Project>
+      <Name>menus</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Qt\Qt5.12.10\cmake_tur\build\src\main\static.vcxproj">
+      <Project>{4C2E3E1B-5BF4-3A34-BF76-5D66DE7EA562}</Project>
+      <Name>static</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
