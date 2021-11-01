@@ -258,6 +258,15 @@ Qt5Core_DIR:PATH=C:/Qt/Qt5.12.10/5.12.10/msvc2017_64/lib/cmake/Qt5Core
 //The directory containing a CMake configuration file for Qt5Gui.
 Qt5Gui_DIR:PATH=C:/Qt/Qt5.12.10/5.12.10/msvc2017_64/lib/cmake/Qt5Gui
 
+//The directory containing a CMake configuration file for Qt5Multimedia.
+Qt5Multimedia_DIR:PATH=C:/Qt/Qt5.12.10/5.12.10/msvc2017_64/lib/cmake/Qt5Multimedia
+
+//The directory containing a CMake configuration file for Qt5Network.
+Qt5Network_DIR:PATH=C:/Qt/Qt5.12.10/5.12.10/msvc2017_64/lib/cmake/Qt5Network
+
+//The directory containing a CMake configuration file for Qt5Sound.
+Qt5Sound_DIR:PATH=Qt5Sound_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for Qt5Widgets.
 Qt5Widgets_DIR:PATH=C:/Qt/Qt5.12.10/5.12.10/msvc2017_64/lib/cmake/Qt5Widgets
 

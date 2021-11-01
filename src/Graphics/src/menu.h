@@ -14,6 +14,8 @@
 #include <QListWidget>
 #include <QPixmap>
 #include <QTextStream>
+#include <QMainWindow>
+#include <QSound>
 //#include <QMenu>
 //#include <QMenuBar>
 //#include <QStatusBar>
@@ -22,6 +24,8 @@
 //#include <QIcon>
 #include <QString>
 //#include"bigInt.h"
+#include <QMenu>
+#include <QMenuBar>
 class menu:public QWidget{//Сделать отнаст=ледованным от QMainMenu
     Q_OBJECT
 private:
@@ -45,10 +49,21 @@ public:
         lw->addItem("Fargo");
         lw->addItem("Capote");
         QPushButton* qp = new QPushButton("Minus",this);
+        QPushButton* qp1 = new QPushButton("DelTen",this);
+        QPushButton* qp2 = new QPushButton("MulTen",this);
         QVBoxLayout *vbox = new QVBoxLayout();
         QVBoxLayout *vbox2 = new QVBoxLayout(this);
-        QPixmap pixma("/home/nikita/Загрузки/object.png");
+        QPixmap pixma("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\imagee.jpg");
+       // QAction *quit = new QAction(pixma, "&Quit", this);
+       // quit->setShortcut(tr("CTRL+Q"));
+//    QMenuBar menuBar;
+//    QMenu *menu= new QMenu("Menu");
+//    menu->addAction("Display");
+//    menu->addAction("Exit");
+//    menuBar.addMenu(menu);
+//    menuBar.show();
         lbl = new QLabel("0",this);
+        lbl->setStyleSheet("color:red");
         vbox->setSpacing(1);
         vbox2->setSpacing(1);
 
@@ -58,7 +73,8 @@ public:
         vbox->addWidget(lbl);
         vbox->addWidget(a);
         vbox->addWidget(qp);
-
+        vbox->addWidget(qp1);
+        vbox->addWidget(qp2);
         QLabel *label = new QLabel(this);
         label->setPixmap(pixma);
 
@@ -68,44 +84,37 @@ public:
 
         connect(a,&QPushButton::clicked,this,&menu::plus);
         connect(qp,&QPushButton::clicked,this,&menu::minus);
-
+        connect(qp1,&QPushButton::clicked,this,&menu::delten);
+        connect(qp2,&QPushButton::clicked,this,&menu::multen);
     }
     ~menu(){
         delete(parent);
     }
 public slots:
     void plus(){
- QString nw = e->text();
-// int c = nw.toInt();
-   //  bigInt newn();
-    h+=nw.toLocal8Bit().data();//newn;
-     e->clear();
-    const char* p = to_str(h);
-    lbl->setText(p);
-    // h +=c;
-    // e->clear();
-// QString a = QString::number(n);
-// lbl->setText(a);
-// QTextStream out(stdout);//For debugging
-// out«"minus\n";
+        QString nw = e->text();
+
+        h+=nw.toLocal8Bit().data();//newn;
+         e->clear();
+        const char* p = to_str(h);
+        lbl->setText(p);
     }
     void minus(){
-
-// QString nw = e->text();
-// int c = nw.toInt();
-// bigInt newn(nw.toLocal8Bit().data())
-//h-=newn;
-// e->clear();
-//const char* p = to_str(h);
-//lbl->setText(p);
-// n -=c;
-// e->clear();
-// QString a = QString::number(n);
-// lbl->setText(a);
-// QTextStream out(stdout);//For debugging
-// out«"minus\n";
+        QString nw = e->text();
+        h-=nw.toLocal8Bit().data();//newn;
+        e->clear();
+        const char* p = to_str(h);
+        lbl->setText(p);
     }
-    void delten(){}
-    void multen(){}
+    void delten(){
+        h>>=1;//newn;
+        const char* p = to_str(h);
+        lbl->setText(p);
+    }
+    void multen(){
+        h<<=1;//newn;
+        const char* p = to_str(h);
+        lbl->setText(p);
+    }
 };
 #endif //CMAKE_TUR_MENU_H

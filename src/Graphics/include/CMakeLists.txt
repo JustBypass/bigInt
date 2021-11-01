@@ -11,4 +11,4 @@ cmake_minimum_required(VERSION 3.9)
 #et(CMAKE_BUILD_TYPE "Debug")
 
 
-add_library(lib STATIC  but.h but.cpp)
+add_library(lib STATIC  menu.h)
