@@ -19,7 +19,14 @@ public:
     second(QWidget* parent = nullptr){
         parent = new QWidget();
         qpb = new QPushButton("Home",this);
-        QString a = "This is info about my calculator, whicj uses bigInt dynamic library";
+        QString a = "This is info about my calculator, whicj uses bigInt dynamic library\n"
+                    "My woeks foe this moment are:\n"
+                    "--->This qt app for bigInt class\n"
+                    "--->My bigInt library\n"
+                    "--->Air battle game made on c++\n"
+                    "--->My own web-site\n"
+                    "--->Good knowledge of english\n"
+                    ;
         lbl = new QLabel(a);
         QVBoxLayout* vbox = new QVBoxLayout();
         vbox->addWidget(lbl);

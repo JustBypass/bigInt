@@ -11,6 +11,8 @@
 #include <QLineEdit>
 #include <QGridLayout>
 #include <QLabel>
+#include <QPalette>
+#include <QBrush>
 #include <QListWidget>
 #include <QPixmap>
 #include <QTextStream>
@@ -70,13 +72,18 @@ public:
          e = new QLineEdit(this);
          e->setPlaceholderText("Вводите число...");
          a = new QPushButton("Plus");
+         QPixmap pixmap("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\icon.png");
+         QIcon ButtonIcon(pixmap);
+         a->setIcon(ButtonIcon);
          a->setStyleSheet(
                  " QPushButton {\n"
                  "     border: 2px solid #8f8f91;\n"
                  "     border-radius: 6px;\n"
+
                  "     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
                  "                                       stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
                  "     min-width: 80px;\n"
+                 "     background-image: url(C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\border.png)"
                  " }"
 
          );
@@ -91,6 +98,8 @@ public:
          lw->addItem("Fargo");
          lw->addItem("Capote");*/
          QPushButton *qp = new QPushButton("Minus", this);
+         QIcon ButtonIcon1(pixmap);
+         qp->setIcon(ButtonIcon);
          qp->setStyleSheet(
                  " QPushButton {\n"
                  "     border: 2px solid #8f8f91;\n"
@@ -102,6 +111,8 @@ public:
 
          );
          QPushButton *qp1 = new QPushButton("DelTen", this);
+         QIcon ButtonIco2(pixmap);
+         qp1->setIcon(ButtonIcon);
          qp1->setStyleSheet(
                  " QPushButton {\n"
                  "     border: 2px solid #8f8f91;\n"
@@ -113,6 +124,8 @@ public:
 
          );
          QPushButton *qp2 = new QPushButton("MulTen", this);
+         QIcon ButtonIcon3(pixmap);
+         qp2->setIcon(ButtonIcon3);
          qp2->setStyleSheet(
                  " QPushButton {\n"
                  "     border: 2px solid #8f8f91;\n"
@@ -124,6 +137,10 @@ public:
 
          );
          QPushButton *exit = new QPushButton("Exit", this);
+         QPixmap pixmap2("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\exit.png");
+
+         QIcon ButtonIcon4(pixmap2);
+         exit->setIcon(ButtonIcon4);
          exit->setStyleSheet(
                  " QPushButton {\n"
                  "     border: 2px solid #8f8f91;\n"
@@ -135,6 +152,8 @@ public:
 
          );
          QPushButton *myGit = new QPushButton("Github", this);
+         QIcon ButtonIcon5(pixmap);
+         myGit->setIcon(ButtonIcon5);
          myGit->setStyleSheet(
                  " QPushButton {\n"
                  "     border: 2px solid #8f8f91;\n"
