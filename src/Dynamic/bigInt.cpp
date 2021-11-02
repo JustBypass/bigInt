@@ -16,8 +16,8 @@ const bigInt& bigInt::operator=(bigInt&& _t)noexcept
    _sgn = _t._sgn;
    _digit = _t._digit;
    _t._digit = nullptr;
-   _t._sgn = 0;
-   _t._count = 0;
+   _t._sgn = {};
+   _t._count = {};
    return *this ;
 }
 

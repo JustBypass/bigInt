@@ -261,6 +261,9 @@ Qt5DesktopServices_DIR:PATH=Qt5DesktopServices_DIR-NOTFOUND
 //The directory containing a CMake configuration file for Qt5Gui.
 Qt5Gui_DIR:PATH=C:/Qt/Qt5.12.10/5.12.10/msvc2017_64/lib/cmake/Qt5Gui
 
+//The directory containing a CMake configuration file for Qt5MainWindow.
+Qt5MainWindow_DIR:PATH=Qt5MainWindow_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for Qt5Multimedia.
 Qt5Multimedia_DIR:PATH=C:/Qt/Qt5.12.10/5.12.10/msvc2017_64/lib/cmake/Qt5Multimedia
 

@@ -389,6 +389,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Qt\Qt5.12.10\cmake_tur\src\Graphics\src\main.cpp" />
     <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\src\Graphics\src\menu.h" />
     <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\src\Graphics\src\errors.h" />
+    <ClInclude Include="C:\Qt\Qt5.12.10\cmake_tur\src\Graphics\src\second.h" />
     <ClCompile Include="C:\Qt\Qt5.12.10\cmake_tur\build\src\Graphics\src\proj_autogen\mocs_compilation_Release.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</ExcludedFromBuild>

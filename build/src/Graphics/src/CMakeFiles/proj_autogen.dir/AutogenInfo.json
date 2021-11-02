@@ -64,6 +64,12 @@
 			"MU",
 			"EWIEGA46WW/moc_menu.cpp",
 			null
+		],
+		[
+			"C:/Qt/Qt5.12.10/cmake_tur/src/Graphics/src/second.h",
+			"MU",
+			"EWIEGA46WW/moc_second.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],

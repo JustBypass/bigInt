@@ -4,3 +4,6 @@ C:/Qt/Qt5.12.10/cmake_tur/src/Graphics/src/errors.h
 C:/Qt/Qt5.12.10/cmake_tur/src/Graphics/src/menu.h
  mmc:Q_OBJECT
 C:/Qt/Qt5.12.10/cmake_tur/src/Graphics/src/main.cpp
+C:/Qt/Qt5.12.10/cmake_tur/src/Graphics/src/second.h
+ mmc:Q_OBJECT
+C:/Qt/Qt5.12.10/cmake_tur/src/Graphics/src/menu.cpp

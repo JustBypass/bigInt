@@ -12,8 +12,8 @@ bigInt::~bigInt() noexcept
 {
     delete (_digit);
     _digit = nullptr;
-    _count = 0;
-    _sgn = 0;
+    _count = {};
+    _sgn = {};
 }
 bigInt::bigInt(long long _number)noexcept
 {
@@ -28,7 +28,7 @@ bigInt::bigInt(long long _number)noexcept
     }
     else {
         long long newn = _number;
-        int g = 0;
+        int g = {};
         while (newn != (long long)0) {
             long long _el = (newn % 10);
             newn = (newn - _el) / 10;
@@ -49,34 +49,6 @@ bigInt::bigInt(long long _number)noexcept
 
 bigInt::bigInt(int _number) noexcept
 {
-    /*_number >= 0 ? _sgn = 0 : _sgn = 1;
-    if (_number < 0)
-        _number *= -1;
-    if (_number == (int)0) {
-        _count = 1;
-        _digit = new char[2];
-        _digit[0] = '0';
-        _digit[1] = '\0';
-    }
-    else {
-        int newn = _number;
-        int g = 0;
-        while (newn != (int)0) {
-            int _el = (newn % 10);
-            newn = (newn - _el) / 10;
-            g++;
-        }
-        _digit = new char[g + 1];
-        for (int i = 0; i < g; i++) {
-            if (_number == (int)0)
-                break;
-            int _el = (_number % 10);
-            _number = (_number - _el) / 10;
-            _digit[i] = _el + '0';
-        }
-        _digit[g] = '\0';
-        _count = g;
-    }*/
     *this = bigInt(static_cast<long long>(_number));
 }
 
@@ -100,7 +72,7 @@ bigInt::bigInt(const char* _string)noexcept {
     try {
         std::string _s = static_cast<std::string>(_string);
         check::str_check((_s));
-        int p = 0;
+        int p{};
         if (_string[0] == 45)
         {
             _count = strlen(_string) - 1;
