@@ -5,29 +5,36 @@
 #ifndef CMAKE_TUR_MENU_H
 #define CMAKE_TUR_MENU_H
 #include "C:\Qt\Qt5.12.10\cmake_tur\src\Dynamic\bigInt.h"
+
 #include <QPushButton>
 #include <QBoxLayout>
-#include <iostream>
+
 #include <QLineEdit>
-#include <QGridLayout>
+
 #include <QLabel>
 #include <QPalette>
 #include <QBrush>
 #include <QListWidget>
 #include <QPixmap>
 #include <QTextStream>
-#include <QMainWindow>
-#include <QSound>
 #include <QUrl>
+
+#include <QGraphicsItem>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+
+#include <QSound>
+
 #include<QDesktopServices>
 #include <QString>
+
 #include <QMenu>
 #include <QMenuBar>
-#include "errors.h"
-#include "second.h"
+
 #include <QApplication>
 
-
+#include "errors.h"
+#include "second.h"
 
 class menu:public QWidget {//Сделать отнаст=ледованным от QMainMenu
     Q_OBJECT
@@ -38,7 +45,6 @@ private:
       QLineEdit* e = 0;
       QGridLayout *grid = 0;
       QLabel* lbl = 0;
-      int n = 0;
       bigInt h = 0;
       QSound* qs = 0;
       QSound* news = 0;
@@ -49,6 +55,8 @@ private:
       QVBoxLayout* lo = {};
       QPushButton* qp = {};
       QPushButton* qp2= {};
+      QGraphicsScene* qgs = {};
+      QGraphicsView* qgv = 0;
 public:
      menu(QWidget* parent = nullptr):parent(new QWidget){
 
@@ -71,6 +79,12 @@ public:
 
          e = new QLineEdit(this);
          e->setPlaceholderText("Вводите число...");
+
+         qgs = new QGraphicsScene(0,0,40,40,this);
+         qgs->addRect(qgs->sceneRect());
+      //   setScene(qgs);
+         qgv = new QGraphicsView(this);
+         qgv->setScene(qgs);
          a = new QPushButton("Plus");
          QPixmap pixmap("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\icon.png");
          QIcon ButtonIcon(pixmap);
@@ -91,12 +105,6 @@ public:
          qs = new QSound("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\zvuk41.wav");
          //  news = new QSound("C:\\Qt\\Qt5.12.10\\cmake_tur\\src\\Graphics\\forms\\sungha.wav");
          //  news->play();
-        // QListWidget *lw = new QListWidget;
-        /* lw->addItem("ferf");
-         lw->addItem("The Exorcist");
-         lw->addItem("Notes on a scandal");
-         lw->addItem("Fargo");
-         lw->addItem("Capote");*/
          QPushButton *qp = new QPushButton("Minus", this);
          QIcon ButtonIcon1(pixmap);
          qp->setIcon(ButtonIcon);
@@ -187,6 +195,7 @@ public:
          vbox->addStretch(10);
          vbox->addWidget(exit);
          vbox->addStretch(3);
+         vbox->addWidget(qgv);//Хочу какую то анимацию тут
          QLabel *label = new QLabel(this);
          // setLayout(vbox);
           vbox2->addLayout(vbox);
@@ -216,7 +225,7 @@ public slots:
         qs->play();
         QString nw = e->text();
         h+=nw.toLocal8Bit().data();//newn;
-         e->clear();
+        e->clear();
         const char* p = to_str(h);
         lbl->setText(p);
     }
