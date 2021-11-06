@@ -2,7 +2,7 @@
 // Created by Admin on 22.10.2021.
 //
 
-#include "C:\Qt\Qt5.12.10\cmake_tur\src\Dynamic\bigInt.h"
+#include "C:\Users\Admin\CLionProjects\untitled12\bigInt\src\Dynamic\bigInt.h"
 #include "Constructors.h"
 #include "functions.h"
 #include "translator.h"
@@ -69,15 +69,17 @@ const bigInt bigInt::operator +(const bigInt& _num)const noexcept
             vec.push_back('-');
         }
     }
-    return bigInt(vec);
+    return (bigInt(vec));
 }
 const bigInt& bigInt::operator<<=(int _n)  noexcept
 {
-    return (*this = *this << _n);
+    *this = *this << _n;
+    return (*this );
 }
 const bigInt& bigInt::operator>>=(int _n)  noexcept
 {
-    return (*this = *this >> _n);
+    *this = *this >> _n;
+    return (*this);
 }
 const bigInt bigInt:: operator -( int _t)noexcept
 {
@@ -89,7 +91,7 @@ bigInt operator -(int _t, const bigInt& _n)noexcept
 }
 const bigInt bigInt:: operator+(int _t)noexcept
 {
-    return(*this + bigInt(_t));
+    return *this + bigInt(_t);
 }
 
 bigInt operator+(int _t, const bigInt& _n)noexcept
@@ -98,7 +100,7 @@ bigInt operator+(int _t, const bigInt& _n)noexcept
 }
 const bigInt bigInt:: operator -( long long _t)noexcept
 {
-    return(*this- bigInt(_t));
+    return(*this - bigInt(_t));
 }
 bigInt operator -(long long _t, const bigInt& _n)noexcept
 {
@@ -142,7 +144,8 @@ const bigInt bigInt::operator-(const bigInt& _num) const noexcept {
 const bigInt& bigInt::operator -=(const bigInt& _num)noexcept {
     bigInt c(_num);
     changeSgn(c);
-    return *this=*this+c;
+    *this=*this+c;
+    return *this;
 }
 std::ostream& operator<<(std::ostream& out,const bigInt& a)noexcept {
     if (a.get_sgn() == 1)
@@ -158,7 +161,8 @@ const bigInt& bigInt::operator+=(const char* _t) noexcept{
     return *this;
 }
 const bigInt& bigInt::operator-=(const char* _t)noexcept {
-    return (*this =*this - (_t));
+    *this =*this - (_t);
+    return (*this);
 }
 const bigInt& bigInt::operator =(const char* _t) noexcept {
     bigInt _num(_t);
@@ -214,27 +218,32 @@ const bigInt bigInt::operator>>(int _n) const noexcept {
 }
 const bigInt& bigInt:: operator -=(int a) noexcept {
     bigInt v(a);
-    return (*this = *this - v);
+    *this = *this - v;
+    return (*this);
 }
 const bigInt& bigInt:: operator +=(int a) noexcept
 {
     bigInt v(a);
-    return (*this = *this+v);
+    *this = *this+v;
+    return (*this );
 }
 const bigInt& bigInt:: operator -=(long long a) noexcept
 {
     bigInt v(a);
-    return (*this = *this - v);
+    *this = *this - v;
+    return (*this);
 }
 const bigInt& bigInt:: operator +=(long long a) noexcept
 {
     bigInt v(a);
-    return *this = *this+v;
+    *this = *this+v;
+    return *this;
 }
 const bigInt& bigInt::operator=(long long a)noexcept
 {
     bigInt v(a);
-    return *this = *this+v;
+    *this = *this+v;
+    return *this;
 }
 const bigInt& bigInt::operator =(int a)noexcept
 {

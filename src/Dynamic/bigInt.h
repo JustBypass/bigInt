@@ -24,15 +24,15 @@ public:
     bigInt(bigInt&&)                                             noexcept;
     ///Деструкторы
     ~bigInt()                                                    noexcept;
-    // Getters
-    inline int get_count()const noexcept { return _count; }
-    inline bool get_sgn()const noexcept { return _sgn; }
-    //Operators
+    /// Getters
+    [[nodiscard]] inline int get_count()const noexcept { return _count; }
+    [[nodiscard]] inline bool get_sgn()const noexcept { return _sgn; }
+    ///Operators
     const bigInt& operator +=(const bigInt& digit)               noexcept;
     const bigInt operator ++()                                   noexcept;///++a
     const bigInt operator ++(int)                                noexcept;//a++
 
-    bool operator ==(const bigInt&)                              noexcept;
+    [[nodiscard]] bool operator ==(const bigInt&)                              noexcept;
     friend std::ostream& operator<<(std::ostream& out, const bigInt& a) noexcept;
     friend std::istream& operator >>(std::istream&, bigInt&)     noexcept(false);
     const bigInt& operator =(const bigInt&)                      noexcept;
@@ -77,12 +77,12 @@ public:
     const bigInt& operator >>=(int)                              noexcept;//Dividing numbor by 10
     const bigInt& operator<<=(int)                               noexcept;//Multypying by 10
 
-    //Other methods
+    ///Other methods
     void returnExternal();
 private:
     friend  void do_external(int, bigInt&, myVector&);
-    friend void changeSgn(bigInt& a) ;
-    friend char* to_str(const bigInt& a);
-    friend char* to_str(bigInt&&);
+    friend void changeSgn(bigInt& a);
+    [[nodiscard]]  friend char* to_str(const bigInt& a);
+    [[nodiscard]]  friend char* to_str(bigInt&&);
 };
 #endif //CMAKE_TUR_BIGINT2_H

@@ -21,6 +21,7 @@ find_package(Qt5Multimedia)
 add_executable(proj
         main.cpp
         menu.h
+        menu.cpp
         errors.h
         second.h
         )
