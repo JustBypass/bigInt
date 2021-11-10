@@ -17,6 +17,8 @@ bigInt::~bigInt() noexcept
 }
 bigInt::bigInt(long long _number)noexcept
 {
+    std::cout<<"long long constr\n";
+
     _number >= 0 ? _sgn = 0 : _sgn = 1;
     if (_number < 0)
         _number *= -1;
@@ -49,6 +51,8 @@ bigInt::bigInt(long long _number)noexcept
 bigInt::bigInt(int _number) noexcept
 {
   //  *this = ( bigInt((long long)(_number)));
+    std::cout<<"int constr\n";
+
     _number >= 0 ? _sgn = 0 : _sgn = 1;
     if (_number < 0)
         _number *= -1;
@@ -79,6 +83,8 @@ bigInt::bigInt(int _number) noexcept
     }
 }
 bigInt::bigInt(myVector& _string) noexcept {
+    std::cout<<"Vector constr\n";
+
     _count = _string._size - 1;
     _string.vector[_string._size - 1] == '+' ? _sgn = 0 : _sgn = 1;
     _string.pop_back();
@@ -90,11 +96,14 @@ bigInt::bigInt(myVector& _string) noexcept {
 }
 bigInt::bigInt(bigInt&& _t) noexcept :_count(_t._count),_sgn(_t._sgn),_digit(_t._digit)
 {
+    std::cout<<"Move constr\n";
+
     _t._digit = nullptr;
     _t._sgn = 0;
     _t._count = 0;
 }
 bigInt::bigInt(const char* _string)noexcept {
+    std::cout<<"const char constr\n";
     try {
         std::string _s = static_cast<std::string>(_string);
         check::str_check((_s));

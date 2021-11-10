@@ -39,8 +39,8 @@ public:
     bigInt&  operator =(bigInt&)                      noexcept;
     bigInt& operator=(bigInt&&)                            noexcept;
     bigInt& operator -= (const bigInt& digit)               noexcept;
-    bigInt operator +(const bigInt& digit)const            noexcept;
-    bigInt operator -(const bigInt& digit)const            noexcept;
+    bigInt operator +(const bigInt& digit)  const         noexcept;
+    bigInt operator -(const bigInt& digit) const       noexcept;
     bigInt&  operator +=(const char*)                       noexcept;
     bigInt&  operator -=(const char*)                       noexcept;
     bigInt&   operator -=(int)                              noexcept;
@@ -83,8 +83,14 @@ public:
     ///Other methods
     void returnExternal();
 private:
-      friend  void do_external(int, bigInt&, myVector&);
+      friend  void do_external(int, const bigInt&, myVector&);
       friend char* to_str(const bigInt& a);
+      friend void sgn( bigInt& c){
+          if (c._sgn) {
+              c._sgn = 0;
+          }
+          else c._sgn = 1;
+      }
       friend char* to_str(bigInt&&);
 };
 #endif //CMAKE_TUR_BIGINT2_H

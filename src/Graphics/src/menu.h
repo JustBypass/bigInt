@@ -4,7 +4,7 @@
 ///Цель:сделать мессенджер на qt
 #ifndef CMAKE_TUR_MENU_H
 #define CMAKE_TUR_MENU_H
-#include "C:\Users\Admin\CLionProjects\untitled12\bigInt\src\Dynamic\bigInt.h"
+#include "../../Dynamic/bigInt.h"
 
 #include <QPushButton>
 #include <QBoxLayout>

@@ -14,6 +14,7 @@ namespace check {
                 if(i == 0&&((c == 45)||c == 43)){}
                 else{
                     throw std::runtime_error("Bad things happened");
+                   
                     break;
                 }
             }

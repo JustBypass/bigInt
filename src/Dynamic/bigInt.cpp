@@ -7,7 +7,7 @@
 #include "functions.h"
 #include "translator.h"
 
-bigInt & bigInt::operator=(bigInt&& _t)noexcept
+bigInt& bigInt::operator=(bigInt&& _t)noexcept
 {
     std::cout<<"Move oper\n";
     if(_digit)
@@ -18,7 +18,7 @@ bigInt & bigInt::operator=(bigInt&& _t)noexcept
    _t._digit = nullptr;
    _t._sgn = {};
    _t._count = {};
-   return *this ;
+   return (*this);
 }
 
 bigInt&  bigInt::operator=(bigInt& _num)noexcept
@@ -69,8 +69,8 @@ bigInt bigInt::operator +(const bigInt& _num)const noexcept
             vec.push_back('-');
         }
     }
-    bigInt a((vec));
-    return std::move(a);
+   // bigInt a((vec));
+    return vec;//(a);
 }
 bigInt&  bigInt::operator<<=(int _n)  noexcept
 {
@@ -125,24 +125,25 @@ bigInt&  bigInt::operator>>=(int _n)  noexcept
 }
  bigInt bigInt:: operator -( const char* _t)noexcept
 {
-    return bigInt(*this - bigInt(_t));
+    return (*this - bigInt(_t));
 }
  bigInt operator -(const char* _t, const bigInt& _n)noexcept
 {
-    bigInt c = _n;
+    bigInt c(_n);
     return(~c + _t);
 }
 bigInt&  bigInt::operator +=(const bigInt& _num) noexcept {
-    *this = bigInt(*this + _num);
+    *this = *this + _num;
     return *this;
 }
 bigInt bigInt::operator-(const bigInt& _num) const noexcept {
-    return std::move(*this + ~bigInt(_num));
+    bigInt c(_num);//Здесь лишний копи конструктор т к мы должны гарантировать что все _num'ы не будут изменяться(хч)(нам надо изменить знак в любом случае)
+    return (*this + ~c);
 }
-bigInt&  bigInt::operator -=(const bigInt& _num)noexcept {
-   // bigInt c(_num);
-    *this = std::forward<bigInt&&>(*this+~bigInt(_num));
-    return *this;
+bigInt&  bigInt::operator -=(const bigInt& _num)noexcept
+{
+    bigInt c(_num);
+    return *this = (*this+c);
 }
 std::ostream& operator<<(std::ostream& out,const bigInt& a)noexcept {
     if (a.get_sgn() == 1)
@@ -154,13 +155,13 @@ std::ostream& operator<<(std::ostream& out,const bigInt& a)noexcept {
     return out;
 }
 bigInt&  bigInt::operator+=(const char* _t) noexcept{
-    *this = (*this+bigInt(_t) );//(*this+bigInt(_t) )-->это же явно временный обьект, но считается за постоянный почему то
 
+    *this = ((*this+bigInt(_t)));//(*this+bigInt(_t) )-->это же явно временный обьект, но считается за постоянный почему то
     return *this;
 }
 bigInt&  bigInt::operator-=(const char* _t)noexcept {
 
-    *this = *this - bigInt(_t);
+    *this = *this - (_t);
     return (*this);
 }
 bigInt& bigInt:: operator ~()noexcept{
@@ -223,7 +224,7 @@ bool bigInt::operator==(const bigInt& _num)noexcept
     return (_new);
 }
 bigInt&  bigInt:: operator -=(int a) noexcept {
-    *this = (*this - bigInt(a));
+    *this = (*this + ~bigInt(a));
     return (*this);
 }
 bigInt&  bigInt:: operator +=(int a) noexcept
@@ -234,7 +235,7 @@ bigInt&  bigInt:: operator +=(int a) noexcept
 }
 bigInt&  bigInt:: operator -=(long long a) noexcept
 {
-    *this = (*this - bigInt(a));
+    *this = (*this + ~bigInt(a));
     return (*this);
 }
 bigInt&  bigInt:: operator +=(long long a) noexcept

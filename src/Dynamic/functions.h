@@ -44,7 +44,7 @@ namespace auxillary//Пространство имен для работы с д
             (((((int)first.vector[i] - '0') + ((int)second.vector[i] - '0' + transmission)) / 10) > 0) ? transmission = 1 : transmission = 0;
         }
     }
-    void sum_numbers(myVector& vec, bigInt a, bigInt b, int len)//0поучаем вектор в дополнителном коде
+    void sum_numbers(myVector& vec, const bigInt& a, const bigInt& b, int len)//0поучаем вектор в дополнителном коде
     {
         int maximum = std::max(a.get_count(), b.get_count());
         myVector first(maximum + 2);
@@ -54,7 +54,7 @@ namespace auxillary//Пространство имен для работы с д
         sumOperation(vec, maximum, first, second);
     }
 }
-void do_external(int len, bigInt& _num, myVector& vec)//Перревод числа в вектор с доп кодом
+void do_external(int len, const bigInt& _num, myVector& vec)//Перревод числа в вектор с доп кодом
 {
     for (int i = 0; i < len; i++) {
         for (i; i < _num.get_count(); i++) {
