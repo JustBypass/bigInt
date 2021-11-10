@@ -1,4 +1,7 @@
 .idea/
+SFML
+/cmake-build-debug/
+
 googletest/
 .vcxproj
 .vcxproj.filters

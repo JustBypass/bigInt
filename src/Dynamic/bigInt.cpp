@@ -7,7 +7,7 @@
 #include "functions.h"
 #include "translator.h"
 
-const bigInt& bigInt::operator=(bigInt&& _t)noexcept
+bigInt & bigInt::operator=(bigInt&& _t)noexcept
 {
     std::cout<<"Move oper\n";
     if(_digit)
@@ -21,7 +21,7 @@ const bigInt& bigInt::operator=(bigInt&& _t)noexcept
    return *this ;
 }
 
-const bigInt& bigInt::operator=(const bigInt& _num)noexcept
+bigInt&  bigInt::operator=(bigInt& _num)noexcept
 {
     std::cout<<"Cope oper\n";
     delete(_digit);
@@ -34,7 +34,7 @@ const bigInt& bigInt::operator=(const bigInt& _num)noexcept
     _sgn = _num._sgn;
     return *this;
 }
-const bigInt bigInt::operator +(const bigInt& _num)const noexcept
+bigInt bigInt::operator +(const bigInt& _num)const noexcept
 {
     int len = std::max(_count, _num._count);
     myVector vec(len + 2);
@@ -69,82 +69,79 @@ const bigInt bigInt::operator +(const bigInt& _num)const noexcept
             vec.push_back('-');
         }
     }
-    return (bigInt(vec));
+    bigInt a((vec));
+    return std::move(a);
 }
-const bigInt& bigInt::operator<<=(int _n)  noexcept
+bigInt&  bigInt::operator<<=(int _n)  noexcept
 {
-    *this = *this << _n;
-    return (*this );
-}
-const bigInt& bigInt::operator>>=(int _n)  noexcept
-{
-    *this = *this >> _n;
+    *this = ((*this << _n));
     return (*this);
 }
-const bigInt bigInt:: operator -( int _t)noexcept
+bigInt&  bigInt::operator>>=(int _n)  noexcept
+{
+    *this = ((*this >> _n));
+    return (*this);
+}
+ bigInt bigInt:: operator -( int _t)noexcept
 {
     return(*this- bigInt(_t));
 }
-bigInt operator -(int _t, const bigInt& _n)noexcept
+ bigInt operator -(int _t, const bigInt& _n)noexcept
 {
     return(bigInt(_t) - _n);
 }
-const bigInt bigInt:: operator+(int _t)noexcept
+ bigInt bigInt:: operator+(int _t)noexcept
 {
     return *this + bigInt(_t);
 }
 
-bigInt operator+(int _t, const bigInt& _n)noexcept
+ bigInt operator+(int _t, const bigInt& _n)noexcept
 {
     return(_n + _t);
 }
-const bigInt bigInt:: operator -( long long _t)noexcept
+ bigInt bigInt:: operator -( long long _t)noexcept
 {
     return(*this - bigInt(_t));
 }
-bigInt operator -(long long _t, const bigInt& _n)noexcept
+ bigInt operator -(long long _t, const bigInt& _n)noexcept
 {
-    return(bigInt(_t) - _n);
+    return (bigInt(_t) - _n);
 }
-const bigInt bigInt:: operator+(long long _t)noexcept
-{
-    return(*this + bigInt(_t));
-}
-bigInt operator+(long long _t, const bigInt& _n)noexcept
-{
-    return(_n + _t);
-}
-const bigInt bigInt:: operator+(const char* _t)noexcept
+ bigInt bigInt:: operator+(long long _t)noexcept
 {
     return(*this + bigInt(_t));
 }
-bigInt operator+(const char* _t, const bigInt& _n)noexcept
+ bigInt operator+(long long _t, const bigInt& _n)noexcept
 {
     return(_n + _t);
 }
-const bigInt bigInt:: operator -( const char* _t)noexcept
+ bigInt bigInt:: operator+(const char* _t)noexcept
 {
-    return(*this - bigInt(_t));
+    return (*this + bigInt(_t));
 }
-bigInt operator -(const char* _t, const bigInt& _n)noexcept
+ bigInt operator+(const char* _t, const bigInt& _n)noexcept
+{
+    return(_n + _t);
+}
+ bigInt bigInt:: operator -( const char* _t)noexcept
+{
+    return bigInt(*this - bigInt(_t));
+}
+ bigInt operator -(const char* _t, const bigInt& _n)noexcept
 {
     bigInt c = _n;
-    changeSgn(c);
-    return(c + _t);
+    return(~c + _t);
 }
-const bigInt& bigInt::operator +=(const bigInt& _num) noexcept {
-    *this = *this + _num;
+bigInt&  bigInt::operator +=(const bigInt& _num) noexcept {
+    *this = bigInt(*this + _num);
     return *this;
 }
-const bigInt bigInt::operator-(const bigInt& _num) const noexcept {
-    bigInt c = _num;
-    changeSgn(c);
-    return *this + c;
+bigInt bigInt::operator-(const bigInt& _num) const noexcept {
+    return std::move(*this + ~bigInt(_num));
 }
-const bigInt& bigInt::operator -=(const bigInt& _num)noexcept {
-    bigInt c(_num);
-    changeSgn(c);
-    *this=*this+c;
+bigInt&  bigInt::operator -=(const bigInt& _num)noexcept {
+   // bigInt c(_num);
+    *this = std::forward<bigInt&&>(*this+~bigInt(_num));
     return *this;
 }
 std::ostream& operator<<(std::ostream& out,const bigInt& a)noexcept {
@@ -156,23 +153,32 @@ std::ostream& operator<<(std::ostream& out,const bigInt& a)noexcept {
     }
     return out;
 }
-const bigInt& bigInt::operator+=(const char* _t) noexcept{
-    *this = (*this + _t);
+bigInt&  bigInt::operator+=(const char* _t) noexcept{
+    *this = (*this+bigInt(_t) );//(*this+bigInt(_t) )-->это же явно временный обьект, но считается за постоянный почему то
+
     return *this;
 }
-const bigInt& bigInt::operator-=(const char* _t)noexcept {
-    *this =*this - (_t);
+bigInt&  bigInt::operator-=(const char* _t)noexcept {
+
+    *this = *this - bigInt(_t);
     return (*this);
 }
-const bigInt& bigInt::operator =(const char* _t) noexcept {
-    bigInt _num(_t);
-    return (*this = _num);
+bigInt& bigInt:: operator ~()noexcept{
+    if (_sgn) {
+        _sgn = 0;
+    }
+    else _sgn = 1;
+    return *this;
 }
-const bigInt bigInt::operator ++(int) noexcept {
+bigInt&  bigInt::operator =(const char* _t) noexcept {
+    *this = bigInt(_t);//Здесь ли лишнее копирование??//
+    return *this;
+}
+ bigInt bigInt::operator ++(int) noexcept {
     *this += "1";
     return (*this - "1");
 }
-const bigInt bigInt::operator ++() noexcept {
+ bigInt bigInt::operator ++() noexcept {
     return *this += "1";
 }
 std::istream& operator >>(std::istream& in, bigInt& _num) noexcept(false) ///How to do it??//Подключить гетстр или другой костыль;)
@@ -194,19 +200,19 @@ bool bigInt::operator==(const bigInt& _num)noexcept
     }
     else return false;
 }
-const bigInt bigInt::operator>>(int _n) const noexcept {
+ bigInt bigInt::operator>>(int _n) const noexcept {
     bigInt _new;
     _new._sgn = _sgn;
     _new._count = _count;
     _new._digit = nullptr;
     char* ptr = _digit;
-    if (_new._count == 1){ return bigInt(0); }
+    if (_new._count == 1){ return (0); }
     else {
         _new._digit = new char[_new._count];
     }
     for (int g = 0; g < _n; g++) {
         if (_new._count == 1) {
-            return  bigInt(0);
+            return  0;
         }
         for (int i = 0; i < _new._count - 1; i++) {
             _new._digit[i] = ptr[i + 1];
@@ -214,43 +220,39 @@ const bigInt bigInt::operator>>(int _n) const noexcept {
         _new._digit[_new._count - 1] = '\0';
         _new._count--;
     }
-    return _new;
+    return (_new);
 }
-const bigInt& bigInt:: operator -=(int a) noexcept {
-    bigInt v(a);
-    *this = *this - v;
+bigInt&  bigInt:: operator -=(int a) noexcept {
+    *this = (*this - bigInt(a));
     return (*this);
 }
-const bigInt& bigInt:: operator +=(int a) noexcept
+bigInt&  bigInt:: operator +=(int a) noexcept
 {
     bigInt v(a);
-    *this = *this+v;
+    *this = bigInt(*this+v);
     return (*this );
 }
-const bigInt& bigInt:: operator -=(long long a) noexcept
+bigInt&  bigInt:: operator -=(long long a) noexcept
 {
-    bigInt v(a);
-    *this = *this - v;
+    *this = (*this - bigInt(a));
     return (*this);
 }
-const bigInt& bigInt:: operator +=(long long a) noexcept
+bigInt&  bigInt:: operator +=(long long a) noexcept
 {
     bigInt v(a);
-    *this = *this+v;
+    *this = (*this+v);
     return *this;
 }
-const bigInt& bigInt::operator=(long long a)noexcept
+bigInt&  bigInt::operator=(long long a)noexcept
 {
-    bigInt v(a);
-    *this = *this+v;
+    *this = (*this+bigInt(a));
     return *this;
 }
-const bigInt& bigInt::operator =(int a)noexcept
+bigInt& bigInt::operator =(int a)noexcept
 {
-    bigInt v(a);
-    return *this = v;
+    return *this = ( bigInt(a));
 }
-const bigInt bigInt::operator<<(int _n)const noexcept {
+ bigInt bigInt::operator<<(int _n)const noexcept {
     bigInt newn;
     newn._sgn = _sgn;
     newn._count = _count;
@@ -271,14 +273,13 @@ const bigInt bigInt::operator<<(int _n)const noexcept {
     {
         if (newn._count == 1) {
             if (ptr[0] == '0') {
-                newn = bigInt(0);
-                return newn;
+                return 0;
             }
             newn._digit[0] = '0';
             newn._digit[1] = ptr[0];
             newn._digit[2] = '\0';
             newn._count++;
-            return *this;
+            return newn;
         }
         for (int i = newn._count - 1; i >= 0; i--)
         {
@@ -288,5 +289,5 @@ const bigInt bigInt::operator<<(int _n)const noexcept {
         newn._digit[_count + 1] = '\0';
         newn._count++;
     }
-    return newn;
+    return (newn);
 }

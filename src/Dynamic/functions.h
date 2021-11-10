@@ -75,13 +75,7 @@ void do_external(int len, bigInt& _num, myVector& vec)//Перревод чис�
         vec.push_back('0');
     }
 }
-void changeSgn(bigInt& c) // Меняем знак числа(побочная функция)
-{
-    if (c._sgn) {
-        c._sgn = 0;
-    }
-    else c._sgn = 1;
-}
+
 void bigInt::returnExternal()// Печатаем число в доп. коде
 {
     myVector _vec(_count + 1);

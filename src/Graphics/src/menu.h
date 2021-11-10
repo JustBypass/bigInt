@@ -42,23 +42,23 @@
 #include <QBrush>
 #include <QPainter>
 #include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 
-
-class figure:public QGraphicsEllipseItem{
+class figure:public QGraphicsPixmapItem{
 
 public:
-    figure(int xspread):QGraphicsEllipseItem(0)
+    figure(int xspread):QGraphicsPixmapItem(0)
     {
         std::cout<<"figure";
-        QColor color = QColor(rand()%255,rand()%255,rand()%255);std::cout<<"end";
-        this->setBrush(color);
-        this->setRect(0,0,30,20);
+      //  QColor color = QColor(rand()%255,rand()%255,rand()%255);std::cout<<"end";
+        //this->setBrush(color);
+       // this->setRect(0,0,30,20);
+        setPixmap( QPixmap("C:\\Users\\Admin\\CLionProjects\\untitled12\\bigInt\\src\\Graphics\\forms\\bot.jpg"));
         setPos(rand()%(xspread-30),0);
     }
 public:
     virtual void advance(int phase);
 private:
-   // QPixmap* qava
 };
 
 

@@ -2,8 +2,8 @@
 // Created by Admin on 28.10.2021.
 //
 
-#ifndef CMAKE_TUR_CONSTRUCTORS_H
-#define CMAKE_TUR_CONSTRUCTORS_H
+#ifndef _CONSTRUCTORS_H_INCLUDED_/*CMAKE_TUR_CONSTRUCTORS_H*/
+#define _CONSTRUCTORS_H_DEFINED_/*CMAKE_TUR_CONSTRUCTORS_H*/
 #include "Utils.h"
 
 class bigInt;
@@ -46,12 +46,38 @@ bigInt::bigInt(long long _number)noexcept
         _count = g;
     }
 }
-
 bigInt::bigInt(int _number) noexcept
 {
-    *this = bigInt(static_cast<long long>(_number));
+  //  *this = ( bigInt((long long)(_number)));
+    _number >= 0 ? _sgn = 0 : _sgn = 1;
+    if (_number < 0)
+        _number *= -1;
+    if (_number == (int)0) {
+        _count = 1;
+        _digit = new char[2];
+        _digit[0] = '0';
+        _digit[1] = '\0';
+    }
+    else {
+        int newn = _number;
+        int g = {};
+        while (newn != (int)0) {
+            int _el = (newn % 10);
+            newn = (newn - _el) / 10;
+            g++;
+        }
+        _digit = new char[g + 1];
+        for (int i = 0; i < g; i++) {
+            if (_number == (int)0)
+                break;
+            int _el = (_number % 10);
+            _number = (_number - _el) / 10;
+            _digit[i] = _el + '0';
+        }
+        _digit[g] = '\0';
+        _count = g;
+    }
 }
-
 bigInt::bigInt(myVector& _string) noexcept {
     _count = _string._size - 1;
     _string.vector[_string._size - 1] == '+' ? _sgn = 0 : _sgn = 1;
@@ -107,10 +133,11 @@ bigInt::bigInt(const char* _string)noexcept {
         }
         _digit[p - 1] = '\0';
     }
-    catch (std::exception& ex) {
+    catch (std::exception& ex)
+    {
        // std::cerr << "Uncorrect_string\n";
         std::cerr<<ex.what()<<std::endl;
-        *this = bigInt(0);
+        *this = 0;
     }
 }
 bigInt::bigInt(const bigInt& _num)noexcept {

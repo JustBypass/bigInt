@@ -17,7 +17,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5Core)
 find_package(Qt5Widgets)
 find_package(Qt5Multimedia)
-
+#
+#find_package(Box2D REQUIRED)
+# target_link_libraries(mytarget PRIVATE box2d)
 add_executable(proj
         main.cpp
         menu.h
@@ -25,4 +27,4 @@ add_executable(proj
         errors.h
         second.h
         )
-target_link_libraries(proj Qt5::Core Qt5::Widgets bigInt2 Qt5::Multimedia)
+target_link_libraries(proj Qt5::Core Qt5::Widgets bigInt2 Qt5::Multimedia) #tobanteGaming::Box2D sfml-graphics sfml-window sfml-system)

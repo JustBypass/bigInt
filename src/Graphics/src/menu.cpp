@@ -26,7 +26,7 @@ menu::menu(QWidget* parent ):parent(new QWidget){
     e = new QLineEdit(this);
     e->setPlaceholderText("Вводите число...");
 
-    qgs = new QGraphicsScene(0,0,100,100,this);
+    qgs = new QGraphicsScene(0,0,200,100,this);
     qgs->addRect(qgs->sceneRect());
     //   setScene(qgs);
     qgv = new QGraphicsView(qgs,this);
@@ -39,8 +39,8 @@ menu::menu(QWidget* parent ):parent(new QWidget){
     animTimer->start(1000/60);
     genTimer = new QTimer(this);
     genTimer->start(1000);
-    connect(animTimer,SIGNAL(timeout()),qgs,SLOT(advance()));//Переопределить advance
-    connect(genTimer,SIGNAL(timeout()),this,SLOT(addSq()));//Переопределить advance
+    //connect(animTimer,SIGNAL(timeout()),qgs,SLOT(advance()));//Переопределить advance
+  //  connect(genTimer,SIGNAL(timeout()),this,SLOT(addSq()));//Переопределить advance
 
 
     qgv->show();
@@ -184,7 +184,7 @@ void figure::advance(int phase)
     if(phase)
     {
         std::cout<<"move";
-        this->moveBy(0,0.5);
+        this->moveBy(0,1);
     }
 }
 

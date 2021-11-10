@@ -6,4 +6,3 @@ project(library)
 set(lib bigInt.h bigInt.cpp Constructors.h myVector.h Utils.h translator.h)
 
 add_library(bigInt2 STATIC ${lib})
-

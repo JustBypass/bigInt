@@ -4,13 +4,12 @@
 
 #include "C:\Users\Admin\CLionProjects\untitled12\bigInt\src\Dynamic\bigInt.h"
 #include "../../include/menu/menu.h"
-int main()
-/*
-    menu a;
+int main(){
+/*    menu a;
     return a.mainloop();*/
-{
-    bigInt c;
-    c = (bigInt(42443))+1;//
+    bigInt c = bigInt("43");
+    bigInt cj(std::move(c));
+  //  c = "534";
     getchar();
     return 0;
 }
