@@ -1,0 +1,10 @@
+^C:\USERS\ADMIN\CLIONPROJECTS\UNTITLED12\BIGINT\BUILD\CMAKEFILES\0D254F137B00B3E29233F6D4F9869A60\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Admin/CLionProjects/untitled12/bigInt -BC:/Users/Admin/CLionProjects/untitled12/bigInt/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Admin/CLionProjects/untitled12/bigInt/build/bigInt.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

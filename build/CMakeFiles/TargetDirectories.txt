@@ -1,0 +1,6 @@
+C:/Users/Admin/CLionProjects/untitled12/bigInt/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/build/src/Dynamic/CMakeFiles/bigInt2.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/build/src/Dynamic/CMakeFiles/ALL_BUILD.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/build/include/menu/CMakeFiles/menus.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/build/src/main/CMakeFiles/static.dir
