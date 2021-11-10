@@ -129,21 +129,18 @@ bigInt&  bigInt::operator>>=(int _n)  noexcept
 }
  bigInt operator -(const char* _t, const bigInt& _n)noexcept
 {
-    bigInt c(_n);
-    return(~c + _t);
+    return(~bigInt(_n) + _t);
 }
 bigInt&  bigInt::operator +=(const bigInt& _num) noexcept {
     *this = *this + _num;
     return *this;
 }
-bigInt bigInt::operator-(const bigInt& _num) const noexcept {
-    bigInt c(_num);//Здесь лишний копи конструктор т к мы должны гарантировать что все _num'ы не будут изменяться(хч)(нам надо изменить знак в любом случае)
-    return (*this + ~c);
+bigInt bigInt::operator-(const bigInt& _num) const noexcept {//Здесь лишний копи конструктор т к мы должны гарантировать что все _num'ы не будут изменяться(хч)(нам надо изменить знак в любом случае)
+    return (*this + ~bigInt(_num));
 }
 bigInt&  bigInt::operator -=(const bigInt& _num)noexcept
 {
-    bigInt c(_num);
-    return *this = (*this+c);
+    return *this = (*this+bigInt(_num));
 }
 std::ostream& operator<<(std::ostream& out,const bigInt& a)noexcept {
     if (a.get_sgn() == 1)
@@ -155,14 +152,10 @@ std::ostream& operator<<(std::ostream& out,const bigInt& a)noexcept {
     return out;
 }
 bigInt&  bigInt::operator+=(const char* _t) noexcept{
-
-    *this = ((*this+bigInt(_t)));//(*this+bigInt(_t) )-->это же явно временный обьект, но считается за постоянный почему то
-    return *this;
+    return *this = *this+bigInt(_t);
 }
 bigInt&  bigInt::operator-=(const char* _t)noexcept {
-
-    *this = *this - (_t);
-    return (*this);
+    return (*this= *this + ~bigInt(_t));
 }
 bigInt& bigInt:: operator ~()noexcept{
     if (_sgn) {
@@ -229,8 +222,7 @@ bigInt&  bigInt:: operator -=(int a) noexcept {
 }
 bigInt&  bigInt:: operator +=(int a) noexcept
 {
-    bigInt v(a);
-    *this = bigInt(*this+v);
+    *this = bigInt(*this+bigInt(a));
     return (*this );
 }
 bigInt&  bigInt:: operator -=(long long a) noexcept
@@ -240,8 +232,7 @@ bigInt&  bigInt:: operator -=(long long a) noexcept
 }
 bigInt&  bigInt:: operator +=(long long a) noexcept
 {
-    bigInt v(a);
-    *this = (*this+v);
+    *this = (*this+bigInt(a));
     return *this;
 }
 bigInt&  bigInt::operator=(long long a)noexcept

@@ -85,12 +85,6 @@ public:
 private:
       friend  void do_external(int, const bigInt&, myVector&);
       friend char* to_str(const bigInt& a);
-      friend void sgn( bigInt& c){
-          if (c._sgn) {
-              c._sgn = 0;
-          }
-          else c._sgn = 1;
-      }
       friend char* to_str(bigInt&&);
 };
 #endif //CMAKE_TUR_BIGINT2_H

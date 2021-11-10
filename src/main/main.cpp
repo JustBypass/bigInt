@@ -11,7 +11,7 @@ int main(){
 //    bigInt cj(std::move(c));
   //  c = "534";
     bigInt c(0);
-    c-=434324554345534534;
+    c-="564566566564564334";
     getchar();
     return 0;
 }
