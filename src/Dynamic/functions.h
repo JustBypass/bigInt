@@ -26,7 +26,7 @@ namespace auxillary//Пространство имен для работы с д
         int transmission = 1;
         for (int i = 0; i < len + 1; i++) {
             if (((((int)vec.vector[i] - '0') + transmission)) / 10 == 1) {
-                vec.vector[i] = '0';//
+                vec.vector[i] = '0';
             }
             else {
                 vec.vector[i] = (((transmission)+((int)vec.vector[i] - '0')) + '0');

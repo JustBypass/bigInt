@@ -28,6 +28,7 @@ public:
     /// Getters
     [[nodiscard]] inline int get_count()const noexcept { return _count; }
     [[nodiscard]] inline bool get_sgn()const noexcept { return _sgn; }
+    [[nodiscard]] inline char* get_digit()const noexcept { return _digit; }
     ///Operators
     bigInt& operator +=(const bigInt& digit)               noexcept;
      bigInt operator ++()                                   noexcept;///++a

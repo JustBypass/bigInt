@@ -10,8 +10,11 @@ int main(){
 //    bigInt c(4);// = bigInt("43");
 //    bigInt cj(std::move(c));
   //  c = "534";
-    bigInt c(0);
-    c-="564566566564564334";
+   /* bigInt c(0);
+    c>>=1;*/
+   bigInt a(0563456);
+   bigInt b(4556);
+   a = std::move(b);
     getchar();
     return 0;
 }

@@ -2,7 +2,7 @@
 // Created by Admin on 20.10.2021.
 //
 #include "gtest/gtest.h"
-#include "C:\Qt\Qt5.12.10\cmake_tur\src\Dynamic\bigInt.h"
+#include "C:\Users\Admin\CLionProjects\untitled12\bigInt\src\Dynamic\bigInt.h"
 
 TEST(bigInt_t, PlusOperator_1)//Do everything by the strings
 {
@@ -144,11 +144,38 @@ TEST(bigInt_t, OtherOperations)
     EXPECT_STREQ(to_str(3+bigInt("0")-=76578877687687),"-76578877687684");
     EXPECT_STREQ(to_str("3"+bigInt("0")-=76578877687687),"-76578877687684");
 }
+TEST(Operator,Move){
+    bigInt a(0);
+    bigInt b(8);
+    char* test = b.get_digit();
+    a = std::move(b);
+    EXPECT_STREQ(b.get_digit(),nullptr);
+    EXPECT_STREQ(test,a.get_digit());
+}
+TEST(Operator,Copy){
+    bigInt a(0);
+    bigInt b(8);
+    char* test = b.get_digit();
+    a = b;
+    EXPECT_STREQ(b.get_digit(),a.get_digit());
+    EXPECT_STREQ(test,b.get_digit());
+}
+TEST(Constructor,Move){
+    bigInt b(8);
+    char* test = b.get_digit();
+    bigInt a(std::move(b));
+    EXPECT_STREQ(b.get_digit(),nullptr);
+    EXPECT_STREQ(test,a.get_digit());
+}
+TEST(Constructor,Copy){
+    bigInt b(8);
+    char* test = b.get_digit();
+    bigInt a(b);
+    EXPECT_STREQ(b.get_digit(),a.get_digit());
+    EXPECT_STREQ(test,b.get_digit());
+}
 int main(int argc, char* argv[])
 {
-    ::testing::InitGoogleTest(&argc, argv);
-    RUN_ALL_TESTS();
-    int c;
-    std::cin>>c;
-    return 0;
+    ::testing::InitGoogleTest(&argc, argv);RUN_ALL_TESTS();
+    getchar();
 }

@@ -2,7 +2,7 @@
 // Created by Admin on 22.10.2021.
 //
 
-#include "C:\Users\Admin\CLionProjects\untitled12\bigInt\src\Dynamic\bigInt.h"
+#include "bigInt.h"
 #include "Constructors.h"
 #include "functions.h"
 #include "translator.h"
@@ -79,8 +79,7 @@ bigInt&  bigInt::operator<<=(int _n)  noexcept
 }
 bigInt&  bigInt::operator>>=(int _n)  noexcept
 {
-    *this = ((*this >> _n));
-    return (*this);
+    return (*this) = ((*this >> _n));
 }
  bigInt bigInt:: operator -( int _t)noexcept
 {
@@ -194,19 +193,21 @@ bool bigInt::operator==(const bigInt& _num)noexcept
     }
     else return false;
 }
- bigInt bigInt::operator>>(int _n) const noexcept {
+bigInt bigInt::operator>>(int _n) const noexcept {
+    if(_n <= 0 )
+        return *this;
     bigInt _new;
     _new._sgn = _sgn;
     _new._count = _count;
     _new._digit = nullptr;
     char* ptr = _digit;
-    if (_new._count == 1){ return (0); }
+    if (_new._count == 1){ return (long long)0; }
     else {
         _new._digit = new char[_new._count];
     }
     for (int g = 0; g < _n; g++) {
         if (_new._count == 1) {
-            return  0;
+            return  (long long)0;
         }
         for (int i = 0; i < _new._count - 1; i++) {
             _new._digit[i] = ptr[i + 1];
@@ -222,7 +223,7 @@ bigInt&  bigInt:: operator -=(int a) noexcept {
 }
 bigInt&  bigInt:: operator +=(int a) noexcept
 {
-    *this = bigInt(*this+bigInt(a));
+    *this = (*this+bigInt(a));
     return (*this );
 }
 bigInt&  bigInt:: operator -=(long long a) noexcept
@@ -242,9 +243,11 @@ bigInt&  bigInt::operator=(long long a)noexcept
 }
 bigInt& bigInt::operator =(int a)noexcept
 {
-    return *this = ( bigInt(a));
+    return *this = ( bigInt((long long)a));
 }
  bigInt bigInt::operator<<(int _n)const noexcept {
+    if(_n<=0)
+        return *this;
     bigInt newn;
     newn._sgn = _sgn;
     newn._count = _count;
@@ -265,7 +268,7 @@ bigInt& bigInt::operator =(int a)noexcept
     {
         if (newn._count == 1) {
             if (ptr[0] == '0') {
-                return 0;
+                return (long long)0;
             }
             newn._digit[0] = '0';
             newn._digit[1] = ptr[0];
