@@ -1,0 +1,9 @@
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/cmake-build-debug/CMakeFiles/main.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/cmake-build-debug/Class/CMakeFiles/Circuit.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/cmake-build-debug/Class/CMakeFiles/edit_cache.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/cmake-build-debug/Class/CMakeFiles/rebuild_cache.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/cmake-build-debug/Factory/CMakeFiles/rebuild_cache.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/cmake-build-debug/Factory/CMakeFiles/Factory.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/cmake-build-debug/Factory/CMakeFiles/edit_cache.dir

@@ -174,6 +174,16 @@ TEST(Constructor,Copy){
     EXPECT_STREQ(b.get_digit(),a.get_digit());
     EXPECT_STREQ(test,b.get_digit());
 }
+TEST(BigInt_t,Shift_L){
+    bigInt a(4);
+    a>>=0;
+    EXPECT_STREQ(to_str(a),"4");
+}
+TEST(BigInt_t,Shift_R){
+    bigInt a(4);
+    a<<=0;
+    EXPECT_STREQ(to_str(a),"4");
+}
 int main(int argc, char* argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);RUN_ALL_TESTS();

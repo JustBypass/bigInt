@@ -74,12 +74,15 @@ bigInt bigInt::operator +(const bigInt& _num)const noexcept
 }
 bigInt&  bigInt::operator<<=(int _n)  noexcept
 {
-    *this = ((*this << _n));
-    return (*this);
+    if(_n == 0)
+        return *this;
+    else return *this = ((*this << _n));
 }
 bigInt&  bigInt::operator>>=(int _n)  noexcept
 {
-    return (*this) = ((*this >> _n));
+    if(_n == 0)
+        return *this;
+    else return *this = ((*this >> _n));
 }
  bigInt bigInt:: operator -( int _t)noexcept
 {
@@ -247,7 +250,7 @@ bigInt& bigInt::operator =(int a)noexcept
 }
  bigInt bigInt::operator<<(int _n)const noexcept {
     if(_n<=0)
-        return *this;
+        return (*this);
     bigInt newn;
     newn._sgn = _sgn;
     newn._count = _count;

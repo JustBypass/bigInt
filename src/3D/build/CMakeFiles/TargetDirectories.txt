@@ -1,0 +1,7 @@
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/build/CMakeFiles/main.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/build/Class/CMakeFiles/Circuit.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/build/Class/CMakeFiles/ALL_BUILD.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/build/Factory/CMakeFiles/Factory.dir
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/3D/build/Factory/CMakeFiles/ALL_BUILD.dir
