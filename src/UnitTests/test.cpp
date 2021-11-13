@@ -2,8 +2,19 @@
 // Created by Admin on 20.10.2021.
 //
 #include "gtest/gtest.h"
-#include "C:\Users\Admin\CLionProjects\untitled12\bigInt\src\Dynamic\bigInt.h"
+#include "../Dynamic/bigInt.h"
 
+//#include  "../TestLib/TestLib.hpp"
+
+TEST(BigInt_t, Throw_incorrect_string_and_argument) {
+    EXPECT_ANY_THROW(bigInt(54)+"gt4");
+    EXPECT_ANY_THROW(bigInt("543frf"));
+    EXPECT_ANY_THROW(bigInt(54) += "gt4");
+    EXPECT_ANY_THROW(bigInt(54) -= "gt4");
+    EXPECT_ANY_THROW(bigInt(54) - "gt4");
+    EXPECT_ANY_THROW(bigInt(54) >>-1321);
+    EXPECT_ANY_THROW(bigInt(54) << -1321);
+}
 TEST(bigInt_t, PlusOperator_1)//Do everything by the strings
 {
     bigInt a("435");
@@ -138,11 +149,11 @@ TEST(bigInt_t,PlusDecr)
 }
 TEST(bigInt_t, OtherOperations)
 {
-    EXPECT_STREQ(to_str(bigInt("0")-7-76578877687687+"1"),"-76578877687693");
-    EXPECT_STREQ(to_str(bigInt("0")-7-76578877687687+bigInt("1")),"-76578877687693");
-    EXPECT_STREQ(to_str(bigInt("0")-=76578877687687),"-76578877687687");
-    EXPECT_STREQ(to_str(3+bigInt("0")-=76578877687687),"-76578877687684");
-    EXPECT_STREQ(to_str("3"+bigInt("0")-=76578877687687),"-76578877687684");
+    EXPECT_STREQ(to_str(bigInt("1")-7-76578877687687+"1"),"-76578877687692");
+    EXPECT_STREQ(to_str(bigInt("1")-7-76578877687687+bigInt("1")),"-76578877687692");
+    EXPECT_STREQ(to_str(bigInt("1")-=76578877687687),"-76578877687686");
+    EXPECT_STREQ(to_str(3+bigInt("1")-=76578877687687),"-76578877687683");
+    EXPECT_STREQ(to_str("3"+bigInt("1")-=76578877687687),"-76578877687683");
 }
 TEST(Operator,Move){
     bigInt a(0);
@@ -174,6 +185,36 @@ TEST(Constructor,Copy){
     EXPECT_STREQ(b.get_digit(),a.get_digit());
     EXPECT_STREQ(test,b.get_digit());
 }
+TEST(Operator,Move1){
+    bigInt a("0");
+    bigInt b("8");
+    char* test = b.get_digit();
+    a = std::move(b);
+    EXPECT_STREQ(b.get_digit(),nullptr);
+    EXPECT_STREQ(test,a.get_digit());
+}
+TEST(Operator,Copy1){
+    bigInt a("0");
+    bigInt b("8");
+    char* test = b.get_digit();
+    a = b;
+    EXPECT_STREQ(b.get_digit(),a.get_digit());
+    EXPECT_STREQ(test,b.get_digit());
+}
+TEST(Constructor,Move2){
+    bigInt b("6");
+    char* test = b.get_digit();
+    bigInt a(std::move(b));
+    EXPECT_STREQ(b.get_digit(),nullptr);
+    EXPECT_STREQ(test,a.get_digit());
+}
+TEST(Constructor,Copy2){
+    bigInt b("3");
+    char* test = b.get_digit();
+    bigInt a(b);
+    EXPECT_STREQ(b.get_digit(),a.get_digit());
+    EXPECT_STREQ(test,b.get_digit());
+}
 TEST(BigInt_t,Shift_L){
     bigInt a(4);
     a>>=0;
@@ -184,8 +225,11 @@ TEST(BigInt_t,Shift_R){
     a<<=0;
     EXPECT_STREQ(to_str(a),"4");
 }
+
+
 int main(int argc, char* argv[])
 {
-    ::testing::InitGoogleTest(&argc, argv);RUN_ALL_TESTS();
-    getchar();
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+
 }

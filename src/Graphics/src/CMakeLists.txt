@@ -18,12 +18,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5Core)
 find_package(Qt5Widgets)
 find_package(Qt5Multimedia)
+find_package(Qt5 REQUIRED Quick Qml)
+#qt5_add_resources(qrc resource.qrc) Ресурсы не обязательно добавлять
 
 add_executable(proj
-        main.cpp
-        menu.h
-        menu.cpp
-        errors.h
-        second.h
+            WIN32
+            main.cpp
+            menu.h
+            menu.cpp
+            errors.h
+            second.h
+            mainwindow.ui
+            glory.qml
+          #  ${qrc}
         )
-target_link_libraries(proj Qt5::Core Qt5::Widgets Qt5::Multimedia bigInt2) #tobanteGaming::Box2D sfml-graphics sfml-window sfml-system)
+target_link_libraries(proj Qt5::Core Qt5::Widgets Qt5::Multimedia bigInt2     Qt5::Quick
+    Qt5::Qml) 

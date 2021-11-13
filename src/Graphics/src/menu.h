@@ -6,6 +6,12 @@
 #define CMAKE_TUR_MENU_H
 #include "../../Dynamic/bigInt.h"
 
+
+#include <QGraphicsObject>
+#include <QtGui>
+
+
+
 #include <QPushButton>
 #include <QBoxLayout>
 
@@ -43,136 +49,65 @@
 #include <QPainter>
 #include <QGraphicsRectItem>
 #include <QGraphicsPixmapItem>
+#include <QQuickView>
+#include <QQmlContext>
 
-class figure:public QGraphicsPixmapItem{
+#include <qqmlapplicationengine.h>
+#include <qmainwindow.h>
+#include "qmainwindow.h"
 
+#include <QObject>
+#include <QQmlPropertyMap>
+
+namespace Ui {
+    class MainWindow;
+}
+
+
+class MainWindow:public QMainWindow{//Работает
+     Q_OBJECT
+     
 public:
-    figure(int xspread):QGraphicsPixmapItem(0)
+    explicit MainWindow(QWidget* parent) :
+        QMainWindow(parent)
     {
-        std::cout<<"figure";
-      //  QColor color = QColor(rand()%255,rand()%255,rand()%255);std::cout<<"end";
-        //this->setBrush(color);
-       // this->setRect(0,0,30,20);
-        setPixmap( QPixmap("C:\\Users\\Admin\\CLionProjects\\untitled12\\bigInt\\src\\Graphics\\forms\\bot.jpg"));
-        setPos(rand()%(xspread-30),0);
+        //Включаем наш QML
+        ui = new QQuickView;
+        ui->setSource(QUrl("glory.qml"));
+     //   setCentralWidget(ui);
+        ui->setResizeMode(QQuickView::SizeRootObjectToView);
     }
-public:
-    virtual void advance(int phase);
+    ~MainWindow();
+
+    Q_INVOKABLE void FunctionC()
+    {
+        //Найдем строку ввода
+        QObject* textinput = Root->findChild<QObject*>("textinput");
+
+        //Найдем поле вывода 
+        QObject* memo = Root->findChild<QObject*>("memo");
+
+        QString str;//Создадим новую строковую переменную
+
+        //Считаем информацию со строки ввода через свойство text
+        str = (textinput->property("text")).toString();
+
+        int a;
+        a = str.toInt();//Переведем строку в число
+        a++;//Добавим к числу 1
+
+        QString str2;//Создадим еще одну строковую переменную
+        str2 = QString::number(a);//Переведем число в строку
+
+        //Ну и наконец выведем в поле вывода нашу информацию
+        memo->setProperty("text", str + "+1=" + str2);
+    }
+
 private:
+    QQuickView* ui;
+    QObject* Root;//корневой элемент QML модели
 };
-
-
-
-class menu:public QWidget {//Сделать отнаст=ледованным от QMainMenu
-    Q_OBJECT
-private:
-      QWidget* parent = nullptr;
-      QPushButton* a = 0;
-      QPushButton* b = 0;
-      QLineEdit* e = 0;
-      QGridLayout *grid = 0;
-      QLabel* lbl = 0;
-      bigInt h = 0;
-      QSound* qs = 0;
-      QSound* news = 0;
-      errors* err = 0;
-      second* sec = {};
-      QMenuBar* qmb = {};
-      QMenu* qm = {};
-      QVBoxLayout* lo = {};
-      QPushButton* qp = {};
-      QPushButton* qp2= {};
-      QGraphicsScene* qgs = {};
-      QGraphicsView* qgv = 0;
-      QTimer* animTimer = {};
-      QTimer* genTimer = {};
-public:
-         menu(QWidget* parent = nullptr);
-         ~menu()
-         {
-             delete(parent);
-             //delete(ui);
-         }
-public slots:
-    void addSq()
-    {
-             std::cout<<"freger";
-        qgs->addItem(new figure(qgs->sceneRect().width()));
-        std::cout<<"exit";
-    }
-    void plus(){
-        err->show();
-        qs->play();
-        QString nw = e->text();
-        h+=nw.toLocal8Bit().data();//newn;
-        e->clear();
-        const char* p = to_str(h);
-        lbl->setText(p);
-    }
-    void minus(){
-        qs->play();
-        QString nw = e->text();
-        h-=nw.toLocal8Bit().data();//newn;
-        e->clear();
-        const char* p = to_str(h);
-        lbl->setText(p);
-    }
-    void delten(){
-        qs->play();
-        h>>=1;//newn;
-        const char* p = to_str(h);
-        lbl->setText(p);
-    }
-    void multen(){
-        qs->play();
-        h<<=1;//newn;
-        const char* p = to_str(h);
-        lbl->setText(p);
-    }
-    void qui()
-    {
-        this->close();
-    }
-    void link(){
-        QDesktopServices::openUrl(QUrl("https://dumponce.github.io"));
-    }
-
-    void changeBut(bool checked)
-    {
-        if (checked)
-        {
-            a->setStyleSheet
-            (
-                    " QPushButton {\n"
-                    "     border: 2px solid #8f8f91;\n"
-                    "     border-radius: 6px;\n"
-                    "     min-width: 80px;\n"
-                    " }"
-            );
-        } else {
-            a->setStyleSheet(
-                    " QPushButton {\n"
-                    "     border: 2px solid #8f8f91;\n"
-                    "     border-radius: 6px;\n"
-                    "     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-                    "                                       stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
-                    "     min-width: 80px;\n"
-                    " }"
-
-            );
-        }
-    }
-    void pressedFunc()
-    {
-
-    }
-    void openNew() {
-        this->close();
-        sec->setWindowTitle("My first product");
-        sec->setGeometry(500, 500, 500, 500);
-        sec->show();
-    }
-};
-
-
+/// <summary>
+/// 
+/// </summary>
 #endif //CMAKE_TUR_MENU_H

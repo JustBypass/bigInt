@@ -20,7 +20,6 @@ bigInt& bigInt::operator=(bigInt&& _t)noexcept
    _t._count = {};
    return (*this);
 }
-
 bigInt&  bigInt::operator=(bigInt& _num)noexcept
 {
     std::cout<<"Cope oper\n";
@@ -69,8 +68,7 @@ bigInt bigInt::operator +(const bigInt& _num)const noexcept
             vec.push_back('-');
         }
     }
-   // bigInt a((vec));
-    return vec;//(a);
+    return vec;
 }
 bigInt&  bigInt::operator<<=(int _n)  noexcept
 {
@@ -117,16 +115,24 @@ bigInt&  bigInt::operator>>=(int _n)  noexcept
 {
     return(_n + _t);
 }
- bigInt bigInt:: operator+(const char* _t)noexcept
-{
-    return (*this + bigInt(_t));
+ bigInt bigInt:: operator+(const char* _t)/*noexcept*/
+{ 
+     if (check::str_check(std::string(_t)) == 0) {
+         throw std::invalid_argument("Invalid string!\n");
+         return *this;
+     }
+   return (*this + bigInt(_t));
 }
  bigInt operator+(const char* _t, const bigInt& _n)noexcept
 {
     return(_n + _t);
 }
- bigInt bigInt:: operator -( const char* _t)noexcept
+ bigInt bigInt:: operator -( const char* _t)/*noexcept*/
 {
+     if (check::str_check(std::string(_t)) == 0) {
+         throw std::invalid_argument("Invalid string!\n");
+         return *this;
+     }
     return (*this - bigInt(_t));
 }
  bigInt operator -(const char* _t, const bigInt& _n)noexcept
@@ -137,27 +143,21 @@ bigInt&  bigInt::operator +=(const bigInt& _num) noexcept {
     *this = *this + _num;
     return *this;
 }
-bigInt bigInt::operator-(const bigInt& _num) const noexcept {//Здесь лишний копи конструктор т к мы должны гарантировать что все _num'ы не будут изменяться(хч)(нам надо изменить знак в любом случае)
+bigInt bigInt::operator-(const bigInt& _num) const noexcept {
     return (*this + ~bigInt(_num));
 }
 bigInt&  bigInt::operator -=(const bigInt& _num)noexcept
 {
-    return *this = (*this+bigInt(_num));
+    return *this = (*this+~bigInt(_num));
 }
 std::ostream& operator<<(std::ostream& out,const bigInt& a)noexcept {
     if (a.get_sgn() == 1)
-        std::cout << "-";
+        out << "-";
     for (int i = a.get_count() - 1; i >= 0; i--)
     {
         out << a._digit[i];
     }
     return out;
-}
-bigInt&  bigInt::operator+=(const char* _t) noexcept{
-    return *this = *this+bigInt(_t);
-}
-bigInt&  bigInt::operator-=(const char* _t)noexcept {
-    return (*this= *this + ~bigInt(_t));
 }
 bigInt& bigInt:: operator ~()noexcept{
     if (_sgn) {
@@ -166,8 +166,9 @@ bigInt& bigInt:: operator ~()noexcept{
     else _sgn = 1;
     return *this;
 }
-bigInt&  bigInt::operator =(const char* _t) noexcept {
-    *this = bigInt(_t);//Здесь ли лишнее копирование??//
+bigInt&  bigInt::operator =(const char* _t) noexcept
+{
+    *this = bigInt(_t);
     return *this;
 }
  bigInt bigInt::operator ++(int) noexcept {
@@ -182,6 +183,11 @@ std::istream& operator >>(std::istream& in, bigInt& _num) noexcept(false) ///How
     std::string str;
     in >> str;
     const char* s = str.c_str();
+    if (check::str_check(str) == 0) {
+        throw std::invalid_argument("Invalid string!\n");
+        _num = (long long)0;
+        return in;
+    }
     _num = s;
     return in;
 }
@@ -196,9 +202,11 @@ bool bigInt::operator==(const bigInt& _num)noexcept
     }
     else return false;
 }
-bigInt bigInt::operator>>(int _n) const noexcept {
-    if(_n <= 0 )
+bigInt bigInt::operator>>(int _n) const /*noexcept*/ {
+    if(_n < 0 ){  
+        throw std::invalid_argument("Invalid argument!\n");
         return *this;
+    }
     bigInt _new;
     _new._sgn = _sgn;
     _new._count = _count;
@@ -220,25 +228,6 @@ bigInt bigInt::operator>>(int _n) const noexcept {
     }
     return (_new);
 }
-bigInt&  bigInt:: operator -=(int a) noexcept {
-    *this = (*this + ~bigInt(a));
-    return (*this);
-}
-bigInt&  bigInt:: operator +=(int a) noexcept
-{
-    *this = (*this+bigInt(a));
-    return (*this );
-}
-bigInt&  bigInt:: operator -=(long long a) noexcept
-{
-    *this = (*this + ~bigInt(a));
-    return (*this);
-}
-bigInt&  bigInt:: operator +=(long long a) noexcept
-{
-    *this = (*this+bigInt(a));
-    return *this;
-}
 bigInt&  bigInt::operator=(long long a)noexcept
 {
     *this = (*this+bigInt(a));
@@ -248,9 +237,12 @@ bigInt& bigInt::operator =(int a)noexcept
 {
     return *this = ( bigInt((long long)a));
 }
- bigInt bigInt::operator<<(int _n)const noexcept {
-    if(_n<=0)
-        return (*this);
+ bigInt bigInt::operator<<(int _n)const /*noexcept*/ {
+     if (_n < 0) 
+     {
+         throw std::invalid_argument("Invalid argument!\n");
+         return *this;
+    }
     bigInt newn;
     newn._sgn = _sgn;
     newn._count = _count;

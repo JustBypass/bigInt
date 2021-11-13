@@ -4,18 +4,29 @@
 
 #include "Factory.h"
 
-
-
-bool my_comparator(const printedCircuitBoard& cl1, const printedCircuitBoard& cl2)
-{
-    return (int)cl1.getCurrentNumber()<(int)cl2.getCurrentNumber();
+Factory::Factory(std::initializer_list<printedCircuitBoard>  args) {
+	///addToVec(vec, args);
+	std::stringstream sstr;
+	sstr << "here\n";//Вывод инфы в логи
+	for (auto& ex:args) {
+		vec.push_back(ex);
+		std::cout << ex;
+	}
 }
-template<>
-void Factory<>::sortByType(){
-    std::qsort(vec.begin(),&vec.front(),my_comparator);//??
+
+bool my_comparator(const printedCircuitBoard& fst, const printedCircuitBoard& snd) {
+	return fst.getCurrentNumber() > snd.getCurrentNumber();
 }
 
-/*template<printedCircuitBoard... Args>
-Factory<>::Factory(Args... args) {
-    addToVec(vec, args);
-}*/
+void Factory::sortByNumber() {
+	std::sort(vec.begin(), vec.end(), my_comparator);
+}
+
+void Factory::printAll() {
+	std::cout << "This is all PCB's of Factory:\n";
+	for (auto& c : vec) {
+		std::cout << c;
+	}
+}
+
+

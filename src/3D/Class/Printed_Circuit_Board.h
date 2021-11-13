@@ -8,7 +8,7 @@
 #include <iostream>
 #include <cmath>
 
-namespace Lab3C {
+//namespace Lab3C {
 
     enum errorType {
         ok,
@@ -44,9 +44,9 @@ namespace Lab3C {
         [[nodiscard]] bool isCorrectNumber (short n) const {return (n < currentNumber && n >= 0);}
         bool isCorrectConnection (short c1, short c2);
     public:
-        printedCircuitBoard():currentNumber(0), maxNumber(Quota), contacts(new Contact[Quota]) {}; //Implementation is empty because when this constructor is called, constructor of each contact is called too
+        printedCircuitBoard() :currentNumber(0), maxNumber(Quota), contacts(new Contact[Quota]) { std::cout << "Simple\n"; }; //Implementation is empty because when this constructor is called, constructor of each contact is called too
         ~printedCircuitBoard() {currentNumber = 0; delete[] contacts;};
-        printedCircuitBoard(const printedCircuitBoard&);
+         printedCircuitBoard(const printedCircuitBoard&);
         printedCircuitBoard(printedCircuitBoard&&) noexcept ;
         printedCircuitBoard& operator = (const printedCircuitBoard&);
         printedCircuitBoard& operator = (printedCircuitBoard&&) noexcept ;
@@ -88,6 +88,6 @@ namespace Lab3C {
                 std::cout << "Enter only numbers, please!" << std::endl;
         } while (error != ok);
     }
-}
+//}
 
 #endif //LAB3_C_PRINTED_CIRCUIT_BOARD_H

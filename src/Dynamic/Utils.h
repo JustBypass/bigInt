@@ -6,7 +6,7 @@
 #define CMAKE_TUR_UTILS_H
 #include <iostream>
 namespace check {
-    bool str_check(std::string& _str) //Проверка корректности вводимого числа
+    bool str_check( std::string _str) //Проверка корректности вводимого числа
     {
         int i = 0;
         for (char c : _str)

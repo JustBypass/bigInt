@@ -22,7 +22,8 @@ bigInt::bigInt(long long _number)noexcept
     _number >= 0 ? _sgn = 0 : _sgn = 1;
     if (_number < 0)
         _number *= -1;
-    if (_number == (long long)0) {
+    if (_number == (long long)0) 
+    {
         _count = 1;
         _digit = new char[2];
         _digit[0] = '0';
@@ -31,13 +32,15 @@ bigInt::bigInt(long long _number)noexcept
     else {
         long long newn = _number;
         int g = {};
-        while (newn != (long long)0) {
+        while (newn != (long long)0)
+        {
             long long _el = (newn % 10);
             newn = (newn - _el) / 10;
             g++;
         }
         _digit = new char[g + 1];
-        for (int i = 0; i < g; i++) {
+        for (int i = 0; i < g; i++) 
+        {
             if (_number == (long long)0)
                 break;
             long long _el = (_number % 10);
@@ -51,7 +54,7 @@ bigInt::bigInt(long long _number)noexcept
 bigInt::bigInt(int _number) noexcept
 {
    // std::cout<<"int constr\n";
-    *this = (_number);
+    *this =(_number);
 
 /*
     _number >= 0 ? _sgn = 0 : _sgn = 1;
@@ -83,10 +86,8 @@ bigInt::bigInt(int _number) noexcept
         _count = g;
     }*/
 }
-bigInt::bigInt(myVector& _string) noexcept {
+bigInt::bigInt(myVector& _string) noexcept:_count(_string._size - 1) {
     std::cout<<"Vector constr\n";
-
-    _count = _string._size - 1;
     _string.vector[_string._size - 1] == '+' ? _sgn = 0 : _sgn = 1;
     _string.pop_back();
     _digit = new char[_string._size + 1];
@@ -98,12 +99,11 @@ bigInt::bigInt(myVector& _string) noexcept {
 bigInt::bigInt(bigInt&& _t) noexcept :_count(_t._count),_sgn(_t._sgn),_digit(_t._digit)
 {
     std::cout<<"Move constr\n";
-
     _t._digit = nullptr;
     _t._sgn = 0;
     _t._count = 0;
 }
-bigInt::bigInt(const char* _string)noexcept {
+bigInt::bigInt(const char* _string)/*noexcept*/ {
     std::cout<<"const char constr\n";
     std::string _s = static_cast<std::string>(_string);
     if (check::str_check(_s) == 1){
@@ -120,8 +120,7 @@ bigInt::bigInt(const char* _string)noexcept {
             _sgn = 0;
         }
         _digit = new char[p];
-        int i = 0;
-        int k = 0;
+        int i = 0, k = 0;;
         while (i < _count)
         {
             if (_count == 1)
@@ -144,18 +143,18 @@ bigInt::bigInt(const char* _string)noexcept {
     }
     else
     {
+        throw std::invalid_argument("Invalid string!\n");
         *this = 0;
     }
 }
-bigInt::bigInt(const bigInt& _num)noexcept {
+bigInt::bigInt(const bigInt& _num) noexcept :_sgn(_num.get_sgn()),_count(_num.get_count())
+{
     std::cout<<"Copy constr\n";
     _digit = new char[_num._count + 1];
     for (int i = 0; i < _num.get_count(); i++) {
         _digit[i] = _num._digit[i];
     }
-    _count = _num.get_count();
     _digit[_count] = '\0';
-    _sgn = _num.get_sgn();
 }
 
 #endif //CMAKE_TUR_CONSTRUCTORS_H

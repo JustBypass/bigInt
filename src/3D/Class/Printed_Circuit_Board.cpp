@@ -4,7 +4,7 @@
 
 #include "Printed_Circuit_Board.h"
 
-namespace Lab3C {
+//namespace Lab3C {
     printedCircuitBoard::Contact::Contact() {
         type = notStated;
         x = 0;
@@ -109,7 +109,7 @@ namespace Lab3C {
         return *this;
     }
 
-    const printedCircuitBoard::Contact& printedCircuitBoard::operator[](short n) {
+     printedCircuitBoard::Contact& printedCircuitBoard::operator[](short n) {
         if (!isCorrectNumber(n))
             throw std::invalid_argument("There is no such contact in the PCB!");
         return contacts[n];
@@ -186,6 +186,7 @@ namespace Lab3C {
     }
 
     printedCircuitBoard &printedCircuitBoard::operator = (printedCircuitBoard &&p)  noexcept {
+        std::cout << "Move operator\n";
         if (this != &p) {
             delete[] contacts;
             currentNumber = p.currentNumber;
@@ -197,9 +198,9 @@ namespace Lab3C {
         return *this;
     }
 
-    printedCircuitBoard::Contact &printedCircuitBoard::operator[](short c) const {
+    const printedCircuitBoard::Contact &printedCircuitBoard::operator[](short c) const {
         if (!isCorrectNumber(c))
             throw std::out_of_range("There is no such contact");
         return contacts[c];
     }
-}
+//}
