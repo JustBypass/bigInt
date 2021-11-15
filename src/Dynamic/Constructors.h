@@ -51,41 +51,8 @@ bigInt::bigInt(long long _number)noexcept
         _count = g;
     }
 }
-bigInt::bigInt(int _number) noexcept
-{
-   // std::cout<<"int constr\n";
-    *this =(_number);
+bigInt::bigInt(int _number) noexcept : bigInt((long long)_number) {};
 
-/*
-    _number >= 0 ? _sgn = 0 : _sgn = 1;
-    if (_number < 0)
-        _number *= -1;
-    if (_number == (int)0) {
-        _count = 1;
-        _digit = new char[2];
-        _digit[0] = '0';
-        _digit[1] = '\0';
-    }
-    else {
-        int newn = _number;
-        int g = {};
-        while (newn != (int)0) {
-            int _el = (newn % 10);
-            newn = (newn - _el) / 10;
-            g++;
-        }
-        _digit = new char[g + 1];
-        for (int i = 0; i < g; i++) {
-            if (_number == (int)0)
-                break;
-            int _el = (_number % 10);
-            _number = (_number - _el) / 10;
-            _digit[i] = _el + '0';
-        }
-        _digit[g] = '\0';
-        _count = g;
-    }*/
-}
 bigInt::bigInt(myVector& _string) noexcept:_count(_string._size - 1) {
     std::cout<<"Vector constr\n";
     _string.vector[_string._size - 1] == '+' ? _sgn = 0 : _sgn = 1;

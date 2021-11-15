@@ -6,7 +6,6 @@
 #include "Constructors.h"
 #include "functions.h"
 #include "translator.h"
-
 bigInt& bigInt::operator=(bigInt&& _t)noexcept
 {
     std::cout<<"Move oper\n";
@@ -20,6 +19,17 @@ bigInt& bigInt::operator=(bigInt&& _t)noexcept
    _t._count = {};
    return (*this);
 }
+
+bigInt&  bigInt::operator =(const char* _t) noexcept
+{
+    *this = bigInt(_t);
+    return *this;
+}
+bigInt& bigInt::operator =(int a)noexcept
+{
+    return *this = ( bigInt((long long)a));
+}
+
 bigInt&  bigInt::operator=(bigInt& _num)noexcept
 {
     std::cout<<"Cope oper\n";
@@ -33,132 +43,6 @@ bigInt&  bigInt::operator=(bigInt& _num)noexcept
     _sgn = _num._sgn;
     return *this;
 }
-bigInt bigInt::operator +(const bigInt& _num)const noexcept
-{
-    int len = std::max(_count, _num._count);
-    myVector vec(len + 2);
-    if (_sgn == _num._sgn)//Если числа одинакового знака
-    {
-        if (_num._sgn == 0) {//Если числа положительны
-            auxillary::sum_numbers(vec, *this, _num, len);
-            auxillary::deleteZeros(vec);
-            vec.push_back('+');
-        }
-        else {//Если числа отрицательны
-            auxillary::sum_numbers(vec, *this, _num, len);
-            auxillary::decimalInversion(vec);
-            auxillary::plusOne(vec, len);
-            vec.pop_back();
-            auxillary::deleteZeros(vec);
-            vec.push_back('-');
-        }
-    }
-    else//Если числа разных знаков
-    {
-        auxillary::sum_numbers(vec, *this, _num, len);
-        if (vec.vector[vec._size - 1] == '0') {//если получилось положительное число
-            auxillary::deleteZeros(vec);
-            vec.push_back('+');
-        }
-        else {// если отрицательное
-            auxillary::decimalInversion(vec);
-            auxillary::plusOne(vec, len);
-            vec.pop_back();
-            auxillary::deleteZeros(vec);
-            vec.push_back('-');
-        }
-    }
-    return vec;
-}
-bigInt&  bigInt::operator<<=(int _n)  noexcept
-{
-    if(_n == 0)
-        return *this;
-    else return *this = ((*this << _n));
-}
-bigInt&  bigInt::operator>>=(int _n)  noexcept
-{
-    if(_n == 0)
-        return *this;
-    else return *this = ((*this >> _n));
-}
- bigInt bigInt:: operator -( int _t)noexcept
-{
-    return(*this- bigInt(_t));
-}
- bigInt operator -(int _t, const bigInt& _n)noexcept
-{
-    return(bigInt(_t) - _n);
-}
- bigInt bigInt:: operator+(int _t)noexcept
-{
-    return *this + bigInt(_t);
-}
-
- bigInt operator+(int _t, const bigInt& _n)noexcept
-{
-    return(_n + _t);
-}
- bigInt bigInt:: operator -( long long _t)noexcept
-{
-    return(*this - bigInt(_t));
-}
- bigInt operator -(long long _t, const bigInt& _n)noexcept
-{
-    return (bigInt(_t) - _n);
-}
- bigInt bigInt:: operator+(long long _t)noexcept
-{
-    return(*this + bigInt(_t));
-}
- bigInt operator+(long long _t, const bigInt& _n)noexcept
-{
-    return(_n + _t);
-}
- bigInt bigInt:: operator+(const char* _t)/*noexcept*/
-{ 
-     if (check::str_check(std::string(_t)) == 0) {
-         throw std::invalid_argument("Invalid string!\n");
-         return *this;
-     }
-   return (*this + bigInt(_t));
-}
- bigInt operator+(const char* _t, const bigInt& _n)noexcept
-{
-    return(_n + _t);
-}
- bigInt bigInt:: operator -( const char* _t)/*noexcept*/
-{
-     if (check::str_check(std::string(_t)) == 0) {
-         throw std::invalid_argument("Invalid string!\n");
-         return *this;
-     }
-    return (*this - bigInt(_t));
-}
- bigInt operator -(const char* _t, const bigInt& _n)noexcept
-{
-    return(~bigInt(_n) + _t);
-}
-bigInt&  bigInt::operator +=(const bigInt& _num) noexcept {
-    *this = *this + _num;
-    return *this;
-}
-bigInt bigInt::operator-(const bigInt& _num) const noexcept {
-    return (*this + ~bigInt(_num));
-}
-bigInt&  bigInt::operator -=(const bigInt& _num)noexcept
-{
-    return *this = (*this+~bigInt(_num));
-}
-std::ostream& operator<<(std::ostream& out,const bigInt& a)noexcept {
-    if (a.get_sgn() == 1)
-        out << "-";
-    for (int i = a.get_count() - 1; i >= 0; i--)
-    {
-        out << a._digit[i];
-    }
-    return out;
-}
 bigInt& bigInt:: operator ~()noexcept{
     if (_sgn) {
         _sgn = 0;
@@ -166,31 +50,7 @@ bigInt& bigInt:: operator ~()noexcept{
     else _sgn = 1;
     return *this;
 }
-bigInt&  bigInt::operator =(const char* _t) noexcept
-{
-    *this = bigInt(_t);
-    return *this;
-}
- bigInt bigInt::operator ++(int) noexcept {
-    *this += "1";
-    return (*this - "1");
-}
- bigInt bigInt::operator ++() noexcept {
-    return *this += "1";
-}
-std::istream& operator >>(std::istream& in, bigInt& _num) noexcept(false) ///How to do it??//Подключить гетстр или другой костыль;)
-{
-    std::string str;
-    in >> str;
-    const char* s = str.c_str();
-    if (check::str_check(str) == 0) {
-        throw std::invalid_argument("Invalid string!\n");
-        _num = (long long)0;
-        return in;
-    }
-    _num = s;
-    return in;
-}
+
 bool bigInt::operator==(const bigInt& _num)noexcept
 {
     if (_num.get_count() == _count && _num.get_sgn() == _sgn)
@@ -233,10 +93,7 @@ bigInt&  bigInt::operator=(long long a)noexcept
     *this = (*this+bigInt(a));
     return *this;
 }
-bigInt& bigInt::operator =(int a)noexcept
-{
-    return *this = ( bigInt((long long)a));
-}
+
  bigInt bigInt::operator<<(int _n)const /*noexcept*/ {
      if (_n < 0) 
      {
@@ -280,4 +137,96 @@ bigInt& bigInt::operator =(int a)noexcept
         newn._count++;
     }
     return (newn);
+}
+
+std::istream& operator >>(std::istream& in, bigInt& _num)  ///How to do it??//Подключить гетстр или другой костыль;)
+{
+    std::string str;
+    in >> str;
+    const char* s = str.c_str();
+    if (check::str_check(s) == 0) {
+        throw std::invalid_argument("Invalid string!\n");
+        _num = (long long)0;
+        return in;
+    }
+    _num = s;
+    return in;
+}
+
+bigInt&  bigInt::operator<<=(int _n)  noexcept
+{
+    if(_n == 0)
+        return *this;
+    else return *this = ((*this << _n));
+}
+bigInt&  bigInt::operator>>=(int _n)  noexcept
+{
+    if(_n == 0)
+        return *this;
+    else return *this = ((*this >> _n));
+}
+
+bigInt operator+(const bigInt&a, const bigInt&b) {
+     int len = std::max(a._count, b._count);
+     myVector vec(len + 2);
+     if (a._sgn ==b._sgn)//Если числа одинакового знака
+     {
+         if (b._sgn == 0) {//Если числа положительны
+             auxillary::sum_numbers(vec, a, b, len);
+             auxillary::deleteZeros(vec);
+             vec.push_back('+');
+         }
+         else {//Если числа отрицательны
+             auxillary::sum_numbers(vec, a, b, len);
+             auxillary::decimalInversion(vec);
+             auxillary::plusOne(vec, len);
+             vec.pop_back();
+             auxillary::deleteZeros(vec);
+             vec.push_back('-');
+         }
+     }
+     else//Если числа разных знаков
+     {
+         auxillary::sum_numbers(vec, a, b, len);
+         if (vec.vector[vec._size - 1] == '0') {//если получилось положительное число
+             auxillary::deleteZeros(vec);
+             vec.push_back('+');
+         }
+         else {// если отрицательное
+             auxillary::decimalInversion(vec);
+             auxillary::plusOne(vec, len);
+             vec.pop_back();
+             auxillary::deleteZeros(vec);
+             vec.push_back('-');
+         }
+     }
+     return vec;
+
+ }
+bigInt operator-(const bigInt&a, const bigInt&b) {
+     return a + ~bigInt(b);
+ }
+bigInt&  bigInt::operator +=(const bigInt& _num) noexcept {
+    *this = *this + _num;
+    return *this;
+}
+bigInt&  bigInt::operator -=(const bigInt& _num)noexcept
+{
+    return *this = (*this+~bigInt(_num));
+}
+std::ostream& operator<<(std::ostream& out,const bigInt& a)noexcept {
+    if (a.get_sgn() == 1)
+        out << "-";
+    for (int i = a.get_count() - 1; i >= 0; i--)
+    {
+        out << a._digit[i];
+    }
+    return out;
+}
+ bigInt bigInt::operator ++(int) noexcept {
+    *this += "1";
+    return (*this - "1");
+}
+ bigInt& bigInt::operator ++() noexcept {
+    return *this += "1";
 }

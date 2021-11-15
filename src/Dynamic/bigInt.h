@@ -36,41 +36,25 @@ public:
     inline char* get_digit()const noexcept { return _digit; }
     ///Operators
     bigInt& operator +=(const bigInt& digit)                      noexcept;
-     bigInt operator ++()                                         noexcept;///++a
+     bigInt& operator ++()                                         noexcept;///++a
     bigInt operator ++(int)                                       noexcept;//a++
 
     bool operator ==(const bigInt&)                               noexcept;
     friend std::ostream& operator<<(std::ostream& out, const bigInt& a) noexcept;
-    friend std::istream& operator >>(std::istream&, bigInt&)      noexcept(false);
+    friend std::istream& operator >>(std::istream&, bigInt&);
     bigInt&  operator =(bigInt&)                                  noexcept;
     bigInt& operator=(bigInt&&)                                   noexcept;
     bigInt& operator -= (const bigInt& digit)                     noexcept;
-    bigInt operator +(const bigInt& digit)  const                 noexcept;
-    bigInt operator -(const bigInt& digit) const                  noexcept;
+    //bigInt operator +(const bigInt& digit)  const                 noexcept;
+    //bigInt operator -(const bigInt& digit) const                  noexcept;
+
+    friend bigInt operator+(const bigInt&, const bigInt&);
+    friend bigInt operator-(const bigInt&, const bigInt&);
+
         
     bigInt &operator =(const char*)                               noexcept;
-    bigInt& operator =(int)                                      noexcept;
+    bigInt& operator =(int)                                       noexcept;
     bigInt&  operator =(long long)                                noexcept;
-
-    bigInt operator -( long long )                                noexcept;
-    friend bigInt operator -(long long, const bigInt& )           noexcept;
-
-    bigInt operator+( long long )                                 noexcept;
-    friend bigInt operator+(long long , const bigInt&)            noexcept;
-
-    bigInt operator -( int )                                      noexcept;
-    friend bigInt operator -(int , const bigInt& )                noexcept;
-
-    bigInt operator+( int )                                       noexcept;
-    friend  bigInt operator+(int , const bigInt&)                 noexcept;
-
-    bigInt operator+( const char* );
-    friend  bigInt operator+(const char* , const bigInt& )        noexcept;
-
-    bigInt operator -(const char* );
-    friend bigInt operator -(const char* , const bigInt& )        noexcept;
-
-
     bigInt operator >>(int)const;//Dividing numbor by 10
     bigInt operator<<(int)const;//Multypying by 10
 
