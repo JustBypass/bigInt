@@ -61,7 +61,7 @@ TEST(bigInt_t, MinusOperator_4) {
     bigInt b("-435");
     EXPECT_STREQ(to_str(bigInt(a-b)),"0");
 }
-TEST(bigInt_t, ShiftR_t) {///Ошибка в знаке скорее всего
+TEST(bigInt_t, ShiftR_t) {
     bigInt _v("32");
     bigInt _n("3");
     EXPECT_STREQ(to_str(bigInt(_v>>1)) , "3");
@@ -72,7 +72,7 @@ TEST(bigInt_t, ShiftL_t)
     bigInt _n("320");
     EXPECT_STREQ(to_str(bigInt(_v<<1)) , "320");
 }
-TEST(bigInt_t, ShiftZeroR_t) {///Ошибка в знаке скорее всего//Ошибка в strlen (\0 считает за число???)
+TEST(bigInt_t, ShiftZeroR_t) {
     bigInt _v("0");
     bigInt _n("0");
     EXPECT_STREQ(to_str(bigInt(_v>>1)) , "0");
