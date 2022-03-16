@@ -15,7 +15,6 @@ struct myVector
         vector = new char[n];
     }
     ~myVector() {
-        _size = 0;
         delete(vector);
     }
     void push_back(char _c) { vector[_size++] = _c; }

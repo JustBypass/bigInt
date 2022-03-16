@@ -1,6 +1,6 @@
-^C:\QT\QT5.12.10\CMAKE_TUR\SRC\MAIN\CMAKELISTS.TXT
+^C:\USERS\ADMIN\CLIONPROJECTS\UNTITLED12\BIGINT\SRC\MAIN\CMAKELISTS.TXT
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Qt/Qt5.12.10/cmake_tur -BC:/Qt/Qt5.12.10/cmake_tur/build --check-stamp-file C:/Qt/Qt5.12.10/cmake_tur/build/src/main/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Admin/CLionProjects/untitled12/bigInt -BC:/Users/Admin/CLionProjects/untitled12/bigInt/build --check-stamp-file C:/Users/Admin/CLionProjects/untitled12/bigInt/build/src/main/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

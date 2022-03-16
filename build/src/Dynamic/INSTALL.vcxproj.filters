@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Qt\Qt5.12.10\cmake_tur\build\CMakeFiles\fcfd335bbb326e8ca9018613ea8dd481\INSTALL_force.rule">
+    <CustomBuild Include="C:\Users\Admin\CLionProjects\untitled12\bigInt\build\CMakeFiles\1ff16817989a216d8a3c92fa271a48df\INSTALL_force.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{9FEFBA1E-9CDC-3559-B1E4-95438D7A4315}</UniqueIdentifier>
+      <UniqueIdentifier>{676F557B-9F2C-38CC-9D7D-97EFB95DB3C1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

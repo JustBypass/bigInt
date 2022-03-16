@@ -1,8 +1,8 @@
-# Install script for directory: C:/Qt/Qt5.12.10/cmake_tur/src/UnitTests
+# Install script for directory: C:/Users/Admin/CLionProjects/untitled12/bigInt/src/UnitTests
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/cmake_tur")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/bigInt")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

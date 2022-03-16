@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/Dynamic/bigInt.h
+myVector.h
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/Dynamic/myVector.h
+iostream
+-
+string.h
+-
+utility
+-
+
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/Dynamic/myVector.h
+
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/UnitTests/test.cpp
+gtest/gtest.h
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/UnitTests/gtest/gtest.h
+C:/Users/Admin/CLionProjects/untitled12/bigInt/src/Dynamic/bigInt.h
+-
+

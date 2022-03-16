@@ -6,58 +6,6 @@
 #define CMAKE_TUR_FUNCTIONS_H
 class bigInt;
 
-char* to_str(const bigInt& a)//Перевод большого числа в строку(используется а тестах)
-{
-    int p = 0;
-    if (a._sgn) {
-        p = a._count + 2;
-    }
-    else
-    {
-        p = a._count + 1;
-    }
-    char* str = new char[p];
-    if (a._sgn == 1)
-    {
-        str[0] = '-';
-        for (int i = a._count; i > 0; i--) {
-            str[i] = a._digit[a._count - i];
-        }
-    }
-    else {
-        for (int i = a._count - 1; i >= 0; i--) {
-            str[i] = a._digit[a._count - i - 1];
-        }
-    }
-    str[p - 1] = '\0';
-    return str;
-}
-
-char* to_str(bigInt&& a){
-    int p = 0;
-    if (a._sgn) {
-        p = a._count + 2;
-    }
-    else
-    {
-        p = a._count + 1;
-    }
-    char* str = new char[p];
-    if (a._sgn == 1) {
-        str[0] = '-';
-        for (int i = a._count; i > 0; i--) {
-            str[i] = a._digit[a._count - i];
-        }
-    }
-    else {
-        for (int i = a._count - 1; i >= 0; i--) {
-            str[i] = a._digit[a._count - i - 1];
-        }
-    }
-    str[p - 1] = '\0';
-    return str;
-}
-
 namespace auxillary//Пространство имен для работы с дополнительным кодом десятичного числа
 {
     void deleteZeros(myVector& _vec)// удаляем все нули из итогового вектора числа(если все нули, то последний сохраняем)
@@ -78,7 +26,7 @@ namespace auxillary//Пространство имен для работы с д
         int transmission = 1;
         for (int i = 0; i < len + 1; i++) {
             if (((((int)vec.vector[i] - '0') + transmission)) / 10 == 1) {
-                vec.vector[i] = '0';//
+                vec.vector[i] = '0';
             }
             else {
                 vec.vector[i] = (((transmission)+((int)vec.vector[i] - '0')) + '0');
@@ -96,7 +44,7 @@ namespace auxillary//Пространство имен для работы с д
             (((((int)first.vector[i] - '0') + ((int)second.vector[i] - '0' + transmission)) / 10) > 0) ? transmission = 1 : transmission = 0;
         }
     }
-    void sum_numbers(myVector& vec, bigInt a, bigInt b, int len)//0поучаем вектор в дополнителном коде
+    void sum_numbers(myVector& vec, const bigInt& a, const bigInt& b, int len)//0поучаем вектор в дополнителном коде
     {
         int maximum = std::max(a.get_count(), b.get_count());
         myVector first(maximum + 2);
@@ -106,7 +54,7 @@ namespace auxillary//Пространство имен для работы с д
         sumOperation(vec, maximum, first, second);
     }
 }
-void do_external(int len, bigInt& _num, myVector& vec)//Перревод числа в вектор с доп кодом
+void do_external(int len, const bigInt& _num, myVector& vec)//Перревод числа в вектор с доп кодом
 {
     for (int i = 0; i < len; i++) {
         for (i; i < _num.get_count(); i++) {
@@ -127,13 +75,7 @@ void do_external(int len, bigInt& _num, myVector& vec)//Перревод чис�
         vec.push_back('0');
     }
 }
-void changeSgn(bigInt& c) // Меняем знак числа(побочная функция)
-{
-    if (c._sgn) {
-        c._sgn = 0;
-    }
-    else c._sgn = 1;
-}
+
 void bigInt::returnExternal()// Печатаем число в доп. коде
 {
     myVector _vec(_count + 1);

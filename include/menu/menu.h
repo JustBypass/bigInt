@@ -41,7 +41,7 @@ public:
             int r = 1;
             bigInt _num;
             int ch;
-            while(true){
+           /* while(true){
                 std::cout<<_choosingConstrMenu ;
                 std::cout<<_chooseConstr;
                 getNum(ch);
@@ -58,7 +58,7 @@ public:
                     _num = (int)0;
                     break;
                 }
-            }
+            }*/
             int rc = 1;
             bool flag = true;
             while(true){

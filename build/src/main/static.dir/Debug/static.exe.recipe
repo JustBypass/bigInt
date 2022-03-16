@@ -2,10 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Qt\Qt5.12.10\cmake_tur\build\x64\Debug\ZERO_CHECK</FullPath>
+      <FullPath>C:\Users\Admin\CLionProjects\untitled12\bigInt\build\x64\Debug\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\Qt\Qt5.12.10\cmake_tur\build\src\main\Debug\static.exe</FullPath>
+      <FullPath>C:\Users\Admin\CLionProjects\untitled12\bigInt\build\src\main\Debug\static.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

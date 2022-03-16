@@ -38,7 +38,7 @@ const bigInt& bigInt::operator ++() noexcept {
 }
 std::ostream& operator<<(std::ostream& out, const bigInt& a) noexcept {
     if (a.get_sgn() == 1)
-        std::cout << "-";
+        out << "-";
     for (int i = a.get_count() - 1; i >= 0; i--)
     {
         out << a._digit[i];

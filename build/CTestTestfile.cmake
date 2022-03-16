@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: C:/Qt/Qt5.12.10/cmake_tur
-# Build directory: C:/Qt/Qt5.12.10/cmake_tur/build
+# Source directory: C:/Users/Admin/CLionProjects/untitled12/bigInt
+# Build directory: C:/Users/Admin/CLionProjects/untitled12/bigInt/build
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

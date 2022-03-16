@@ -1,8 +1,8 @@
-# Install script for directory: C:/Qt/Qt5.12.10/cmake_tur
+# Install script for directory: C:/Users/Admin/CLionProjects/untitled12/bigInt
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/cmake_tur")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/bigInt")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,9 +34,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Qt/Qt5.12.10/cmake_tur/build/googletest/cmake_install.cmake")
-  include("C:/Qt/Qt5.12.10/cmake_tur/build/src/Dynamic/cmake_install.cmake")
-  include("C:/Qt/Qt5.12.10/cmake_tur/build/src/UnitTests/cmake_install.cmake")
+  include("C:/Users/Admin/CLionProjects/untitled12/bigInt/build/googletest/cmake_install.cmake")
+  include("C:/Users/Admin/CLionProjects/untitled12/bigInt/build/src/Dynamic/cmake_install.cmake")
+  include("C:/Users/Admin/CLionProjects/untitled12/bigInt/build/src/UnitTests/cmake_install.cmake")
 
 endif()
 
@@ -48,5 +48,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Qt/Qt5.12.10/cmake_tur/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Admin/CLionProjects/untitled12/bigInt/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
