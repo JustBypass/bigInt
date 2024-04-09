@@ -8,4 +8,5 @@ googletest/
 .sln
 .tlog
 .log
-
+build/
+*.sh

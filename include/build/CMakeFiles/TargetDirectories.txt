@@ -1,3 +1,0 @@
-C:/Qt/Qt5.12.10/cmake_tur/library/build/CMakeFiles/bigInt.dir
-C:/Qt/Qt5.12.10/cmake_tur/library/build/CMakeFiles/ALL_BUILD.dir
-C:/Qt/Qt5.12.10/cmake_tur/library/build/CMakeFiles/ZERO_CHECK.dir
